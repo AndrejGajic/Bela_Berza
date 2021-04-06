@@ -1,0 +1,40 @@
+/* Luka Tomanovic 0410/2018
+   Kosta Matijevic 0034/2018 */
+#walletTable {
+    overflow-y: scroll;
+    height:400px;
+}
+
+#walletTableName h2{
+    margin-top:50px;
+    font-weight: bold;
+}
+
+.table .thead-dark th{
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+}
+
+#walletContainer .row .col-6 button{
+    width: 100%;
+}
+
+#walletContainer .row .col-12 h1{
+    text-align: center;
+}
+
+
+.table .thead-dark th {
+    background-color: #222729 !important;
+}
+
+.wallet-in{
+    color: rgb(65, 155, 65);
+    
+}
+
+.wallet-out{
+    color: rgb(233, 56, 56);
+}
+

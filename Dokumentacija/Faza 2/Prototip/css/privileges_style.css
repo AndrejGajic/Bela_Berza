@@ -1,0 +1,70 @@
+/* Luka Tomanovic 0410/2018
+   Kosta Matijevic 0034/2018 */
+
+#privContainer{
+    margin-top: 15%;
+}
+
+#privStatus h1{
+    margin:auto;
+    font-weight: bold;
+}
+
+.no-priv-status{
+    color:red;
+}
+
+.yes-priv-status{
+    color:green;
+}
+
+#privButton button{
+    margin:auto;
+    font-size:21px;
+    font-weight: bold;
+    color:white;
+    padding:20px;
+    margin-top: 20px;
+}
+
+.no-priv-button{
+    background-color:rgb(65, 155, 65);
+   
+}
+
+.no-priv-button:hover{
+    background-color: darkgreen;
+}
+
+.yes-priv-button{
+    background-color: darkgray;
+}
+
+.modal-body p{
+    color:rgb(58, 57, 57);
+}
+
+@media (max-width: 400px) {
+    #privStatus h1{
+        font-size: 1.3em;
+    }
+
+    #privButton button{
+        font-size:16px;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+    #privStatus h1{
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 1000px) {
+    #privStatus h1{
+        font-size: 1.7em;
+    }
+}
+

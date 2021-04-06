@@ -1,0 +1,60 @@
+/* Luka Tomanovic 0410/2018
+   Kosta Matijevic 0034/2018 */
+
+#profContainer h4{
+    margin:auto;
+    margin-top: 80px;
+    margin-bottom:0;
+    color:#999;
+}
+
+#profContainer {
+    width:50%;
+    margin:auto;
+}
+
+#profContainer hr{
+    margin-top: 5px;
+}
+
+#profContainer div{
+    display: flex;
+    justify-content: space-between;
+}
+
+#profContainer div h1, #profContainer div img{
+    margin-top:auto;
+    margin-bottom:auto;
+}
+
+.edit-icon{
+     margin:auto;
+}
+
+.edit-icon:hover{
+    cursor: pointer;
+    color:#999;
+}
+
+#upload-icon{
+    font-size:40px;
+}
+
+
+
+#profPic div img{
+width: 100px;
+height: 100px;
+}
+
+.modal-body h5{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#upload-icon:hover{
+    color:#999;
+    cursor: pointer;
+    margin-top: auto;
+    margin-bottom: auto;
+}
