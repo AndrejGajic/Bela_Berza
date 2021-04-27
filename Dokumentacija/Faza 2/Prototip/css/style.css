@@ -305,9 +305,14 @@ a.btn-signup:hover {
 .stocks div.stock p.price{
     margin-top:10%;
     font-weight: bold;
-    font-size: 21px;
+    font-size: 18px; /*changed after FR*/
     color: black;
     margin-bottom: 0;
+}
+
+/*added after FR*/
+.stocks div.stock p.price-diff-percentage{
+    font-size: 14px;
 }
 
 
