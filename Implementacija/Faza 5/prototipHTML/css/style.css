@@ -1,0 +1,583 @@
+/* Luka Tomanovic 0410/2018
+   Kosta Matijevic 0034/2018 */
+
+/*
+    DEMO STYLE
+*/
+
+
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+@import "https://fonts.googleapis.com/css?family=Play:300,400,500,600,700";
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    /* background: #fafafa;*/
+}
+.body-wrraper{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: rgb(58, 57, 57);
+}
+
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+/*
+prikaz samo kad je na telefonu
+
+.navbar {
+    padding: 15px 10px;
+    background: darkgreen;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.navbar span{
+    margin-left: 2pc;
+}*/
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+i,
+span {
+    display: inline-block;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 300px;
+    max-width: 300px;
+    background-color: #222729 ;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar.active {
+    min-width: 80px;
+    max-width: 80px;
+    text-align: center;
+}
+
+#sidebar.active .sidebar-header h3,
+#sidebar.active .sidebar-header p,
+#sidebar.active .sidebar-header img,
+#sidebar.active .CTAs {
+    display: none;
+}
+
+#sidebar.active .sidebar-header strong {
+    display: block;
+}
+
+#sidebar ul li a {
+    text-align: left;
+}
+
+#sidebar ul li a.menu-item:hover{
+    color:cyan;
+}
+
+#sidebar ul li.active-item a.menu-item{
+    color: #7386D5;
+}
+
+#sidebar.basic ul li a.menu-item {
+    margin-left: 20px;
+}
+
+
+#sidebar.active ul li a {
+    padding: 20px 10px;
+    text-align: center;
+    font-size: 1.35em;
+}
+
+#sidebar.active ul li a i {
+    margin-right: 0;
+    display: block;
+    font-size: 1.8em;
+    margin-bottom: 5px;
+}
+
+/*for profile subitems*/
+.active-profile-item{
+    color: #7386D5 !important;
+}
+
+
+ 
+#sidebar ul li a span {
+    margin-left: 2pc;
+}
+
+#sidebar.active ul ul a {
+    padding: 10px !important;
+}
+
+#sidebar.active .dropdown-toggle::after {
+    top: auto;
+    bottom: 10px;
+    right: 50%;
+    -webkit-transform: translateX(50%);
+    -ms-transform: translateX(50%);
+    transform: translateX(50%);
+}
+
+#sidebar.active span {
+    display: none;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: darkred;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /*align-items: center;*/
+}
+
+#sidebar .sidebar-header strong {
+    display: none;
+    font-size: 1.8em;
+}
+
+#sidebar ul.components {
+    /*padding: 20px 0;*/
+    margin-top: 20px;
+    border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul.components li{
+   
+    border-top: 1px solid #47748b;
+}
+
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+/*
+#sidebar ul li a:hover {
+    color: #7386D5;
+}*/
+
+#sidebar ul li a i {
+    margin-right: 10px;
+}
+
+/*
+#sidebar ul li.active>a, a[aria-expanded="true"] {
+    color:  #7386D5;
+}*/
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background:darkgreen;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+a.btn-login,
+a.btn-login:hover {
+    background: #fff !important;
+    color: darkgreen !important;
+    text-align: center !important;
+}
+
+a.btn-signup,
+a.btn-signup:hover {
+    background: darkgreen !important;
+    color: #fff !important;
+    text-align: center !important;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#contentAndTitle {
+        padding: 20px;
+}
+
+.navbar{
+    display: none;
+}
+
+#siteTitle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#siteTitle h1{
+    margin-left: 50px;
+    font-family: 'Play', sans-serif;
+    font-weight: bold;
+    font-size: 5vw;
+}
+
+#siteTitle img{
+    width: 10%;
+}
+
+.stocks{
+   /* height: 250px;*/
+}
+.stocks div.stock img{
+    width: 100%;
+    min-height:90px;
+}
+.stock{
+    padding: 1px;
+    text-align: center;
+}
+.stocks div.stock p.price{
+    margin-top:10%;
+    font-weight: bold;
+    font-size: 18px; /*changed after FR*/
+    color: black;
+    margin-bottom: 0;
+}
+
+/*added after FR*/
+.stocks div.stock p.price-diff-percentage{
+    font-size: 14px;
+}
+
+
+.stocks div.stock p.diff-positive{
+    color: green;
+}
+.stocks div.stock p.diff-negative{
+    color: red;
+}
+
+.stocks div.stock button{
+    padding: 5%;
+    border: 0;
+}
+.stock1{
+    background-color: cyan;
+}
+.stock2{
+    background-color:indigo;
+}
+.stock3{
+    background-color:orange;
+}
+.stock4{
+    background-color:rgb(34, 255, 71);
+}
+
+.analytics{
+    margin-top: 5%;
+}
+
+#modalStockImage{
+    width: 100%;
+}
+
+.total-price{
+    color: black;font-weight: bold;
+}
+
+#chartContainer{
+    height: 400px; 
+    margin: 0px auto;
+    padding: 5px;
+}
+
+#volatileAsistentContainer{
+    width: 100%;
+    margin:0;
+    padding:0;
+}
+
+#volatileStocks{
+    height:190px;
+    background-color: rgb(151, 183, 243);
+    overflow-y: scroll;
+}
+
+.vol-table-header{
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+
+    background-color:rgb(151, 183, 243); 
+
+    padding-top: 5px;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+}
+
+.table tbody  tr  td {
+    vertical-align: middle;
+}
+
+.vol-logo-img{
+    width: 65px;
+    height: 45px;
+}
+
+.vol-name{
+    font-weight: bold;
+}
+
+.vol-change-positive{
+    color: darkgreen;
+}
+
+.vol-change-negative{
+    color: red;
+}
+
+
+#asistentWrapper{
+    height: 190px;
+    margin-top: 20px;
+    background-color: #d5d5d5;
+    display: grid; 
+    grid-template-rows: 20% 55% 25%;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+#asistentHeader{
+    padding-top: 5px;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+}
+
+
+#asistentHeader h3{
+    font-weight: bold;
+    margin:auto;
+}
+
+
+#asistent{
+    background-image: url("../images/lock.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: center;
+    background-position-x: center;
+}
+
+
+#asistentPromo a {
+    margin:auto;
+}
+
+#asistentPromo a button{
+    color:white;
+    font-weight: bold;
+}
+
+
+
+
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+
+@media (max-width: 1200px) {
+    #volatileStocks{
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        min-width: 80px;
+        max-width: 80px;
+        text-align: center;
+        margin-left: -80px !important;
+    }
+    .dropdown-toggle::after {
+        top: auto;
+        bottom: 10px;
+        right: 50%;
+        -webkit-transform: translateX(50%);
+        -ms-transform: translateX(50%);
+        transform: translateX(50%);
+    }
+
+    #sidebar.active {
+        margin-left: 0 !important;
+    }
+    #sidebar .sidebar-header h3,
+    #sidebar .CTAs {
+        display: none;
+    }
+    #sidebar .sidebar-header strong {
+        display: block;
+    }
+    #sidebar ul li a {
+        padding: 20px 10px;
+    }
+    #sidebar ul li a span {
+        font-size: 0.85em;
+    }
+    #sidebar ul li a i {
+        margin-right: 0;
+        display: block;
+    }
+    #sidebar ul ul a {
+        padding: 10px !important;
+    }
+    #sidebar ul li a i {
+        font-size: 1.3em;
+    }
+    #sidebar {
+        margin-left: 0;
+    }
+    #sidebarCollapse{
+        width: 100%;
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+   
+    .navbar {
+        padding: 15px 10px;
+        background: darkgreen;
+        border: none;
+        border-radius: 0;
+        margin-bottom: 40px;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+    }
+    
+    .navbar-btn {
+        box-shadow: none;
+        outline: none !important;
+        border: none;
+    }
+    
+    .navbar span{
+        margin-left: 2pc;
+    }
+
+    #asistentHeader h3{
+        font-size: 16px;
+    }
+
+    #asistentPromo a{
+       font-size:11px;
+    }
+}
+
+
+.sidebar-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+   /* align-items: center;*/
+}
+#user-image img{
+    width: 60px;
+    height: 60px;
+}
+
+#user-data-info{
+    text-align: center;
+}
+#user-data-info p{
+    color: lightcyan;
+}
+
+
+footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #222729;
+    text-align: center;
+ }
+footer p{
+    margin:auto;
+    color: white;
+    font-size: 0.8em;
+    font-weight: 300;
+    line-height: 2.5em;
+}
