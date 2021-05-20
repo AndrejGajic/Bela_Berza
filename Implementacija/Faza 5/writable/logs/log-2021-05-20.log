@@ -1,0 +1,45 @@
+CRITICAL - 2021-05-20 09:24:40 --> Invalid file: views/index.php
+#0 D:\wamp64\www\bela_berza\system\View\View.php(213): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('views/index.php')
+#1 D:\wamp64\www\bela_berza\system\Common.php(1250): CodeIgniter\View\View->render('views/index.php', Array, true)
+#2 D:\wamp64\www\bela_berza\app\controllers\Home.php(9): view('views/index.php')
+#3 D:\wamp64\www\bela_berza\system\CodeIgniter.php(931): App\Controllers\Home->index()
+#4 D:\wamp64\www\bela_berza\system\CodeIgniter.php(439): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 D:\wamp64\www\bela_berza\system\CodeIgniter.php(339): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 D:\wamp64\www\bela_berza\public\index.php(36): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-05-20 09:24:45 --> Invalid file: views/index.php
+#0 D:\wamp64\www\bela_berza\system\View\View.php(213): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('views/index.php')
+#1 D:\wamp64\www\bela_berza\system\Common.php(1250): CodeIgniter\View\View->render('views/index.php', Array, true)
+#2 D:\wamp64\www\bela_berza\app\controllers\Home.php(9): view('views/index.php')
+#3 D:\wamp64\www\bela_berza\system\CodeIgniter.php(931): App\Controllers\Home->index()
+#4 D:\wamp64\www\bela_berza\system\CodeIgniter.php(439): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 D:\wamp64\www\bela_berza\system\CodeIgniter.php(339): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 D:\wamp64\www\bela_berza\public\index.php(36): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-05-20 09:24:55 --> Invalid file: views/index.php
+#0 D:\wamp64\www\bela_berza\system\View\View.php(213): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('views/index.php')
+#1 D:\wamp64\www\bela_berza\system\Common.php(1250): CodeIgniter\View\View->render('views/index.php', Array, true)
+#2 D:\wamp64\www\bela_berza\app\controllers\Home.php(9): view('views/index.php')
+#3 D:\wamp64\www\bela_berza\system\CodeIgniter.php(931): App\Controllers\Home->index()
+#4 D:\wamp64\www\bela_berza\system\CodeIgniter.php(439): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 D:\wamp64\www\bela_berza\system\CodeIgniter.php(339): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 D:\wamp64\www\bela_berza\public\index.php(36): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-05-20 09:26:22 --> Invalid file: views/index.php
+#0 D:\wamp64\www\bela_berza\system\View\View.php(213): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('views/index.php')
+#1 D:\wamp64\www\bela_berza\system\Common.php(1250): CodeIgniter\View\View->render('views/index.php', Array, true)
+#2 D:\wamp64\www\bela_berza\app\controllers\Home.php(9): view('views/index.php')
+#3 D:\wamp64\www\bela_berza\system\CodeIgniter.php(931): App\Controllers\Home->index()
+#4 D:\wamp64\www\bela_berza\system\CodeIgniter.php(439): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 D:\wamp64\www\bela_berza\system\CodeIgniter.php(339): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 D:\wamp64\www\bela_berza\public\index.php(36): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-05-20 09:44:08 --> Invalid file: priveleges.php
+#0 D:\wamp64\www\bela_berza\system\View\View.php(213): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('priveleges.php')
+#1 D:\wamp64\www\bela_berza\system\Common.php(1250): CodeIgniter\View\View->render('priveleges.php', Array, true)
+#2 D:\wamp64\www\bela_berza\app\controllers\Privileges.php(9): view('priveleges.php')
+#3 D:\wamp64\www\bela_berza\system\CodeIgniter.php(931): App\Controllers\Privileges->index()
+#4 D:\wamp64\www\bela_berza\system\CodeIgniter.php(439): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Privileges))
+#5 D:\wamp64\www\bela_berza\system\CodeIgniter.php(339): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 D:\wamp64\www\bela_berza\public\index.php(36): CodeIgniter\CodeIgniter->run()
+#7 {main}
