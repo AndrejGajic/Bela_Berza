@@ -115,13 +115,17 @@
                 <hr>
 
                 <div class="container-fluid" id="privContainer">
-
                     <div class="row" id="privStatus">
-                        <h1 class="no-priv-status">TRENUTNO NEMATE PRIVILEGIJE</h1>
+                        <h1 class="<?php if($priv==0) echo('no-priv-status');
+                                      else if($priv==1) echo('yes-priv-status');?>">
+                            <?php if($priv==0) echo('TRENUTNO NEMATE PRIVILEGIJE');
+                            else if($priv==1) echo('VEC STE PRIVILEGOVANI KORISNIK')?>
+                        </h1>
                     </div>
                     <div class="row" id="privButton">
-                        <button data-toggle="modal" data-target="#exampleModalCenter" class="btn no-priv-button">POSTANI
-                            PRIVILEGOVANI KORISNIK</button>
+                        <?php if($priv==0)
+                         echo('<button data-toggle="modal" data-target="#exampleModalCenter" class="btn no-priv-button">POSTANI
+                            PRIVILEGOVANI KORISNIK</button>') ?>
                     </div>
                 </div>
 

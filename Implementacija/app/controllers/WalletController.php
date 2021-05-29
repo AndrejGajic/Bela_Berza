@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class Wallet extends BaseController
+class WalletController extends BaseController
 {
     public function index()
     {
