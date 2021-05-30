@@ -132,6 +132,15 @@
                             echo        '</div>';
                             echo    '</div>';
                             echo '</div>';
+                        }else if($session->getFlashdata('transactionSuccess')!=null){
+                            echo '<div class="row">';
+                            echo    '<div class="col-12" id="transactionSuccess">';
+                            echo        '<div class="alert alert-success alert-dismissible">';
+                            echo            '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+                            echo            '<strong>'.$session->getFlashdata('transactionSuccess').'</strong>&nbsp';
+                            echo        '</div>';
+                            echo    '</div>';
+                            echo '</div>';
                         }
                     ?>
                     <div class="row">
@@ -266,7 +275,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">&euro;</div>
                                     </div>
-                                    <input type="number" name="amountInputFieldPayment" class="form-control" placeholder="0&euro;" value="0" min="0"
+                                    <input type="number" name="amountInputFieldPayment" class="form-control" placeholder="0&euro;" value="0" min="0.01"
                                         step="0.01" required>
 
                                 </div>
@@ -357,7 +366,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">&euro;</div>
                                     </div>
-                                    <input type="number" name="amountInputFieldWithdraw" class="form-control" placeholder="0&euro;" value="0" min="0"
+                                    <input type="number" name="amountInputFieldWithdraw" class="form-control" placeholder="0&euro;" value="0" min="0.01"
                                         max="<?php echo "$userBalance"; ?>" step="0.01" required>
 
                                 </div>

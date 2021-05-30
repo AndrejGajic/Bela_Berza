@@ -21,6 +21,7 @@ class Wallet extends BaseController
         if(!$this->validate([
             'amountInputFieldPayment'=>'required',
             'amountInputFieldPayment'=>'decimal',
+            'amountInputFieldPayment'=>'greater_than[0]',
             'nameInputFieldPayment'=>'required',
             'surnameInputFieldPayment'=>'required',
             'creditCardNumberInput'=>'required',
@@ -95,6 +96,7 @@ class Wallet extends BaseController
         if(!$this->validate([
             'amountInputFieldWithdraw'=>'required',
             'amountInputFieldWithdraw'=>'decimal',
+            'amountInputFieldWithdraw'=>'greater_than[0]',
             'nameInputFieldWithdraw'=>'required',
             'surnameInputFieldWithdraw'=>'required',
             'bankAccountNumberInput'=>'required',
@@ -132,9 +134,11 @@ class Wallet extends BaseController
         
         if ($db->transStatus() === FALSE){
             $db->transRollback();
+            $this->session->setFlashdata('transactionError', 'Došlo je do greške prilikom izvršavanja transakcije! Pokušajte ponovo.');
         }
         else{
             $db->transCommit();
+            $this->session->setFlashdata('transactionSuccess', 'Transakcija je uspešno izvršena!');
         }
         return redirect()->to(site_url("Wallet"));        
     }
