@@ -336,29 +336,29 @@
                     <form name="withdrawForm" method="post" action="<?= site_url("Wallet/withdraw") ?>">
 
                         <div class="form-group row">
-                            <label for="nameInputFieldWidraw" class="col-sm-4 col-form-label">Ime</label>
+                            <label for="nameInputFieldWithdraw" class="col-sm-4 col-form-label">Ime</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="nameInputFieldWidraw" name="nameInputFieldWidraw" value="Petar" required
-                                    disabled>
+                                <input type="text" class="form-control" id="nameInputFieldWithdraw" name="nameInputFieldWithdraw" value="Petar" required
+                                    readonly="true">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="surnameInputFieldWidraw" class="col-sm-4 col-form-label">Prezime</label>
+                            <label for="surnameInputFieldWithdraw" class="col-sm-4 col-form-label">Prezime</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="surnameInputFieldWidraw" name="surnameInputFieldWidraw" value="Pan" required
-                                    disabled>
+                                <input type="text" class="form-control" id="surnameInputFieldWithdraw" name="surnameInputFieldWithdraw" value="Pan" required
+                                    readonly="true">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="amountInputFieldGroupWidraw" class="col-sm-4 col-form-label">Iznos</label>
+                            <label for="amountInputFieldGroupWithdraw" class="col-sm-4 col-form-label">Iznos</label>
                             <div class="col-sm-8">
-                                <div class="input-group" id="amountInputFieldGroupWidraw">
+                                <div class="input-group" id="amountInputFieldGroupWithdraw">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">&euro;</div>
                                     </div>
-                                    <input type="number" name="amountInputFieldWidraw" class="form-control" placeholder="0&euro;" value="0" min="0"
-                                        step="0.01" required>
+                                    <input type="number" name="amountInputFieldWithdraw" class="form-control" placeholder="0&euro;" value="0" min="0"
+                                        max="<?php echo "$userBalance"; ?>" step="0.01" required>
 
                                 </div>
                             </div>
@@ -368,8 +368,7 @@
                                 računa</label>
                             <div class="col-sm-8">
                                 <input id="bankAccountNumberInput" type="tel" class="form-control" name="bankAccountNumberInput" inputmode="numeric"
-                                    pattern="[0-9]{3}-[0-9]{13}-[0-9]{2}" maxlength="20"
-                                    placeholder="xxx-xxxxxxxxxxxxx-xx" required>
+                                    pattern="[0-9]{3}-[0-9]{13}-[0-9]{2}" maxlength="20" autocomplete="cc-number" placeholder="xxx-xxxxxxxxxxxxx-xx" required>
                             </div>
                         </div>
 

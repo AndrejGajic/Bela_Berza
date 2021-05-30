@@ -2,7 +2,7 @@
 namespace App\Models;
 use CodeIgniter\Model;
 
-class BankAccount extends Model
+class BankAccountModel extends Model
 {
     protected $table = 'bankaccount';
     protected $primaryKey = 'BankAccountNumber';

@@ -54,7 +54,7 @@ class BaseController extends Controller
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------
 		$this->session =session();
-                $this->session->set('username', 'petarpan');
+                $this->session->set('username', 'petarpan');//samo za potrebe testiranja transakcija, kod merge-a ukloniti ovo
                 
                 date_default_timezone_set('Europe/Belgrade');
 	}

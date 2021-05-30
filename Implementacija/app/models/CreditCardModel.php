@@ -2,7 +2,7 @@
 namespace App\Models;
 use CodeIgniter\Model;
 
-class CreditCard extends Model
+class CreditCardModel extends Model
 {
     protected $table = 'creditcard';
     protected $primaryKey = 'CreditCardNumber';
