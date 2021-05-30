@@ -55,5 +55,7 @@ class BaseController extends Controller
 		//--------------------------------------------------------------------
 		$this->session =session();
                 $this->session->set('username', 'petarpan');
+                
+                date_default_timezone_set('Europe/Belgrade');
 	}
 }

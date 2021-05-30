@@ -121,6 +121,19 @@
                             <h1>STANJE:&nbsp; <?php echo "$userBalance"; ?> &euro;</h1>
                         </div>
                     </div>
+                    <?php
+                        $session = session(); 
+                        if($session->getFlashdata('transactionError')!=null){ 
+                            echo '<div class="row">';
+                            echo    '<div class="col-12" id="transactionError">';
+                            echo        '<div class="alert alert-danger alert-dismissible">';
+                            echo            '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+                            echo            '<strong>Neuspešna transakcija!</strong>&nbsp'.$session->getFlashdata('transactionError');
+                            echo        '</div>';
+                            echo    '</div>';
+                            echo '</div>';
+                        }
+                    ?>
                     <div class="row">
                         <div class="col-6" id="walletInBtn">
                             <button type="button" class=" btn btn-success" data-toggle="modal"

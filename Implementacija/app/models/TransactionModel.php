@@ -8,7 +8,7 @@ class TransactionModel extends Model
     protected $primaryKey = 'IdTransaction';
     protected $useAutoIncrement = true;
     protected $returnType ='object';
-    protected $allowedFields = ['timestamp','amount','idUser','type'];
+    protected $allowedFields = ['timestamp','amount','IdUser','type'];
 }
 
 
