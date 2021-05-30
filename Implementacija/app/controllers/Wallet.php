@@ -49,12 +49,7 @@ class Wallet extends BaseController
             return redirect()->to(site_url("Wallet"));
         }
         
-        $bankAccountModel=new BankAccountModel();
-        $user_data['balance']=$bankAccountModel->getBankAccountBalance($creditCard->BankAccountNumber);
-        if($user_data['balance']<$user_data['paymentAmount']){
-            $this->session->setFlashdata('transactionError', 'Nemate dovoljno sredstava!');
-            return redirect()->to(site_url("Wallet"));
-        }
+
         if($user_data['cardOwnerName']!=$creditCard->OwnerName){
             $this->session->setFlashdata('transactionError', 'Uneta osoba nije vlasnik kartice-netačno ime!');
             return redirect()->to(site_url("Wallet"));
@@ -74,6 +69,14 @@ class Wallet extends BaseController
                 
         $db = \Config\Database::connect();
         $db->transBegin();
+        
+        $bankAccountModel=new BankAccountModel();
+        $user_data['balance']=$bankAccountModel->getBankAccountBalance($creditCard->BankAccountNumber);
+        if($user_data['balance']<$user_data['paymentAmount']){
+            $db->transRollback();
+            $this->session->setFlashdata('transactionError', 'Nemate dovoljno sredstava!');
+            return redirect()->to(site_url("Wallet"));
+        }
         
         $bankAccount=$bankAccountModel->find($creditCard->BankAccountNumber);
         $userModel=new UserModel();
