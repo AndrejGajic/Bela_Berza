@@ -108,7 +108,7 @@
 
                 <div class="row">
                     <header id="siteTitle" class="col-12">
-                        <img src="../../assets/images/logo.png" alt="">
+                        <img src="../assets/images/logo.png" alt="">
                         <h1>BELA BERZA</h1>
                     </header>
                 </div>
