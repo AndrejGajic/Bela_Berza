@@ -87,7 +87,7 @@ class MigrateStatus extends BaseCommand
 		// Get all namespaces
 		$namespaces = Services::autoloader()->getNamespace();
 
-		// Collection of migration status
+		// CollectionController of migration status
 		$status = [];
 
 		foreach (array_keys($namespaces) as $namespace)

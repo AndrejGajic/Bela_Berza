@@ -12,7 +12,7 @@ class Home extends BaseController
 	public function index()
 	{
 	    //$this->session->destroy();
-	    //$this->session->set('userType','guest');
+	    $this->session->set('userId',2);
 		return view('index.php');
 	}
 }
