@@ -35,12 +35,19 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 
 /**/
-$routes->get('collection','collectioncontroller');
-$routes->get('privileges','privilegescontroller');
-$routes->get('wallet','walletcontroller');
-$routes->get('privileges','privilegescontroller');
-$routes->get('login','logincontroller');
-$routes->get('profile','profilecontroller');
+$collectionIndex = 'CollectionController';
+$privilegesIndex = 'PrivilegesController';
+$loginIndex = 'LoginController';
+$profileIndex = 'ProfileController';
+$walletIndex = 'WalletController';
+$homeIndex = 'Home';
+
+$routes->get('home', $homeIndex);
+$routes->get('collection', $collectionIndex);
+$routes->get('privileges', $privilegesIndex);
+$routes->get('wallet', $walletIndex);
+$routes->get('login', $loginIndex);
+$routes->get('profile', $profileIndex);
 
 
 /*
