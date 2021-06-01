@@ -126,6 +126,28 @@
 
                             <hr>
 
+                            <?php
+                                $session = session(); 
+                                if($session->getFlashdata('sellingStockError')!=null){ 
+                                    echo '<div class="row">';
+                                    echo    '<div class="col-12" id="sellingStockError">';
+                                    echo        '<div class="alert alert-danger alert-dismissible">';
+                                    echo            '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+                                    echo            '<strong>Neuspešna pordaja akcije!</strong>&nbsp'.$session->getFlashdata('sellingStockError');
+                                    echo        '</div>';
+                                    echo    '</div>';
+                                    echo '</div>';
+                                }else if($session->getFlashdata('sellingStockSuccess')!=null){
+                                    echo '<div class="row">';
+                                    echo    '<div class="col-12" id="sellingStockSuccess">';
+                                    echo        '<div class="alert alert-success alert-dismissible">';
+                                    echo            '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+                                    echo            '<strong>'.$session->getFlashdata('sellingStockSuccess').'</strong>&nbsp';
+                                    echo        '</div>';
+                                    echo    '</div>';
+                                    echo '</div>';
+                                }
+                            ?>
                             <div class="row stocks">
                                 <div class="col-12 col-md-6 col-lg-4 col-xl-3 stock">
                                     <img src="../assets/images/microsoft.png" alt="">
@@ -254,59 +276,62 @@
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">PRODAJ akcije</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body container">
-                    <div class="row mb-2">
-                        <div class="col-12  mb-2">
-                            <img id="modalStockImage" src="" alt="">
-                        </div>
+                <form name="sellStocks" method="post" action="<?= site_url("Collection/sellStock") ?>">
+                    <input type="hidden" id="stockName" name="stockName">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">PRODAJ akcije</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="row mb-4">
-                        <div class="col-12">
-                            <div class="input-group">
-                                <span class="input-group-btn">
-                                    <button id="quantityminus" type="button" class="btn btn-danger btn-number"
-                                        data-type="minus" data-field="stock-quantity">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                </span>
-                                <input id="quantityInputTextField" type="text" name="stock-quantity"
-                                    class="form-control input-number" value="1" min="1" max="100">
-                                <span class="input-group-btn">
-                                    <button id="quantityplus" type="button" class="btn btn-danger btn-number"
-                                        data-type="plus" data-field="stock-quantity">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </span>
+                    <div class="modal-body container">
+                        <div class="row mb-2">
+                            <div class="col-12  mb-2">
+                                <img id="modalStockImage" src="" alt="">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button id="quantityminus" type="button" class="btn btn-danger btn-number"
+                                            data-type="minus" data-field="stock-quantity">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                    </span>
+                                    <input id="quantityInputTextField" type="text" name="stock-quantity"
+                                        class="form-control input-number" value="1" min="1" max="100">
+                                    <span class="input-group-btn">
+                                        <button id="quantityplus" type="button" class="btn btn-danger btn-number"
+                                            data-type="plus" data-field="stock-quantity">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-9">
+                                <p>Price per stock: </p>
+                            </div>
+                            <div class="col-3">
+                                <p id="pricePerStock">100&euro;</p>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-9">
+                                <p class="total-price">Total amount: </p>
+                            </div>
+                            <div class="col-3">
+                                <p id="totalPrice" class="total-price">100&euro;</p>
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-2">
-                        <div class="col-9">
-                            <p>Price per stock: </p>
-                        </div>
-                        <div class="col-3">
-                            <p id="pricePerStock">100&euro;</p>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Odustani</button>
+                        <button type="submit" class="btn btn-outline-success">Potvrdi</button>
                     </div>
-                    <div class="row mb-2">
-                        <div class="col-9">
-                            <p class="total-price">Total amount: </p>
-                        </div>
-                        <div class="col-3">
-                            <p id="totalPrice" class="total-price">100&euro;</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Odustani</button>
-                    <button type="button" class="btn btn-outline-success">Potvrdi</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -324,8 +349,8 @@
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
     <script src="../assets/js/navbar.js"></script>
-    <script type="text/javascript" src="../assets/js/canvasjs.stock.min.js"></script>
-    <script src="../assets/js/chart.js"></script>
+    <!--<script type="text/javascript" src="../assets/js/canvasjs.stock.min.js"></script>
+    <script src="../assets/js/chart.js"></script>-->
     <script src="../assets/js/quantity_button.js"></script>
 </body>
 

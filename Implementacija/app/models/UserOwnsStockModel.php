@@ -17,5 +17,20 @@ class UserOwnsStockModel extends Model
         $query = $db->query($sql);
         return $query->getResultObject();
     }
+    
+
+    public function find($id = null)
+    {
+        $db = \Config\Database::connect();
+        $sql = "select IdStock, IdUser, quantity from userownsstock where IdUser=? and IdStock=?";
+        $query = $db->query($sql,[$id['IdUser'],$id['IdStock']]);
+        return $query->getRow();
+    }
+    
+    public function updateQuantity(int $userId, int $stockId, int $newQuantity) {
+        $db = \Config\Database::connect();
+        $sql = "update userownsstock set quantity=? where IdUser=? and IdStock=?";
+        return $db->query($sql,[$newQuantity,$userId,$stockId]);
+    }
 
 }

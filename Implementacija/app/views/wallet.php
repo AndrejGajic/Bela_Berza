@@ -118,9 +118,31 @@
                 <div class="container" id="walletContainer">
                     <div class="row">
                         <div class="col-12">
-                            <h1>STANJE:&nbsp;1000.00&euro;</h1>
+                            <h1>STANJE:&nbsp; <?php echo "$userBalance"; ?> &euro;</h1>
                         </div>
                     </div>
+                    <?php
+                        $session = session(); 
+                        if($session->getFlashdata('transactionError')!=null){ 
+                            echo '<div class="row">';
+                            echo    '<div class="col-12" id="transactionError">';
+                            echo        '<div class="alert alert-danger alert-dismissible">';
+                            echo            '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+                            echo            '<strong>Neuspešna transakcija!</strong>&nbsp'.$session->getFlashdata('transactionError');
+                            echo        '</div>';
+                            echo    '</div>';
+                            echo '</div>';
+                        }else if($session->getFlashdata('transactionSuccess')!=null){
+                            echo '<div class="row">';
+                            echo    '<div class="col-12" id="transactionSuccess">';
+                            echo        '<div class="alert alert-success alert-dismissible">';
+                            echo            '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+                            echo            '<strong>'.$session->getFlashdata('transactionSuccess').'</strong>&nbsp';
+                            echo        '</div>';
+                            echo    '</div>';
+                            echo '</div>';
+                        }
+                    ?>
                     <div class="row">
                         <div class="col-6" id="walletInBtn">
                             <button type="button" class=" btn btn-success" data-toggle="modal"
@@ -245,32 +267,32 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form name="paymentForm" method="post" action="<?= site_url("Wallet/payment") ?>">
                         <div class="form-group row">
-                            <label for="amountInputField" class="col-sm-4 col-form-label">Iznos</label>
+                            <label for="amountInputFieldGroupPayment" class="col-sm-4 col-form-label">Iznos</label>
                             <div class="col-sm-8">
-                                <div class="input-group" id="amountInputField">
+                                <div class="input-group" id="amountInputFieldGroupPayment">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">&euro;</div>
                                     </div>
-                                    <input type="number" class="form-control" placeholder="0&euro;" value="0" min="0"
+                                    <input type="number" name="amountInputFieldPayment" class="form-control" placeholder="0&euro;" value="0" min="0.01"
                                         step="0.01" required>
 
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="nameInputField" class="col-sm-4 col-form-label">Ime</label>
+                            <label for="nameInputFieldPayment" class="col-sm-4 col-form-label">Ime</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="nameInputField" placeholder="npr. Pera"
+                                <input type="text" class="form-control" id="nameInputFieldPayment" name="nameInputFieldPayment" placeholder="npr. Pera"
                                     value="" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="surnameInputField" class="col-sm-4 col-form-label">Prezime</label>
+                            <label for="surnameInputFieldPayment" class="col-sm-4 col-form-label">Prezime</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="surnameInputField" placeholder="npr. Peric"
+                                <input type="text" class="form-control" id="surnameInputFieldPayment" name="surnameInputFieldPayment" placeholder="npr. Peric"
                                     value="" required>
                             </div>
                         </div>
@@ -278,22 +300,22 @@
                             <label for="creditCardNumberInput" class="col-sm-4 col-form-label">Broj
                                 kartice</label>
                             <div class="col-sm-8">
-                                <input id="creditCardNumberInput" type="tel" class="form-control" inputmode="numeric"
+                                <input id="creditCardNumberInput" name="creditCardNumberInput" type="tel" class="form-control" inputmode="numeric"
                                     pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" autocomplete="cc-number"
                                     maxlength="19" placeholder="xxxx-xxxx-xxxx-xxxx" required>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="expiryDate" class="col-sm-4 col-form-label">Datum isteka</label>
+                            <label for="expirationDateInput" class="col-sm-4 col-form-label">Datum isteka</label>
                             <div class="col-sm-8">
-                                <input type="month" class="form-control" id="expiryDate" name="expiryDate" min="2021-03"
-                                    value="2021-03">
+                                <input type="month" class="form-control" id="expirationDateInput" name="expirationDateInput" min="<?= date('Y-m'); ?>"
+                                    value="<?= date('Y-m'); ?>">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="CVC" class="col-sm-4 col-form-label">CVC</label>
                             <div class="col-sm-8">
-                                <input id="CVC" type="tel" class="form-control" inputmode="numeric" pattern="[0-9]{3}"
+                                <input id="CVC" name="CVC" type="tel" class="form-control" inputmode="numeric" pattern="[0-9]{3}"
                                     maxlength="3" placeholder="xxx" required>
                             </div>
                         </div>
@@ -320,43 +342,42 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form name="withdrawForm" method="post" action="<?= site_url("Wallet/withdraw") ?>">
 
                         <div class="form-group row">
-                            <label for="nameInputField" class="col-sm-4 col-form-label">Ime</label>
+                            <label for="nameInputFieldWithdraw" class="col-sm-4 col-form-label">Ime</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="nameInputField" value="Petar" required
-                                    disabled>
+                                <input type="text" class="form-control" id="nameInputFieldWithdraw" name="nameInputFieldWithdraw" value="Petar" required
+                                    readonly="true">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="surnameInputField" class="col-sm-4 col-form-label">Prezime</label>
+                            <label for="surnameInputFieldWithdraw" class="col-sm-4 col-form-label">Prezime</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="surnameInputField" value="Pan" required
-                                    disabled>
+                                <input type="text" class="form-control" id="surnameInputFieldWithdraw" name="surnameInputFieldWithdraw" value="Pan" required
+                                    readonly="true">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="amountInputField" class="col-sm-4 col-form-label">Iznos</label>
+                            <label for="amountInputFieldGroupWithdraw" class="col-sm-4 col-form-label">Iznos</label>
                             <div class="col-sm-8">
-                                <div class="input-group" id="amountInputField">
+                                <div class="input-group" id="amountInputFieldGroupWithdraw">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">&euro;</div>
                                     </div>
-                                    <input type="number" class="form-control" placeholder="0&euro;" value="0" min="0"
-                                        step="0.01" required>
+                                    <input type="number" name="amountInputFieldWithdraw" class="form-control" placeholder="0&euro;" value="0" min="0.01"
+                                        max="<?php echo "$userBalance"; ?>" step="0.01" required>
 
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="creditCardNumberInput" class="col-sm-4 col-form-label">Broj
+                            <label for="bankAccountNumberInput" class="col-sm-4 col-form-label">Broj
                                 računa</label>
                             <div class="col-sm-8">
-                                <input id="creditCardNumberInput" type="tel" class="form-control" inputmode="numeric"
-                                    pattern="[0-9]{3}-[0-9]{13}-[0-9]{2}" maxlength="20"
-                                    placeholder="xxx-xxxxxxxxxxxxx-xx" required>
+                                <input id="bankAccountNumberInput" type="tel" class="form-control" name="bankAccountNumberInput" inputmode="numeric"
+                                    pattern="[0-9]{3}-[0-9]{13}-[0-9]{2}" maxlength="20" autocomplete="cc-number" placeholder="xxx-xxxxxxxxxxxxx-xx" required>
                             </div>
                         </div>
 
