@@ -101,10 +101,11 @@
                          <div class="row" id="confirmTableName">
                              <h2>PREGLED REGISTRACIJA NA ČEKANJU</h2>
                          </div>
+                         <?php
+                         if(!$error){
+                             echo('
                          <div class="row" id="confirmTable">
-                            <?php
-                            if(!$error){
-                                echo('<table class="table">
+                            <table class="table">
                                  <thead class="thead-dark">
                                      <tr>
                                          <th scope="col">#</th>
@@ -140,12 +141,10 @@
                                     }
                                  ?>
                                  <?php if($error){
-                                    echo($error);
+                                    echo('<div class="alert alert-warning" role="alert">'.$error.'</div>');
                                  }else{
-                                     echo('</tbody></table>');
+                                     echo('</tbody></table> </div>');
                                  }?>
-
-                         </div>
                      </div>
      
                  </div>
