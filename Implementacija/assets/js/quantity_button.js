@@ -91,6 +91,8 @@ function setImageModal(filename,stockPrice) {
     $('#modalStockImage').attr('src', '../assets/images/'+filename);
     $('#quantityminus').attr('disabled', true);
     document.getElementById("quantityInputTextField").value="1";
+    let stockName=filename.split('.')[0];
+    $('#stockName').val(stockName);
     quantity=1;
     
     total=quantity*stockPrice;

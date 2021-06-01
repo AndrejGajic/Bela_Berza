@@ -23,7 +23,7 @@ class UserOwnsStockModel extends Model
     {
         $db = \Config\Database::connect();
         $sql = "select IdStock, IdUser, quantity from userownsstock where IdUser=? and IdStock=?";
-        $query = $db->query($sql,[$id['userId'],$id['stockId']]);
+        $query = $db->query($sql,[$id['IdUser'],$id['IdStock']]);
         return $query->getRow();
     }
     

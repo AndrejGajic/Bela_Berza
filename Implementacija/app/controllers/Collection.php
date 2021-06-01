@@ -21,7 +21,7 @@ class Collection extends BaseController
             'stock-quantity'=>'is_natural_no_zero'
         ])){
             
-           $this->session->setFlashdata('sellingStockError', 'Molimo Vas da ispo[tujete format unosa i da ne menjate HTML kod jer takva radnja može biti sankcionicana!');
+           $this->session->setFlashdata('sellingStockError', 'Molimo Vas da ispoštujete format unosa i da ne menjate HTML kod jer takva radnja može biti sankcionicana!');
            return redirect()->to(site_url("Collection"));
         }        
         
@@ -40,7 +40,7 @@ class Collection extends BaseController
         $income= floatval($stock->value)*$user_data['quantity'];
         
         $userOwnsStockModel=new UserOwnsStockModel();
-        $userOwnsStock=$userOwnsStockModel->find(['userId'=>$user->IdUser, 'stockId'=>$stock->IdStock]);
+        $userOwnsStock=$userOwnsStockModel->find(['IdUser'=>$user->IdUser, 'IdStock'=>$stock->IdStock]);
         
         if($userOwnsStock==null ||intval($userOwnsStock->quantity)<$user_data['quantity'])
         {
