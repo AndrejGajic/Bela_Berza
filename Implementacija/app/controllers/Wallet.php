@@ -89,6 +89,7 @@ class Wallet extends BaseController
         }
         else{
             $db->transCommit();
+            $this->session->setFlashdata('transactionSuccess', 'Uplata je uspešno izvršena!');
         }
         
         return redirect()->to(site_url("Wallet"));
@@ -141,7 +142,7 @@ class Wallet extends BaseController
         }
         else{
             $db->transCommit();
-            $this->session->setFlashdata('transactionSuccess', 'Transakcija je uspešno izvršena!');
+            $this->session->setFlashdata('transactionSuccess', 'Isplata je uspešno izvršena!');
         }
         return redirect()->to(site_url("Wallet"));        
     }
