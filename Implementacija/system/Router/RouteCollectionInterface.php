@@ -16,7 +16,7 @@ use Closure;
 /**
  * Interface RouteCollectionInterface
  *
- * A Route Collection's sole job is to hold a series of routes. The required
+ * A Route CollectionController's sole job is to hold a series of routes. The required
  * number of methods is kept very small on purpose, but implementors may
  * add a number of additional methods to customize how the routes are defined.
  *

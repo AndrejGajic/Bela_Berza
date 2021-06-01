@@ -95,7 +95,7 @@ class Router implements RouterInterface
 	protected $detectedLocale;
 
 	/**
-	 * The filter info from Route Collection
+	 * The filter info from Route CollectionController
 	 * if the matched route should be filtered.
 	 *
 	 * @var string|null
@@ -215,7 +215,7 @@ class Router implements RouterInterface
 	//--------------------------------------------------------------------
 
 	/**
-	 * Returns the 404 Override settings from the Collection.
+	 * Returns the 404 Override settings from the CollectionController.
 	 * If the override is a string, will split to controller/index array.
 	 */
 	public function get404Override()

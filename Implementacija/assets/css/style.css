@@ -150,7 +150,7 @@ span {
 }
 
 
- 
+
 #sidebar ul li a span {
     margin-left: 2pc;
 }
@@ -193,7 +193,7 @@ span {
 }
 
 #sidebar ul.components li{
-   
+
     border-top: 1px solid #47748b;
 }
 
@@ -353,7 +353,7 @@ a.btn-signup:hover {
 }
 
 #chartContainer{
-    height: 400px; 
+    height: 400px;
     margin: 0px auto;
     padding: 5px;
 }
@@ -375,7 +375,7 @@ a.btn-signup:hover {
     text-align: center;
     font-weight: bold;
 
-    background-color:rgb(151, 183, 243); 
+    background-color:rgb(151, 183, 243);
 
     padding-top: 5px;
     position: sticky;
@@ -409,7 +409,7 @@ a.btn-signup:hover {
     height: 190px;
     margin-top: 20px;
     background-color: #d5d5d5;
-    display: grid; 
+    display: grid;
     grid-template-rows: 20% 55% 25%;
     width: 100%;
     overflow-y: scroll;
@@ -428,8 +428,7 @@ a.btn-signup:hover {
     margin:auto;
 }
 
-
-#asistent{
+.locked-assistant{
     background-image: url("../images/lock.png");
     background-repeat: no-repeat;
     background-size: cover;
@@ -437,6 +436,9 @@ a.btn-signup:hover {
     background-position-x: center;
 }
 
+.unlocked-assistant{
+    background-color:lightblue;
+}
 
 #asistentPromo a {
     margin:auto;
@@ -513,7 +515,7 @@ a.btn-signup:hover {
     #sidebarCollapse span {
         display: none;
     }
-   
+
     .navbar {
         padding: 15px 10px;
         background: darkgreen;
@@ -526,13 +528,13 @@ a.btn-signup:hover {
         justify-content: center;
         color: white;
     }
-    
+
     .navbar-btn {
         box-shadow: none;
         outline: none !important;
         border: none;
     }
-    
+
     .navbar span{
         margin-left: 2pc;
     }

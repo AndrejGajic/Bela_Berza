@@ -35,10 +35,18 @@
             <!-- Sidebar  -->
             <nav id="sidebar" class="basic">
                 <div id="sidebarSelector" class="sidebar-header">
-                    <div id="user-image"><img src="../assets/images/user.png" alt="" /></div>
+                    <div id="user-image"><img src="<?php echo $imgPath?>" alt="" /></div>
                     <div id="user-data-info">
-                        <h3>Petar Pan</h3>
-                        <p>Standard User</p>
+                        <h3><?php
+                            if($menu=='guest')echo('Gost');
+                            else echo($username);
+                            ?></h3>
+                        <p><?php
+                            if($menu=='standard') echo('Standard user');
+                            else if($menu=='privileged') echo('Privileged user');
+                            else if($menu=='guest') echo('Guest');
+                            else if($menu=='admin') echo('Administrator');
+                            ?></p>
                     </div>
                     <strong>PP</strong>
                 </div>
@@ -115,14 +123,15 @@
                 <hr>
 
                 <div class="container-fluid" id="privContainer">
-
                     <div class="row" id="privStatus">
-                        <h1 class="no-priv-status">TRENUTNO NEMATE PRIVILEGIJE</h1>
+                        <h1 class="<?php echo($class); ?>">
+                            <?php echo($msg)?>
+                        </h1>
                     </div>
-                    <div class="row" id="privButton">
-                        <button data-toggle="modal" data-target="#exampleModalCenter" class="btn no-priv-button">POSTANI
+                    <?php if($showBtn) echo('<div class="row" id="privButton">
+                        <button data-toggle="modal" data-target="'.$modal.'" class="btn no-priv-button">POSTANI
                             PRIVILEGOVANI KORISNIK</button>
-                    </div>
+                    </div>');?>
                 </div>
 
             </div>
@@ -136,7 +145,7 @@
 
 
     <!-- Modals -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+    <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -153,7 +162,29 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Odustani</button>
-                    <button type="button" class="btn btn-outline-success">Potvrdi</button>
+                    <?php $url = base_url().'privilegescontroller/index'; log_message('error',$url);?>
+                    <button type="button" class="btn btn-outline-success"
+                            onclick="window.location='<?php echo site_url("privilegescontroller/grantPrivileges");?>'">Potvrdi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="error" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Greska</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body container">
+                    <p>Na vasem racunu je manje od 30 &euro;. Ne mozete ostvariti status privilegovanog korisnika.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">OK</button>
                 </div>
             </div>
         </div>

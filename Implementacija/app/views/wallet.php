@@ -37,8 +37,16 @@
                 <div id="sidebarSelector" class="sidebar-header">
                     <div id="user-image"><img src="../assets/images/user.png" alt="" /></div>
                     <div id="user-data-info">
-                        <h3>Petar Pan</h3>
-                        <p>Standard User</p>
+                        <h3><?php
+                            if($menu=='guest')echo('Gost');
+                            else echo($username);
+                            ?></h3>
+                        <p><?php
+                            if($menu=='standard') echo('Standard user');
+                            else if($menu=='privileged') echo('Privileged user');
+                            else if($menu=='guest') echo('Guest');
+                            else if($menu=='admin') echo('Administrator');
+                            ?></p>
                     </div>
                     <strong>PP</strong>
                 </div>

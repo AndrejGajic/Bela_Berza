@@ -8,5 +8,5 @@ class PrivilegedUserModel extends Model
     protected $primaryKey = 'IdUser';
     protected $useAutoIncrement = false;
     protected $returnType ='object';
-    protected $allowedFields = ['startDate','endDate'];
+    protected $allowedFields = ['IdUser','startDate','endDate'];
 }

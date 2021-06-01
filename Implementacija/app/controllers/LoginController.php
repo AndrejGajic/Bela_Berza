@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-class Privileges extends BaseController
+class LoginController extends BaseController
 {
     public function index()
     {
-        return view('privileges.php');
+        return view('login.php');
     }
 }

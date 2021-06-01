@@ -34,6 +34,25 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 //$routes->get('/', 'Home::index');
 
+/**/
+$collectionIndex = 'CollectionController';
+$privilegesIndex = 'PrivilegesController';
+$loginIndex = 'LoginController';
+$profileIndex = 'ProfileController';
+$walletIndex = 'WalletController';
+$regconfirmationIndex ='RegConfirmationController';
+$homeIndex = 'Home';
+
+
+$routes->get('home', $homeIndex);
+$routes->get('collection', $collectionIndex);
+$routes->get('privileges', $privilegesIndex);
+$routes->get('wallet', $walletIndex);
+$routes->get('login', $loginIndex);
+$routes->get('profile', $profileIndex);
+$routes->get('regconfirmation', $regconfirmationIndex);
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

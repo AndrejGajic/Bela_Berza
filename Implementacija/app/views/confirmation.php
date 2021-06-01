@@ -35,9 +35,9 @@
                  <!-- Sidebar  -->
                  <nav id="sidebar" class="basic">
                      <div id="sidebarSelector" class="sidebar-header">
-                         <div id="user-image"><img src="../assets/images/user.png" alt="" /></div>
+                         <div id="user-image"><img src="<?php echo $imgPath?>" alt="" /></div>
                          <div id="user-data-info">
-                             <h3>Admin</h3>
+                             <h3><?php echo $username?></h3>
                              <p>Administrator</p>
                          </div>
                          <strong>A</strong>
@@ -50,50 +50,19 @@
                                  <span class="label">Berza</span>
                              </a>
                          </li>
-                         <li>
-                             <a href="" class="menu-item">
-                                 <i class="fas fa-briefcase"></i>
-                                 <span>Moja riznica</span>
-                             </a>
-     
-                         </li>
-                         <li >
-                             <a href="" class="menu-item">
-                                 <i class="fas fa-wallet"></i>
-                                 <span>Moj novcanik</span>
-                             </a>
-                         </li>
-                         <li>
-                            <a href="#userMenu" data-toggle="collapse" aria-expanded="false"
-                                class="dropdown-toggle menu-item">
-                                <i class="fas fa-user"></i>
-                                <span>Moj profil</span>
-                            </a>
-                            <ul class="collapse list-unstyled" id="userMenu">
-                                <li>
-                                    <a href="">Izmeni</a>
-                                </li>
-                                <li>
-                                    <a href="">Privilegije</a>
-                                </li>
-                                <li>
-                                    <a href="">Izloguj se</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
                          <li class="active-item">
-                             <a href="#adminMenu" data-toggle="collapse" aria-expanded="false"
-                                 class="dropdown-toggle menu-item">
-                                 <i class="fas fa-user"></i>
-                                 <span>Korisnici</span>
+                             <a href="regconfirmation" class="menu-item">
+                                 <i class="fas fa-address-book"></i>
+                                 <span>Pregled registracija</span>
                              </a>
-                             <ul class="collapse list-unstyled" id="adminMenu">
-                                 <li>
-                                     <a href="" class="active-profile-item">Pregled registracija</a>
-                                 </li>
-                             </ul>
                          </li>
+                         <li>
+                             <a href="login" class="menu-item">
+                                 <i class="fas fa-sign-out-alt"></i>
+                                 <span class="label">Izloguj se</span>
+                             </a>
+                         </li>
+                         <li>
                          <li>
                              <a href="#" class="menu-item">
                                  <i class="fas fa-question"></i>
@@ -132,8 +101,11 @@
                          <div class="row" id="confirmTableName">
                              <h2>PREGLED REGISTRACIJA NA ČEKANJU</h2>
                          </div>
+                         <?php
+                         if(!$error){
+                             echo('
                          <div class="row" id="confirmTable">
-                             <table class="table">
+                            <table class="table">
                                  <thead class="thead-dark">
                                      <tr>
                                          <th scope="col">#</th>
@@ -144,42 +116,35 @@
                                          <th scope="col">Action</th>
                                      </tr>
                                  </thead>
-                                 <tbody>
-                                     <tr>
-                                         <th scope="row">1</th>
-                                         <td>Petar Pan</td>
-                                         <td>3/1/2021</td>
-                                         <td>ppan@gmail.com</td>
-                                         <td>69.150.24.135</td>
-                                         <td><i class="fas fa-check-circle"></i><i class="fas fa-times-circle"></i></td>
-                                     </tr>
-                                     <tr>
-                                         <th scope="row">2</th>
-                                         <td>Korisnik1</td>
-                                         <td>3/4/2021</td>
-                                         <td>k1@gmail.com</td>
-                                         <td>185.125.100.189</td>
-                                         <td><i class="fas fa-check-circle"></i><i class="fas fa-times-circle"></i></td>
-                                     </tr>
-                                     <tr>
-                                        <th scope="row">2</th>
-                                        <td>Korisnik2</td>
-                                        <td>3/4/2021</td>
-                                        <td>k2@gmail.com</td>
-                                        <td>152.193.22.200</td>
-                                        <td><i class="fas fa-check-circle"></i><i class="fas fa-times-circle"></i></td>
-                                     </tr>
-                                     <tr>
-                                        <th scope="row">2</th>
-                                        <td>Korisnik3</td>
-                                        <td>3/4/2021</td>
-                                        <td>k3@gmail.com</td>
-                                        <td>120.204.70.178</td>
-                                        <td><i class="fas fa-check-circle"></i><i class="fas fa-times-circle"></i></td>
-                                     </tr>
-                                 </tbody>
-                             </table>
-                         </div>
+                                 <tbody>');
+                            }
+                            ?>
+
+                                 <?php
+                                    $cnt = 1;
+                                    foreach($regs as $reg)
+                                    {
+                                        $methodCallConfirm = "RegConfirmationController/confirmRegistration/".$reg->username;
+                                        $methodCallReject = "RegConfirmationController/rejectRegistration/".$reg->username;
+                                        $locationConfirm = site_url($methodCallConfirm);
+                                        $locationReject = site_url($methodCallReject);
+                                        $greenBtn = '<a href="'.$locationConfirm.'"><i class="fas fa-check-circle"></i></a>';
+                                        $redBtn = '<a href="'.$locationReject.'"><i class="fas fa-times-circle"></i></a>';
+
+                                        echo('<tr><th scope="row">'.$cnt.'</th>
+                                        <td>'.$reg->username.'</td>
+                                        <td>'.$reg->date.'</td>
+                                        <td>'.$reg->email.'</td>
+                                        <td>'.$reg->ipAddress.'</td>
+                                        <td>'.$greenBtn.$redBtn.'</td>');
+                                        $cnt++;
+                                    }
+                                 ?>
+                                 <?php if($error){
+                                    echo('<div class="alert alert-warning" role="alert">'.$error.'</div>');
+                                 }else{
+                                     echo('</tbody></table> </div>');
+                                 }?>
                      </div>
      
                  </div>
