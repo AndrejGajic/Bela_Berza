@@ -36,16 +36,8 @@
                 <div id="sidebarSelector" class="sidebar-header">
                     <div id="user-image"><img src="../assets/images/user.png" alt="" /></div>
                     <div id="user-data-info">
-                        <h3><?php
-                            if($menu=='guest')echo('Gost');
-                            else echo($username);
-                            ?></h3>
-                        <p><?php
-                            if($menu=='standard') echo('Standard user');
-                            else if($menu=='privileged') echo('Privileged user');
-                            else if($menu=='guest') echo('Guest');
-                            else if($menu=='admin') echo('Administrator');
-                            ?></p>
+                        <h3>Petar Pan</h3>
+                        <p>Standard User</p>
                     </div>
                     <strong>PP</strong>
                 </div>
@@ -284,7 +276,7 @@
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <form name="sellStocks" method="post" action="<?= site_url("Collection/sellStock") ?>">
+                <form name="sellStocks" method="post" action="<?= site_url("CollectionController/sellStock") ?>">
                     <input type="hidden" id="stockName" name="stockName">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle">PRODAJ akcije</h5>

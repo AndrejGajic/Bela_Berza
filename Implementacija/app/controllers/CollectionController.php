@@ -6,7 +6,7 @@ use App\Models\UserOwnsStockModel;
 use App\Models\UserModel;
 use App\Models\StockModel;
 
-class Collection extends BaseController
+class CollectionController extends BaseController
 {
     public function index()
     {
@@ -22,7 +22,7 @@ class Collection extends BaseController
         ])){
             
            $this->session->setFlashdata('sellingStockError', 'Molimo Vas da ispoštujete format unosa i da ne menjate HTML kod jer takva radnja može biti sankcionicana!');
-           return redirect()->to(site_url("Collection"));
+           return redirect()->to(site_url("CollectionController"));
         }        
         
         $user_data['stockName']=$this->request->getVar('stockName');
@@ -40,7 +40,7 @@ class Collection extends BaseController
         if($stock==null){
             $db->transRollback();
             $this->session->setFlashdata('sellingStockError', 'Željena akcija trenutno nije u vašoj kolekciji! Molimo Vas da ne pokušavate nasilnu prodaju kroz promenu HTML koda jer takva radnja može biti sankcionicana!');
-            return redirect()->to(site_url("Collection"));
+            return redirect()->to(site_url("CollectionController"));
         }
         
         $income= floatval($stock->value)*$user_data['quantity'];
@@ -52,7 +52,7 @@ class Collection extends BaseController
         {
             $db->transRollback();
             $this->session->setFlashdata('sellingStockError', 'Ne posedujete dovoljan broj akcija za prodaju!');
-            return redirect()->to(site_url("Collection"));
+            return redirect()->to(site_url("CollectionController"));
         }
         
         $newQuantity=intval($userOwnsStock->quantity)-$user_data['quantity'];
@@ -68,7 +68,7 @@ class Collection extends BaseController
         if ($db->transStatus() === FALSE){
             $db->transRollback();
             $this->session->setFlashdata('sellingStockError', 'Prodaja nije uspela, molimo Vas pokušajte ponovo!');
-            return redirect()->to(site_url("Collection"));
+            return redirect()->to(site_url("CollectionController"));
         }
         else{
             $db->transCommit();
@@ -78,7 +78,7 @@ class Collection extends BaseController
         $stockModel->update($stock->IdStock,['availableQty'=>$stock->availableQty+$user_data['quantity']]);
         
         $this->session->setFlashdata('sellingStockSuccess', 'Prodaja je uspešno okončana i sredstva na vašem računu su ažurirana!');
-        return redirect()->to(site_url("Collection"));
+        return redirect()->to(site_url("CollectionController"));
     }
     
 }

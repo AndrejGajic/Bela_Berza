@@ -37,16 +37,8 @@
                 <div id="sidebarSelector" class="sidebar-header">
                     <div id="user-image"><img src="../assets/images/user.png" alt="" /></div>
                     <div id="user-data-info">
-                        <h3><?php
-                            if($menu=='guest')echo('Gost');
-                            else echo($username);
-                            ?></h3>
-                        <p><?php
-                            if($menu=='standard') echo('Standard user');
-                            else if($menu=='privileged') echo('Privileged user');
-                            else if($menu=='guest') echo('Guest');
-                            else if($menu=='admin') echo('Administrator');
-                            ?></p>
+                        <h3>Petar Pan</h3>
+                        <p>Standard User</p>
                     </div>
                     <strong>PP</strong>
                 </div>
@@ -275,7 +267,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form name="paymentForm" method="post" action="<?= site_url("Wallet/payment") ?>">
+                    <form name="paymentForm" method="post" action="<?= site_url("WalletController/payment") ?>">
                         <div class="form-group row">
                             <label for="amountInputFieldGroupPayment" class="col-sm-4 col-form-label">Iznos</label>
                             <div class="col-sm-8">
@@ -350,7 +342,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form name="withdrawForm" method="post" action="<?= site_url("Wallet/withdraw") ?>">
+                    <form name="withdrawForm" method="post" action="<?= site_url("WalletController/withdraw") ?>">
 
                         <div class="form-group row">
                             <label for="nameInputFieldWithdraw" class="col-sm-4 col-form-label">Ime</label>

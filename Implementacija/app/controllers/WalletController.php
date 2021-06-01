@@ -13,12 +13,12 @@ use App\Models\TransactionModel;
 
 
 /**
-* Wallet – klasa kontrolera za rad sa transakcijama
+* WalletController – klasa kontrolera za rad sa transakcijama
 *
 * @version 1.0
 */
 
-class Wallet extends BaseController
+class WalletController extends BaseController
 {
     /**
         * index funkcija koja se koristi pri prikazu stranice moj novčanik
@@ -48,7 +48,7 @@ class Wallet extends BaseController
             'CVC'=>'regex_match[/[0-9]{3}/]'
         ])){
             $this->session->setFlashdata('transactionError', 'Ne pokušavajte da unosite ne validne vrednosti ili da menjate HTML kod! Ovakvi pokušaji mogu biti sankcionisani!');
-            return redirect()->to(site_url("Wallet")); 
+            return redirect()->to(site_url("WalletController")); 
         }
                 
         $user_data['paymentAmount']=floatval($this->request->getVar('amountInputFieldPayment'));
@@ -63,25 +63,25 @@ class Wallet extends BaseController
         
         if($creditCard==null){            
             $this->session->setFlashdata('transactionError', 'Kartica ne postoji!');
-            return redirect()->to(site_url("Wallet"));
+            return redirect()->to(site_url("WalletController"));
         }
         
 
         if($user_data['cardOwnerName']!=$creditCard->OwnerName){
             $this->session->setFlashdata('transactionError', 'Uneta osoba nije vlasnik kartice-netačno ime!');
-            return redirect()->to(site_url("Wallet"));
+            return redirect()->to(site_url("WalletController"));
         }
         if($user_data['cardOwnerSurname']!=$creditCard->OwnerSurname){
             $this->session->setFlashdata('transactionError', 'Uneta osoba nije vlasnik kartice-netačno prezime!');
-            return redirect()->to(site_url("Wallet"));
+            return redirect()->to(site_url("WalletController"));
         }
         if($user_data['cardExpirationDate']!=$creditCard->expirationDate){
             $this->session->setFlashdata('transactionError', 'Netačan datum isteka kartice!');
-            return redirect()->to(site_url("Wallet"));
+            return redirect()->to(site_url("WalletController"));
         }
         if($user_data['CVC']!=$creditCard->CVC){
             $this->session->setFlashdata('transactionError', 'Netačan CVC kod!');
-            return redirect()->to(site_url("Wallet"));
+            return redirect()->to(site_url("WalletController"));
         }
                 
         $db = \Config\Database::connect();
@@ -92,7 +92,7 @@ class Wallet extends BaseController
         if($user_data['balance']<$user_data['paymentAmount']){
             $db->transRollback();
             $this->session->setFlashdata('transactionError', 'Nemate dovoljno sredstava!');
-            return redirect()->to(site_url("Wallet"));
+            return redirect()->to(site_url("WalletController"));
         }
         
         $bankAccount=$bankAccountModel->find($creditCard->BankAccountNumber);
@@ -109,7 +109,7 @@ class Wallet extends BaseController
             $this->session->setFlashdata('transactionSuccess', 'Uplata je uspešno izvršena!');
         }
         
-        return redirect()->to(site_url("Wallet"));
+        return redirect()->to(site_url("WalletController"));
     }
     
     /**
@@ -127,7 +127,7 @@ class Wallet extends BaseController
             'bankAccountNumberInput'=>'regex_match[/[0-9]{3}-[0-9]{13}-[0-9]{2}/]'
         ])){
             $this->session->setFlashdata('transactionError', 'Ne pokušavajte da unosite ne validne vrednosti ili da menjate HTML kod! Ovakvi pokušaji mogu biti sankcionisani!');
-            return redirect()->to(site_url("Wallet")); 
+            return redirect()->to(site_url("WalletController")); 
         }
             
         $user_data['withdrawalAmount']=floatval($this->request->getVar('amountInputFieldWithdraw'));
@@ -139,7 +139,7 @@ class Wallet extends BaseController
         $bankAccount=$bankAccountModel->find($user_data['bankAccountNumber']);
         if($bankAccount==null){
             $this->session->setFlashdata('transactionError', 'Broj računa ne postoji u banci, molimo Vas proverite broj računa!');
-            return redirect()->to(site_url("Wallet"));
+            return redirect()->to(site_url("WalletController"));
         }
         
         $db = \Config\Database::connect();
@@ -151,7 +151,7 @@ class Wallet extends BaseController
         if($user->balance<$user_data['withdrawalAmount']){
             $db->transRollback();
             $this->session->setFlashdata('transactionError', 'Ne pokušavajte da isplatite više nego što imate novca na računu! Ovakvi pokušaji mogu biti sankcionisani!');
-            return redirect()->to(site_url("Wallet")); 
+            return redirect()->to(site_url("WalletController")); 
         }
         
         $this->createTransaction($user, $bankAccount, $user_data['withdrawalAmount'], 1, $bankAccountModel, $userModel);
@@ -164,7 +164,7 @@ class Wallet extends BaseController
             $db->transCommit();
             $this->session->setFlashdata('transactionSuccess', 'Isplata je uspešno izvršena!');
         }
-        return redirect()->to(site_url("Wallet"));        
+        return redirect()->to(site_url("WalletController"));        
     }
     
     /**
