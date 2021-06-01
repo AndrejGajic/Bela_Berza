@@ -40,7 +40,9 @@ $privilegesIndex = 'PrivilegesController';
 $loginIndex = 'LoginController';
 $profileIndex = 'ProfileController';
 $walletIndex = 'WalletController';
+$regconfirmationIndex ='RegConfirmationController';
 $homeIndex = 'Home';
+
 
 $routes->get('home', $homeIndex);
 $routes->get('collection', $collectionIndex);
@@ -48,6 +50,7 @@ $routes->get('privileges', $privilegesIndex);
 $routes->get('wallet', $walletIndex);
 $routes->get('login', $loginIndex);
 $routes->get('profile', $profileIndex);
+$routes->get('regconfirmation', $regconfirmationIndex);
 
 
 /*

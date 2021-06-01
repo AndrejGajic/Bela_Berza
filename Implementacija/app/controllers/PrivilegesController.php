@@ -17,32 +17,65 @@ use App\Models\UserModel;
 class PrivilegesController extends BaseController
 {
 
-    /*
+    /**
      * Konstanta koja oznacava cenu prelaska u privilegovanog korisnika
      */
     const PRIVILEGES_PRICE = 30.00;
 
     /**
-     * Indeks funkcija koja u zavisnosti od tipa korisnika koji je ulogovan na razliciti nacin ucitava stranicu
-     * za privilegije, a u slucaju gosta preusmerava ga na stranicu za Login.
+     * indeks funkcija koja prepoznaje tip prijavljenog korisnika
+     * prosledjuje ga funkciji za prikaz stranice za privilegije
      */
     public function index()
     {
-        $this->removeExpiredPrivileges();
+        //$this->removeExpiredPrivileges();
 
-        //dohvatanje id-a prijavljenog korisnika
         $userId = $this->session->get('userId');
 
+        //nijedan korisnik nije prijavljen
+        if(!$userId){
+            return $this->showPrivilegesPage('guest');
+        }
+
+        $privUserId = (new PrivilegedUserModel())->find($userId);
+
+        //prijavljen je privilegovani korisnik
+        if($privUserId){
+            return $this->showPrivilegesPage('privileged');
+        }
+
+        //prijavljen je obican korisnik
+        return $this->showPrivilegesPage('standard');
+
+    }
+
+    /**
+     *
+     * Funkcija koja u zavisnosti od tipa korisnika koji je ulogovan na razliciti nacin ucitava stranicu
+     * za privilegije, a u slucaju gosta preusmerava ga na stranicu za Login.
+     *
+     * @param string $userType
+     *
+     */
+
+    public function showPrivilegesPage($userType)
+    {
+        //admin - preusmeren na pocetnu stranu (ne bi trebalo da moze da se desi da admin dodje ovde)
+        if($userType=='admin'){
+            return redirect()->to('/home');
+        }
+
         //gost - preusmeren na login stranicu
-        if(!$userId) {
+        if($userType=='guest') {
             return redirect()->to('/login');
         }
 
-        //provera da li je korisnik medju privilegovanim korisnicima
-        $privilegedUser = (new PrivilegedUserModel())->find($userId);
+        else if($userType=='standard'){
+            $class = 'no-priv-status';
+            $msg = 'TRENUTNO NEMATE PRIVILEGIJE';
+            $showBtn = true;
+            $menu='standard';
 
-        //obican korisnik
-        if($privilegedUser==null && (!$this->session->get('adminId'))) {
 
             //ima dovoljno para za privilegije
             if($this->checkMoney()) {
@@ -53,18 +86,13 @@ class PrivilegesController extends BaseController
             else{
                 $modal = '#error';
             }
-
-            $class = 'no-priv-status';
-            $msg = 'TRENUTNO NEMATE PRIVILEGIJE';
-            $showBtn = true;
         }
 
-        //privilegovani korisnik
-        else {
-
+        else if($userType=='privileged'){
             $class = 'yes-priv-status';
             $showBtn = false;
             $modal = '';
+            $menu='privileged';
 
             //novi privilegovani korisnik
             if($this->session->getFlashdata('newPriv')==1){
@@ -77,7 +105,10 @@ class PrivilegesController extends BaseController
             }
         }
 
-        $data = array('class'=>$class,'msg'=>$msg,'showBtn'=>$showBtn, 'modal'=>$modal);
+        $username = $this->session->get('username');
+        $imgPath = $this->session->get('img');
+        $data = array('class'=>$class,'msg'=>$msg,'showBtn'=>$showBtn,
+            'modal'=>$modal, 'menu'=>$menu, 'username'=>$username,'imgPath'=>$imgPath);
         return view('privileges.php',$data);
     }
 
@@ -96,7 +127,8 @@ class PrivilegesController extends BaseController
 
 
     /**
-     * Funkcija koja azurira stanje u bazi u slucaju uspesne transakcije i obavestava korisnika o uspesnoj kupovini
+     * Funkcija koja azurira stanje u bazi u slucaju uspesne transakcije
+     * i obavestava korisnika da je upravo dobio privilegije
      */
     public function grantPrivileges()
     {
@@ -123,7 +155,7 @@ class PrivilegesController extends BaseController
     }
 
 
-    /*
+    /**
      * Funkcija koja proverava datume u bazi i oduzima privilegije svim korisnicima kojima je istekla pretplata.
      * Ovu funkciju server treba da izvrsava svakog dana u 00.00h
      */

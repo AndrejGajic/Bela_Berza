@@ -35,10 +35,18 @@
             <!-- Sidebar  -->
             <nav id="sidebar" class="basic">
                 <div id="sidebarSelector" class="sidebar-header">
-                    <div id="user-image"><img src="../assets/images/user.png" alt="" /></div>
+                    <div id="user-image"><img src="<?php echo $imgPath?>" alt="" /></div>
                     <div id="user-data-info">
-                        <h3>Petar Pan</h3>
-                        <p>Standard User</p>
+                        <h3><?php
+                            if($menu=='guest')echo('Gost');
+                            else echo($username);
+                            ?></h3>
+                        <p><?php
+                            if($menu=='standard') echo('Standard user');
+                            else if($menu=='privileged') echo('Privileged user');
+                            else if($menu=='guest') echo('Guest');
+                            else if($menu=='admin') echo('Administrator');
+                            ?></p>
                     </div>
                     <strong>PP</strong>
                 </div>
@@ -50,6 +58,7 @@
                             <span class="label">Berza</span>
                         </a>
                     </li>
+                    <?php if($menu=='standard' || $menu=='privileged') echo('
                     <li>
                         <a href="collection" class="menu-item">
                             <i class="fas fa-briefcase"></i>
@@ -57,6 +66,7 @@
                         </a>
 
                     </li>
+                   
                     <li>
                         <a href="wallet" class="menu-item">
                             <i class="fas fa-wallet"></i>
@@ -81,6 +91,36 @@
                             </li>       
                         </ul>
                     </li>
+                     ')?>
+                     <?php if($menu=='guest') echo('
+                     <li>
+                        <a href="login" class="menu-item">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Register</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="login" class="menu-item">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>Login</span>
+                        </a>
+                    </li>
+                    ')?>
+                    <?php if($menu=='admin') echo('
+                    <li>
+                        <a href="regconfirmation" class="menu-item">
+                            <i class="fas fa-address-book"></i>
+                            <span>Pregled registracija</span>
+                        </a>
+
+                    </li>
+                    <li>
+                             <a href="login" class="menu-item">
+                                 <i class="fas fa-sign-out-alt"></i>
+                                 <span class="label">Izloguj se</span>
+                             </a>
+                    </li>
+                     ')?>
                     <li>
                         <a href="#" class="menu-item">
                             <i class="fas fa-question"></i>
@@ -266,8 +306,12 @@
                             </div>
                             <div class="container-fluid" id="asistentWrapper">
                                 <div class="row" id="asistentHeader"> <h3>TRADE ASSISTANT</h3></div>
-                                <div class="row" id="asistent"> </div>
-                                <div class="row" id="asistentPromo"> <a href="privileges"> <button class="btn-block btn-success">OSTVARI PRIVILEGIJE</button></a> </div>
+                                <div class="row <?php echo (' '.$assistantClass);?>" id="asistent"> </div>
+                                 <?php if($showPromo) echo('
+                                            <div class="row" id="asistentPromo"> 
+                                                <a href="privileges"> <button class="btn-block btn-success">OSTVARI PRIVILEGIJE</button></a> 
+                                            </div>')
+                                 ?>
                             </div>
                     </div>
 
