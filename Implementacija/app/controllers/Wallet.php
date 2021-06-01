@@ -7,6 +7,11 @@ use App\Models\BankAccountModel;
 use App\Models\CreditCardModel;
 use App\Models\TransactionModel;
 
+/** 
+ * Luka Tomanović 0410/2018 ->index,payment,withdraw,createTransaction
+  */
+
+
 /**
 * Wallet – klasa kontrolera za rad sa transakcijama
 *
