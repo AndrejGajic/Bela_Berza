@@ -98,7 +98,10 @@ class Home extends BaseController
         return view('index.php',$data);
     }
     
-    
+    /**
+	* buyStock - funkcija koja se koristi za funkcionalnost kupovine akcija
+        * 
+     */
     public function buyStock(){
         if(!$this->validate([
             'stockName'=>'required',
