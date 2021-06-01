@@ -35,10 +35,18 @@
             <!-- Sidebar  -->
             <nav id="sidebar" class="basic">
                 <div id="sidebarSelector" class="sidebar-header">
-                    <div id="user-image"><img src="../assets/images/user.png" alt="" /></div>
+                    <div id="user-image"><img src="<?php echo $imgPath?>" alt="" /></div>
                     <div id="user-data-info">
-                        <h3>Petar Pan</h3>
-                        <p>Standard User</p>
+                        <h3><?php
+                            if($menu=='guest')echo('Gost');
+                            else echo($username);
+                            ?></h3>
+                        <p><?php
+                            if($menu=='standard') echo('Standard user');
+                            else if($menu=='privileged') echo('Privileged user');
+                            else if($menu=='guest') echo('Guest');
+                            else if($menu=='admin') echo('Administrator');
+                            ?></p>
                     </div>
                     <strong>PP</strong>
                 </div>
@@ -50,6 +58,7 @@
                             <span class="label">Berza</span>
                         </a>
                     </li>
+                    <?php if($menu=='standard' || $menu=='privileged') echo('
                     <li>
                         <a href="collection" class="menu-item">
                             <i class="fas fa-briefcase"></i>
@@ -57,6 +66,7 @@
                         </a>
 
                     </li>
+                   
                     <li>
                         <a href="wallet" class="menu-item">
                             <i class="fas fa-wallet"></i>
@@ -81,6 +91,36 @@
                             </li>       
                         </ul>
                     </li>
+                     ')?>
+                     <?php if($menu=='guest') echo('
+                     <li>
+                        <a href="login" class="menu-item">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Register</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="login" class="menu-item">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>Login</span>
+                        </a>
+                    </li>
+                    ')?>
+                    <?php if($menu=='admin') echo('
+                    <li>
+                        <a href="regconfirmation" class="menu-item">
+                            <i class="fas fa-address-book"></i>
+                            <span>Pregled registracija</span>
+                        </a>
+
+                    </li>
+                    <li>
+                             <a href="login" class="menu-item">
+                                 <i class="fas fa-sign-out-alt"></i>
+                                 <span class="label">Izloguj se</span>
+                             </a>
+                    </li>
+                     ')?>
                     <li>
                         <a href="#" class="menu-item">
                             <i class="fas fa-question"></i>
@@ -108,34 +148,12 @@
 
                 <div class="row">
                     <header id="siteTitle" class="col-12">
-                        <img src="../assets/images/logo.png" alt="">
+                        <img src="../../assets/images/logo.png" alt="">
                         <h1>BELA BERZA</h1>
                     </header>
                 </div>
 
                 <hr>
-                <?php
-                $session = session();
-                if ($session->getFlashdata('buyingStockError') != null) {
-                    echo '<div class="row">';
-                    echo '<div class="col-12" id="buyingStockError">';
-                    echo '<div class="alert alert-danger alert-dismissible">';
-                    echo '<button type="button" class="close" data-dismiss="alert">&times;</button>';
-                    echo '<strong>Neuspešna kupovina akcije/a!</strong>&nbsp' . $session->getFlashdata('buyingStockError');
-                    echo '</div>';
-                    echo '</div>';
-                    echo '</div>';
-                } else if ($session->getFlashdata('buyingStockSuccess') != null) {
-                    echo '<div class="row">';
-                    echo '<div class="col-12" id="buyingStockSuccess">';
-                    echo '<div class="alert alert-success alert-dismissible">';
-                    echo '<button type="button" class="close" data-dismiss="alert">&times;</button>';
-                    echo '<strong>' . $session->getFlashdata('buyingStockSuccess') . '</strong>&nbsp';
-                    echo '</div>';
-                    echo '</div>';
-                    echo '</div>';
-                }
-                ?>
 
                 <div class="row stocks">
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
@@ -288,8 +306,12 @@
                             </div>
                             <div class="container-fluid" id="asistentWrapper">
                                 <div class="row" id="asistentHeader"> <h3>TRADE ASSISTANT</h3></div>
-                                <div class="row" id="asistent"> </div>
-                                <div class="row" id="asistentPromo"> <a href="privileges"> <button class="btn-block btn-success">OSTVARI PRIVILEGIJE</button></a> </div>
+                                <div class="row <?php echo (' '.$assistantClass);?>" id="asistent"> </div>
+                                 <?php if($showPromo) echo('
+                                            <div class="row" id="asistentPromo"> 
+                                                <a href="privileges"> <button class="btn-block btn-success">OSTVARI PRIVILEGIJE</button></a> 
+                                            </div>')
+                                 ?>
                             </div>
                     </div>
 
@@ -312,62 +334,59 @@
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <form name="buyStocks" method="post" action="<?= site_url("Home/buyStock") ?>">
-                    <input type="hidden" id="stockName" name="stockName">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Kupi akcije</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Kupi akcije</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body container">
+                    <div class="row mb-2">
+                        <div class="col-12  mb-2">
+                            <img id="modalStockImage" src="" alt="">
+                        </div>
                     </div>
-                    <div class="modal-body container">
-                        <div class="row mb-2">
-                            <div class="col-12  mb-2">
-                                <img id="modalStockImage" src="" alt="">
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <div class="col-12">
-                                <div class="input-group">
-                                    <span class="input-group-btn">
-                                        <button id="quantityminus" type="button" class="btn btn-danger btn-number" data-type="minus"
-                                            data-field="stock-quantity">
-                                            <i class="fas fa-minus"></i>
-                                        </button>
-                                    </span>
-                                    <input id="quantityInputTextField" type="text" name="stock-quantity"
-                                        class="form-control input-number" value="1" min="1" max="100">
-                                    <span class="input-group-btn">
-                                        <button id="quantityplus" type="button" class="btn btn-success btn-number" data-type="plus"
-                                            data-field="stock-quantity">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-9">
-                                <p>Price per stock: </p>
-                            </div>
-                            <div class="col-3">
-                                <p id="pricePerStock">100&euro;</p>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-9">
-                                <p class="total-price">Total amount: </p>
-                            </div>
-                            <div class="col-3">
-                                <p id="totalPrice" class="total-price">100&euro;</p>
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <button id="quantityminus" type="button" class="btn btn-danger btn-number" data-type="minus"
+                                        data-field="stock-quantity">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </span>
+                                <input id="quantityInputTextField" type="text" name="stock-quantity"
+                                    class="form-control input-number" value="1" min="1" max="100">
+                                <span class="input-group-btn">
+                                    <button id="quantityplus" type="button" class="btn btn-success btn-number" data-type="plus"
+                                        data-field="stock-quantity">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </span>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Odustani</button>
-                        <button type="submit" class="btn btn-outline-success">Potvrdi</button>
+                    <div class="row mb-2">
+                        <div class="col-9">
+                            <p>Price per stock: </p>
+                        </div>
+                        <div class="col-3">
+                            <p id="pricePerStock">100&euro;</p>
+                        </div>
                     </div>
-                </form>
+                    <div class="row mb-2">
+                        <div class="col-9">
+                            <p class="total-price">Total amount: </p>
+                        </div>
+                        <div class="col-3">
+                            <p id="totalPrice" class="total-price">100&euro;</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Odustani</button>
+                    <button type="button" class="btn btn-outline-success">Potvrdi</button>
+                </div>
             </div>
         </div>
     </div>
