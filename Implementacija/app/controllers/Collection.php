@@ -37,6 +37,12 @@ class Collection extends BaseController
         $stockModel=new StockModel();
         $stock=$stockModel->getStockByCompanyName($user_data['stockName']);
         
+        if($stock==null){
+            $db->transRollback();
+            $this->session->setFlashdata('sellingStockError', 'Željena akcija trenutno nije u vašoj kolekciji! Molimo Vas da ne pokušavate nasilnu prodaju kroz promenu HTML koda jer takva radnja može biti sankcionicana!');
+            return redirect()->to(site_url("Collection"));
+        }
+        
         $income= floatval($stock->value)*$user_data['quantity'];
         
         $userOwnsStockModel=new UserOwnsStockModel();
@@ -67,6 +73,9 @@ class Collection extends BaseController
         else{
             $db->transCommit();
         }
+        
+        //change available qty 
+        $stockModel->update($stock->IdStock,['availableQty'=>$stock->availableQty+$user_data['quantity']]);
         
         $this->session->setFlashdata('sellingStockSuccess', 'Prodaja je uspešno okončana i sredstva na vašem računu su ažurirana!');
         return redirect()->to(site_url("Collection"));

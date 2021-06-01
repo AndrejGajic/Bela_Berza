@@ -41,6 +41,12 @@ class Home extends BaseController
             return redirect()->to(site_url("Home"));
         }
         
+        if(intval($stock->availableQty)< $user_data['quantity']){
+            $db->transRollback();
+            $this->session->setFlashdata('buyingStockError', 'Nažalost, nije moguće kupiti zahtevani broj akcija. Proverite njihovu trenutnu dostupnost i pokušajte ponovo.');
+            return redirect()->to(site_url("Home"));
+        }
+        
         $stockPrice= floatval($stock->value)*$user_data['quantity'];
         
         if(floatval($user->balance)<$stockPrice){
@@ -72,6 +78,9 @@ class Home extends BaseController
         } else {
             $db->transCommit();
         }
+        
+        //akcije vise nisu dostupne za prodaju
+        $stockModel->update($stock->IdStock,['availableQty'=>$stock->availableQty-$user_data['quantity']]);
         
         $this->session->setFlashdata('buyingStockSuccess', 'Kupovina je uspešno okončana, akcije su dodate u kolekciju i sredstva na vašem računu su ažurirana!');
         return redirect()->to(site_url("Home"));
