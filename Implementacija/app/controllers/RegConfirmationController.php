@@ -17,9 +17,13 @@ class RegConfirmationController extends BaseController
 {
     /**
      * indeks funkcija koja treba da pozove funkciju za ucitavanje stranice za potvrdu registracija
+     * ukoliko administrator nije prijavljen ova funkcija treba da uradi redirect na glavnu stranu
      */
     public function index()
     {
+        if(!$this->session->get('adminId')){
+            return redirect()->to('/home');
+        }
         return $this->showRegConfirmPage();
     }
 
@@ -41,6 +45,12 @@ class RegConfirmationController extends BaseController
         return view('confirmation.php',$data);
     }
 
+    /**
+     * Funkcija koja potvrdjuje registraciju na cekanju tako sto je prebacuje u status potvrdjene
+     * i kreira novog korisnika koji odgovara podacima iz registracije
+     * @param string $username
+     * @throws \ReflectionException
+     */
     public function confirmRegistration($username)
     {
         $regModel = new RegistrationModel();
@@ -51,15 +61,27 @@ class RegConfirmationController extends BaseController
 
         $data = array('name'=>$reg[0]->name,'surname'=>$reg[0]->surname,'username'=>$reg[0]->username,
             'email'=>$reg[0]->email, 'balance'=>0.00);
-        //ubaci novog korisnika u bazu
+        //ubaci novog korisnika u bazu sa podacima iz registracije
         $userModel->save($data);
 
-        $reg[0]->status=1;
+        $reg[0]->status=1; //potvrdjena registracija
         $reg[0]->IdAdministrator = $this->session->get('adminId');
-        //azuriraj registraciju kao uspesnu
         $regModel->save($reg[0]);
 
-        //obavesti ga mailom da je ubacen
+        //obavesti korisnika mailom da je ubacen
+    }
+
+
+    public function rejectRegistration($username)
+    {
+        $regModel = new RegistrationModel();
+        $reg = $regModel->where('username',$username)->find();
+
+        $reg[0]->status = 2;//odbijena registracija
+        $reg[0]->IdAdministrator = $this->session->get('adminId');
+        $regModel->save($reg[0]);
+
+        //obavesti korisnika mailom da je odbijen
     }
 }
 

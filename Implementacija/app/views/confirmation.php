@@ -102,7 +102,9 @@
                              <h2>PREGLED REGISTRACIJA NA ČEKANJU</h2>
                          </div>
                          <div class="row" id="confirmTable">
-                             <table class="table">
+                            <?php
+                            if(!$error){
+                                echo('<table class="table">
                                  <thead class="thead-dark">
                                      <tr>
                                          <th scope="col">#</th>
@@ -113,15 +115,20 @@
                                          <th scope="col">Action</th>
                                      </tr>
                                  </thead>
-                                 <tbody>
+                                 <tbody>');
+                            }
+                            ?>
+
                                  <?php
                                     $cnt = 1;
                                     foreach($regs as $reg)
                                     {
                                         $methodCallConfirm = "RegConfirmationController/confirmRegistration/".$reg->username;
+                                        $methodCallReject = "RegConfirmationController/rejectRegistration/".$reg->username;
                                         $locationConfirm = site_url($methodCallConfirm);
+                                        $locationReject = site_url($methodCallReject);
                                         $greenBtn = '<a href="'.$locationConfirm.'"><i class="fas fa-check-circle"></i></a>';
-                                        $redBtn = '<a href="#"><i class="fas fa-times-circle"></i></a>';
+                                        $redBtn = '<a href="'.$locationReject.'"><i class="fas fa-times-circle"></i></a>';
 
                                         echo('<tr><th scope="row">'.$cnt.'</th>
                                         <td>'.$reg->username.'</td>
@@ -132,11 +139,12 @@
                                         $cnt++;
                                     }
                                  ?>
-                                 </tbody>
                                  <?php if($error){
                                     echo($error);
+                                 }else{
+                                     echo('</tbody></table>');
                                  }?>
-                             </table>
+
                          </div>
                      </div>
      
