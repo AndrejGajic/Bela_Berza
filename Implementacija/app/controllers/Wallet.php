@@ -7,8 +7,17 @@ use App\Models\BankAccountModel;
 use App\Models\CreditCardModel;
 use App\Models\TransactionModel;
 
+/**
+* Wallet – klasa kontrolera za rad sa transakcijama
+*
+* @version 1.0
+*/
+
 class Wallet extends BaseController
 {
+    /**
+        * index funkcija koja se koristi pri prikazu stranice moj novčanik
+    */
     public function index()
     {
         $username= $this->session->get('username');
@@ -17,6 +26,9 @@ class Wallet extends BaseController
         return view('wallet.php',['userBalance'=>$userBalance]);
     }
     
+     /**
+        * payment funkcija koja se koristi pri uplati novca na račun korisnika veb aplikacije
+    */
     public function payment(){
         if(!$this->validate([
             'amountInputFieldPayment'=>'required',
@@ -95,6 +107,9 @@ class Wallet extends BaseController
         return redirect()->to(site_url("Wallet"));
     }
     
+    /**
+        * withdraw funkcija koja se koristi pri isplati novca na račun korisnika veb aplikacije
+    */
     public function withdraw(){
         
         if(!$this->validate([
@@ -147,7 +162,18 @@ class Wallet extends BaseController
         return redirect()->to(site_url("Wallet"));        
     }
     
-    public function createTransaction($user,$bankAccount,$amount,$type, $bankAccountModel,$userModel){      
+    /**
+        * createTransaction funkcija koja koristi interno za evidentiranje transakcije u bazi
+        *
+        * @param User $user 
+        * @param BankAccount $bankAccount 
+        * @param float $amount 
+        * @param int $type 
+        * @param BankAccountModel $bankAccountModel 
+        * @param UserModel $user 
+        *  
+    */
+    private function createTransaction($user,$bankAccount,$amount,$type, $bankAccountModel,$userModel){      
         if($type==1){
             $amount=$amount*(-1);
         }
