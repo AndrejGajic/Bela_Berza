@@ -11,5 +11,7 @@ class StockTransactionModel extends Model
     protected $returnType ='object';
     protected $allowedFields = ['IdUser','IdStock','totalPrice','quantity','type','timestamp'];
     
+    //type 0-buying, 1-selling
+    
 }
 

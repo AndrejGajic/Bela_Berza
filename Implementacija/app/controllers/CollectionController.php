@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\UserOwnsStockModel;
 use App\Models\UserModel;
 use App\Models\StockModel;
+use App\Models\StockTransactionModel;
 
 class CollectionController extends BaseController
 {
@@ -65,6 +66,22 @@ class CollectionController extends BaseController
         
         $userModel->update($user->IdUser,['balance'=>$user->balance+$income]);
         
+
+        //change available qty 
+        $stockModel->update($stock->IdStock,['availableQty'=>$stock->availableQty+$user_data['quantity']]);
+        
+        //insert stock transaction data
+        $stockTransactionModel=new StockTransactionModel();
+        $stockTransactionModel->insert([
+            'IdUser'=>$user->IdUser,
+            'IdStock'=>$stock->IdStock,
+            'totalPrice'=>$income,
+            'quantity'=>$user_data['quantity'],
+            'type'=>1,
+            'timestamp'=>date("Y-m-d H:i:s")
+        ]);
+        
+        
         if ($db->transStatus() === FALSE){
             $db->transRollback();
             $this->session->setFlashdata('sellingStockError', 'Prodaja nije uspela, molimo Vas pokušajte ponovo!');
@@ -73,10 +90,7 @@ class CollectionController extends BaseController
         else{
             $db->transCommit();
         }
-        
-        //change available qty 
-        $stockModel->update($stock->IdStock,['availableQty'=>$stock->availableQty+$user_data['quantity']]);
-        
+                
         $this->session->setFlashdata('sellingStockSuccess', 'Prodaja je uspešno okončana i sredstva na vašem računu su ažurirana!');
         return redirect()->to(site_url("CollectionController"));
     }

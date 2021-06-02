@@ -7,6 +7,7 @@ use App\Models\UserModel;
 use App\Models\RegistrationModel;
 use App\Models\StockModel;
 use App\Models\UserOwnsStockModel;
+use App\Models\StockTransactionModel;
 
 /** 
  * Kosta Matijevic 0034/2018 
@@ -160,6 +161,22 @@ class Home extends BaseController
         //skidanje para sa racuna
         $userModel->update($user->IdUser,['balance'=>$user->balance-$stockPrice]);
         
+        //akcije vise nisu dostupne za prodaju
+        $stockModel->update($stock->IdStock,['availableQty'=>$stock->availableQty-$user_data['quantity']]);
+        
+        
+        
+        //insert stock transaction data
+        $stockTransactionModel=new StockTransactionModel();
+        $stockTransactionModel->insert([
+            'IdUser'=>$user->IdUser,
+            'IdStock'=>$stock->IdStock,
+            'totalPrice'=>$stockPrice,
+            'quantity'=>$user_data['quantity'],
+            'type'=>0,
+            'timestamp'=>date("Y-m-d H:i:s")
+        ]);
+        
         if ($db->transStatus() === FALSE) {
             $db->transRollback();
             $this->session->setFlashdata('buyingStockError', 'Kupovina akcija nije uspela, molimo Vas pokušajte ponovo!');
@@ -168,8 +185,6 @@ class Home extends BaseController
             $db->transCommit();
         }
         
-        //akcije vise nisu dostupne za prodaju
-        $stockModel->update($stock->IdStock,['availableQty'=>$stock->availableQty-$user_data['quantity']]);
         
         $this->session->setFlashdata('buyingStockSuccess', 'Kupovina je uspešno okončana, akcije su dodate u kolekciju i sredstva na vašem računu su ažurirana!');
         return redirect()->to(site_url("Home"));
