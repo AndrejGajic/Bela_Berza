@@ -9,7 +9,7 @@ class StockTransactionModel extends Model
     protected $primaryKey = 'IdStockTransaction';
     protected $useAutoIncrement = true;
     protected $returnType ='object';
-    protected $allowedFields = ['IdUser','IdStock','totalPrice','quantity','type'];
+    protected $allowedFields = ['IdUser','IdStock','totalPrice','quantity','type','timestamp'];
     
 }
 

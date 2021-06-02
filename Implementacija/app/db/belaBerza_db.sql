@@ -110,7 +110,19 @@ CREATE TABLE StockTransaction
 	totalPrice           DECIMAL(10,2) NULL,
 	quantity             INTEGER NULL,
 	type                 INTEGER NULL,
+	timestamp            TIMESTAMP NULL,
 	CONSTRAINT XPKStockTransaction PRIMARY KEY (IdStockTransaction),
 	CONSTRAINT R_12 FOREIGN KEY (IdUser) REFERENCES User (IdUser),
 	CONSTRAINT R_13 FOREIGN KEY (IdStock) REFERENCES Stock (IdStock)
+);
+
+
+CREATE TABLE StockHistoryPrice
+(
+	IdStock              INTEGER NOT NULL,
+	IdStockHistoryPrice  INTEGER NOT NULL AUTO_INCREMENT,
+	timestamp            TIMESTAMP NULL,
+	price                DECIMAL(10,2) NULL,
+	CONSTRAINT XPKStockHistoryPrice PRIMARY KEY (IdStockHistoryPrice),
+	CONSTRAINT R_15 FOREIGN KEY (IdStock) REFERENCES Stock (IdStock)
 );
