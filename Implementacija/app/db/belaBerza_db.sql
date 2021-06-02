@@ -100,3 +100,17 @@ CREATE TABLE CreditCard
 	CONSTRAINT XPKCreditCard PRIMARY KEY (CreditCardNumber),
 	CONSTRAINT R_11 FOREIGN KEY (BankAccountNumber) REFERENCES BankAccount (BankAccountNumber)
 );
+
+
+CREATE TABLE StockTransaction
+(
+	IdUser               INTEGER NOT NULL,
+	IdStock              INTEGER NOT NULL,
+	IdStockTransaction   INTEGER NOT NULL AUTO_INCREMENT,
+	totalPrice           DECIMAL(10,2) NULL,
+	quantity             INTEGER NULL,
+	type                 INTEGER NULL,
+	CONSTRAINT XPKStockTransaction PRIMARY KEY (IdStockTransaction),
+	CONSTRAINT R_12 FOREIGN KEY (IdUser) REFERENCES User (IdUser),
+	CONSTRAINT R_13 FOREIGN KEY (IdStock) REFERENCES Stock (IdStock)
+);
