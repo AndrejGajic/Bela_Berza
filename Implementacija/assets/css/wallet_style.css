@@ -38,3 +38,6 @@
     color: rgb(233, 56, 56);
 }
 
+.table > tbody > tr > th,td {
+     vertical-align: middle;
+}

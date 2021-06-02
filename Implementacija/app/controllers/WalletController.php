@@ -69,7 +69,7 @@ class WalletController extends BaseController
             'CVC'=>'required',
             'CVC'=>'regex_match[/[0-9]{3}/]'
         ])){
-            $this->session->setFlashdata('transactionError', 'Ne pokušavajte da unosite ne validne vrednosti ili da menjate HTML kod! Ovakvi pokušaji mogu biti sankcionisani!');
+            $this->session->setFlashdata('transactionError', 'Ne pokušavajte da unosite nevalidne vrednosti ili da menjate HTML kod! Ovakvi pokušaji mogu biti sankcionisani!');
             return redirect()->to(site_url("WalletController")); 
         }
                 
@@ -148,7 +148,7 @@ class WalletController extends BaseController
             'bankAccountNumberInput'=>'required',
             'bankAccountNumberInput'=>'regex_match[/[0-9]{3}-[0-9]{13}-[0-9]{2}/]'
         ])){
-            $this->session->setFlashdata('transactionError', 'Ne pokušavajte da unosite ne validne vrednosti ili da menjate HTML kod! Ovakvi pokušaji mogu biti sankcionisani!');
+            $this->session->setFlashdata('transactionError', 'Ne pokušavajte da unosite nevalidne vrednosti ili da menjate HTML kod! Ovakvi pokušaji mogu biti sankcionisani!');
             return redirect()->to(site_url("WalletController")); 
         }
             

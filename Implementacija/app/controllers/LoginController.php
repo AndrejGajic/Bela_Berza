@@ -59,12 +59,14 @@ class LoginController extends BaseController
                     $this->session->setFlashData("loginError", "Pogresna lozinka!");
                     return redirect()->to(site_url("LoginController"));
                 }
+                
+                if($user->imagePath==null)$user->imagePath='../assets/images/user.png';
                 $this->session->set("username", $user->username);
                 $this->session->set("userId", $user->IdUser);
                 $this->session->set("name", $user->name);
                 $this->session->set("surname", $user->surname);
                 $this->session->set("email", $user->email);
-                $this->session->set("imagePath", $user->imagePath);
+                $this->session->set("img", $user->imagePath);
             }
             else {
                 // nadjen administrator
@@ -91,12 +93,15 @@ class LoginController extends BaseController
                     $this->session->setFlashData("loginError", "Pogresna lozinka!");
                     return redirect()->to(site_url("LoginController"));
                 }
+                
+                if($user->imagePath==null)$user->imagePath='../assets/images/user.png';
+                
                 $this->session->set("username", $user->username);
                 $this->session->set("userId", $user->IdUser);
                 $this->session->set("name", $user->name);
                 $this->session->set("surname", $user->surname);
                 $this->session->set("email", $user->email);
-                $this->session->set("imagePath", $user->imagePath);
+                $this->session->set("img", $user->imagePath);
             }
             else {
                 // nadjen administrator

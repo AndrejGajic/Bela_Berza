@@ -418,7 +418,10 @@ use App\Models\TransactionModel;
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">&euro;</div>
                                     </div>
-                                    <input type="number" name="amountInputFieldWithdraw" class="form-control" placeholder="0&euro;" value="0" min="0.01"
+                                    <input type="number" name="amountInputFieldWithdraw" class="form-control" placeholder="0&euro;" value="0" min="<?php if($userBalance>0)
+                                                                                                                                                                echo "0.01";
+                                                                                                                                                         else  echo "0.00";
+                                                                                                                                                    ?>"
                                         max="<?php echo "$userBalance"; ?>" step="0.01" required>
 
                                 </div>
@@ -457,9 +460,6 @@ use App\Models\TransactionModel;
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
     <script src="../assets/js/navbar.js"></script>
-    <script type="text/javascript" src="../../assets/js/canvasjs.stock.min.js"></script>
-    <script src="../assets/js/chart.js"></script>
-    <script src="../assets/js/quantity_button.js"></script>
 </body>
 
 </html>

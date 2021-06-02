@@ -33,8 +33,8 @@ class Home extends BaseController
 	{
 	    //$this->session->destroy();
 	    //$this->session->set('userId',1);
-        $this->session->set('username','petarpan');
-        $this->session->set('img','https://pbs.twimg.com/profile_images/378800000072031509/d0790345cadb70017182dc27ca1b9ae1.png');
+        //$this->session->set('username','petarpan');
+        //$this->session->set('img','https://pbs.twimg.com/profile_images/378800000072031509/d0790345cadb70017182dc27ca1b9ae1.png');
         //$this->session->destroy();
 
         $adminId = $this->session->get('adminId');
