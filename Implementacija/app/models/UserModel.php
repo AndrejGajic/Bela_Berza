@@ -18,5 +18,9 @@ class UserModel extends Model
     public function getUserByUserName($username){
         return $this->where('username',$username)->first();
     }
+    
+    public function getUserByEmail($email) {
+        return $this->where("email", $email)->first(); // mora samo jedan da bude svejedno
+    }
 
 }

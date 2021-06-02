@@ -1,5 +1,6 @@
 <!-- Luka Tomanovic 0410/2018
-     Kosta Matijevic 0034/2018-->
+     Kosta Matijevic 0034/2018
+     Andrej Gajic 0303/2018    -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,11 +30,11 @@
             
             <div class="login-form">
                 <div class="sign-in-htm">
-                    <form action="home">
+                    <form action="LoginController/login" name="login" method="post">
                         <div class="form-group row">
-                            <label for="nameInputField" class="col-sm-4 col-form-label">Email</label>
+                            <label for="nameInputField" class="col-sm-4 col-form-label">Email/username</label>
                             <div class="col-sm-8">
-                                <input type="email" class="form-control" id="nameInputField"
+                                <input type="text" class="form-control" id="nameInputField" name="emailLogin"
                                     placeholder="petarpan@risingedge.rs" value="" required>
                             </div>
                         </div>
@@ -41,24 +42,59 @@
                         <div class="form-group row">
                             <label for="surnameInputField" class="col-sm-4 col-form-label">Lozinka</label>
                             <div class="col-sm-8">
-                                <input type="password" class="form-control" id="surnameInputField"
-                                    placeholder="korisnik" value="" required>
+                                <input type="password" class="form-control" id="surnameInputField" name="passwordLogin"
+                                    placeholder="lozinka" value="" required>
                             </div>
                         </div>
                         
                         <div class="sign-in-btn">
                             <button class="btn btn-outline-success form-control" type="submit">Prijavi se</button>
                         </div>
+                        <br>
+                        <br>
+                        <?php
+                        $session = session(); 
+                        if($session->getFlashdata("registrationError")!=null) { 
+                            echo '<div class="row">';
+                            echo    '<div class="col-12" id="registrationError">';
+                            echo        '<div class="alert alert-danger alert-dismissible">';
+                            echo            '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+                            echo            $session->getFlashdata("registrationError");
+                            echo        '</div>';
+                            echo    '</div>';
+                            echo '</div>';
+                        }
+                        else if($session->getFlashdata("registrationSuccess")!=null) {
+                            echo '<div class="row">';
+                            echo    '<div class="col-12" id="registrationSuccess">';
+                            echo        '<div class="alert alert-success alert-dismissible">';
+                            echo            '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+                            echo            $session->getFlashdata("registrationSuccess");
+                            echo        '</div>';
+                            echo    '</div>';
+                            echo '</div>';
+                        }
+                        else if($session->getFlashData("loginError") != null) {
+                            echo '<div class="row">';
+                            echo    '<div class="col-12" id="loginError">';
+                            echo        '<div class="alert alert-danger alert-dismissible">';
+                            echo            '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+                            echo            $session->getFlashdata("loginError");
+                            echo        '</div>';
+                            echo    '</div>';
+                            echo '</div>';
+                        }
+                        ?>
 
                     </form>
                     <div class="hr"></div>
                 </div>
                 <div class="for-pwd-htm">
-                    <form action="login.html">
+                    <form action="LoginController/registration" name="registration" method="post">
                         <div class="form-group row">
                             <label for="nameInputField" class="col-sm-4 col-form-label">Ime</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="nameInputField"
+                                <input type="text" class="form-control" id="nameInputField" name="nameReg"
                                     placeholder="npr. Pera" value="" required>
                             </div>
                         </div>
@@ -66,14 +102,24 @@
                         <div class="form-group row">
                             <label for="surnameInputField" class="col-sm-4 col-form-label">Prezime</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="surnameInputField"
+                                <input type="text" class="form-control" id="surnameInputField" name="surnameReg"
                                     placeholder="npr. Peric" value="" required>
                             </div>
                         </div>
+                        
+                        <div class="form-group row">
+                            <label for="usernameInputField" class="col-sm-4 col-form-label">Korisnicko ime</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="usernameInputField" name="usernameReg"
+                                    placeholder="npr. peraperic" value="" required>
+                            </div>
+                        </div>
+                        
+                        
                         <div class="form-group row">
                             <label for="nameInputField" class="col-sm-4 col-form-label">Email</label>
                             <div class="col-sm-8">
-                                <input type="email" class="form-control" id="nameInputField"
+                                <input type="email" class="form-control" id="nameInputField" name="emailReg"
                                     placeholder="example@domain.com" value="" required>
                             </div>
                         </div>
@@ -81,13 +127,14 @@
                         <div class="form-group row">
                             <label for="surnameInputField" class="col-sm-4 col-form-label">Lozinka</label>
                             <div class="col-sm-8">
-                                <input type="password" class="form-control" id="surnameInputField"
+                                <input type="password" class="form-control" id="surnameInputField" name="passwordReg"
                                     placeholder="lozinka" value="" required>
                             </div>
                         </div>
                         <div class="register-btn">
                             <button class="btn btn-outline-danger form-control" type="submit">Potvrdi</button>
                         </div>
+                        
 
                     </form>
                     <div class="hr"></div>

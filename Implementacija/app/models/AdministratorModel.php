@@ -9,4 +9,13 @@ class AdministratorModel extends Model
     protected $useAutoIncrement = true;
     protected $returnType ='object';
     protected $allowedFields = ['username','password','email'];
+    
+    public function getUserByEmail($email) {
+        return $this->where("email", $email)->first();
+    }
+    
+    public function getUserByUserName($username) {
+        return $this->where("username", $username)->first();
+    }
 }
+
