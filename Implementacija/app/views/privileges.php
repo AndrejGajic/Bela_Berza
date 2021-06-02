@@ -85,7 +85,7 @@
                                 <a class="active-profile-item" href="#">Privilegije</a>
                             </li>
                             <li>
-                                <a href="login">Izloguj se</a>
+                                <a href="<?= site_url("LogoutController/logout") ?>">Izloguj se</a>
                             </li>
                         </ul>
                     </li>

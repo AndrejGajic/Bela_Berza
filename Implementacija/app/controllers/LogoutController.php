@@ -7,11 +7,14 @@
  */
 
 namespace App\Controllers;
+/**
+ * Andrej Gajic 0303/2018 -> logout
+ */
 
 /**
- * Description of LogoutController
+ * LogoutController - klasa za odjavljivanje korisnika
  *
- * @author Andrej
+ * @version 1.0
  */
 class LogoutController extends BaseController {
     
