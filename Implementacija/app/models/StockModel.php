@@ -9,5 +9,11 @@ class StockModel extends Model
     protected $useAutoIncrement = true;
     protected $returnType ='object';
     protected $allowedFields = ['companyName','value','rate','imagePath','availableQty','isVolatile'];
+    
+    
+    public function getStockByCompanyName($companyName){
+        return $this->where('companyName',$companyName)->first();
+    }
+
 }
 

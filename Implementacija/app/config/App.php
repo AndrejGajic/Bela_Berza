@@ -23,7 +23,9 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $baseURL = 'http://localhost/bela_berza/public/';
+	//public $baseURL = 'http://localhost/bela_berza/public/';
+    
+        public $baseURL = 'http://localhost/bela_berza/public/';
 
 	/**
 	 * --------------------------------------------------------------------------
@@ -36,7 +38,8 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $indexPage = '';
+	//public $indexPage = 'index.php';
+        public $indexPage = '';
 
 	/**
 	 * --------------------------------------------------------------------------

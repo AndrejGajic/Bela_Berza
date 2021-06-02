@@ -18,4 +18,30 @@ class UserOwnsStockModel extends Model
         return $query->getResultObject();
     }
 
+    /**
+     * Funkcija koja vraca listu svih akcija i kolicina koje zadati korisnik poseduje
+     * @param int $IdUser
+     * @return array|object[]
+     */
+    public function findStocksForUser($IdUser){
+        $db = \Config\Database::connect();
+        $sql = "select IdStock, quantity from userownsstock where IdUser=?";
+        $query = $db->query($sql,$IdUser);
+        return $query->getResultObject();
+    }
+
+    public function find($id = null)
+    {
+        $db = \Config\Database::connect();
+        $sql = "select IdStock, IdUser, quantity from userownsstock where IdUser=? and IdStock=?";
+        $query = $db->query($sql,[$id['IdUser'],$id['IdStock']]);
+        return $query->getRow();
+    }
+    
+    public function updateQuantity(int $userId, int $stockId, int $newQuantity) {
+        $db = \Config\Database::connect();
+        $sql = "update userownsstock set quantity=? where IdUser=? and IdStock=?";
+        return $db->query($sql,[$newQuantity,$userId,$stockId]);
+    }
+
 }

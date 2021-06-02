@@ -34,20 +34,17 @@
             <!-- Sidebar  -->
             <nav id="sidebar" class="basic">
                 <div id="sidebarSelector" class="sidebar-header">
-                    <div id="user-image"><img src="../assets/images/user.png" alt="" /></div>
+                    <div id="user-image"><img src="<?php echo $imgPath?>" alt="" /></div>
                     <div id="user-data-info">
                         <h3><?php
-                            if($menu=='guest')echo('Gost');
-                            else echo($username);
+                            echo($name.' '.$surname);
                             ?></h3>
                         <p><?php
                             if($menu=='standard') echo('Standard user');
                             else if($menu=='privileged') echo('Privileged user');
-                            else if($menu=='guest') echo('Guest');
-                            else if($menu=='admin') echo('Administrator');
                             ?></p>
                     </div>
-                    <strong>PP</strong>
+                    <strong><?php echo(substr($name,0,1).substr($surname,0,1))?></strong>
                 </div>
 
                 <ul class="list-unstyled components">
@@ -134,116 +131,43 @@
 
                             <hr>
 
+                            <?php
+                                $session = session(); 
+                                if($session->getFlashdata('sellingStockError')!=null){ 
+                                    echo '<div class="row">';
+                                    echo    '<div class="col-12" id="sellingStockError">';
+                                    echo        '<div class="alert alert-danger alert-dismissible">';
+                                    echo            '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+                                    echo            '<strong>Neuspešna pordaja akcije!</strong>&nbsp'.$session->getFlashdata('sellingStockError');
+                                    echo        '</div>';
+                                    echo    '</div>';
+                                    echo '</div>';
+                                }else if($session->getFlashdata('sellingStockSuccess')!=null){
+                                    echo '<div class="row">';
+                                    echo    '<div class="col-12" id="sellingStockSuccess">';
+                                    echo        '<div class="alert alert-success alert-dismissible">';
+                                    echo            '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+                                    echo            '<strong>'.$session->getFlashdata('sellingStockSuccess').'</strong>&nbsp';
+                                    echo        '</div>';
+                                    echo    '</div>';
+                                    echo '</div>';
+                                }
+                            ?>
                             <div class="row stocks">
-                                <div class="col-12 col-md-6 col-lg-4 col-xl-3 stock">
-                                    <img src="../assets/images/microsoft.png" alt="">
-                                    <p class="price">197.40&euro;</p>
-                                    <p class="price-diff-percentage diff-negative">- 1.33 %</p>
-                                    <p class="quantity">broj akcija: 3</p>
-                                    <button id="btnMicrosoft" class="btn-block btn-danger" data-toggle="modal"
+                                <?php
+                                    foreach($stocks as $stock)
+                                    {
+                                        $modalargs = '\''.$stock->imagePath.' \',\''.$stock->companyName.'\','.$stock->value.','.$stock->availableQty;
+                                        echo('<div class="col-12 col-md-6 col-lg-4 col-xl-3 stock">');
+                                        echo('<img src="'.$stock->imagePath.'" alt="">');
+                                        echo('<p class="price">'.$stock->value.'&euro;</p>');
+                                        echo('<p class="price-diff-percentage diff-negative">'.$stock->rate.'%</p>');
+                                        echo('<p class="quantity">broj akcija: '.$stock->availableQty.'</p>');
+                                        echo('<button id="btnMicrosoft" class="btn-block btn-danger" data-toggle="modal"
                                         data-target="#exampleModalCenter"
-                                        onclick="setSellModal('microsoft.png',197.40,3)">PRODAJ</button>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4 col-xl-3 stock">
-                                    <img src="../assets/images/apple.png" alt="">
-                                    <p class="price">102.45&euro;</p>
-                                    <p class="price-diff-percentage diff-positive">+ 0.45 %</p>
-                                    <p class="quantity">broj akcija: 4</p>
-                                    <button id="btnApple" class="btn-block btn-danger" data-toggle="modal"
-                                        data-target="#exampleModalCenter"
-                                        onclick="setSellModal('apple.png',102.45,4)">PRODAJ</button>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4 col-xl-3 stock">
-                                    <img src="../assets/images/amazon.png" alt="">
-                                    <p class="price">2588.11&euro;</p>
-                                    <p class="price-diff-percentage diff-negative">- 1.32 %</p>
-                                    <p class="quantity">broj akcija: 1</p>
-                                    <button id="btnAmazon" class="btn-block btn-danger" data-toggle="modal"
-                                        data-target="#exampleModalCenter"
-                                        onclick="setSellModal('amazon.png',2588.11,1)">PRODAJ</button>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4 col-xl-3 stock">
-                                    <img src="../assets/images/google.png" alt="">
-                                    <p class="price">1726.57&euro;</p>
-                                    <p class="price-diff-percentage diff-negative">- 0.0034 %</p>
-                                    <p class="quantity">broj akcija: 1</p>
-                                    <button id="btnGoogle" class="btn-block btn-danger" data-toggle="modal"
-                                        data-target="#exampleModalCenter"
-                                        onclick="setSellModal('google.png',1726.57,1)">PRODAJ</button>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4 col-xl-3 stock">
-                                    <img src="../assets/images/facebook.png" alt="">
-                                    <p class="price">236.79&euro;</p>
-                                    <p class="price-diff-percentage diff-negative">- 1.21 %</p>
-                                    <p class="quantity">broj akcija: 1</p>
-                                    <button id="btnFacebook" class="btn-block btn-danger" data-toggle="modal"
-                                        data-target="#exampleModalCenter"
-                                        onclick="setSellModal('facebook.png',236.79,1)">PRODAJ</button>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4 col-xl-3 stock">
-                                    <img src="../assets/images/uber.png" alt="">
-                                    <p class="price">45.78&euro;</p>
-                                    <p class="price-diff-percentage diff-positive">+ 2.51 %</p>
-                                    <p class="quantity">broj akcija: 3</p>
-                                    <button id="btnUber" class="btn-block btn-danger" data-toggle="modal"
-                                        data-target="#exampleModalCenter"
-                                        onclick="setSellModal('uber.png',45.78,3)">PRODAJ</button>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4 col-xl-3 stock">
-                                    <img src="../assets/images/intel.png" alt="">
-                                    <p class="price">52.69&euro;</p>
-                                    <p class="price-diff-percentage diff-negative">- 0.032 %</p>
-                                    <p class="quantity">broj akcija: 5</p>
-                                    <button id="btnIntel" class="btn-block btn-danger" data-toggle="modal"
-                                        data-target="#exampleModalCenter"
-                                        onclick="setSellModal('intel.png',52.69,5)">PRODAJ</button>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4 col-xl-3 stock">
-                                    <img src="../assets/images/tesla.png" alt="">
-                                    <p class="price">544.01&euro;</p>
-                                    <p class="price-diff-percentage diff-positive">+ 1.61 %</p>
-                                    <p class="quantity">broj akcija: 1</p>
-                                    <button id="btnTesla" class="btn-block btn-danger" data-toggle="modal"
-                                        data-target="#exampleModalCenter"
-                                        onclick="setSellModal('tesla.png',544.01,1)">PRODAJ</button>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4 col-xl-3 stock">
-                                    <img src="../assets/images/bmw.png" alt="">
-                                    <p class="price">83.50&euro;</p>
-                                    <p class="price-diff-percentage diff-positive">+ 1.10 %</p>
-                                    <p class="quantity">broj akcija: 3</p>
-                                    <button id="btnBMW" class="btn-block btn-danger" data-toggle="modal"
-                                        data-target="#exampleModalCenter"
-                                        onclick="setSellModal('bmw.png',83.50,3)">PRODAJ</button>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4 col-xl-3 stock">
-                                    <img src="../assets/images/mcdonalds.png" alt="">
-                                    <p class="price">190.46&euro;</p>
-                                    <p class="price-diff-percentage diff-positive">+ 0.040 %</p>
-                                    <p class="quantity">broj akcija: 4</p>
-                                    <button id="btnMcDonalds" class="btn-block btn-danger" data-toggle="modal"
-                                        data-target="#exampleModalCenter"
-                                        onclick="setSellModal('mcdonalds.png',190.46,4)">PRODAJ</button>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4 col-xl-3 stock">
-                                    <img src="../assets/images/samsung.png" alt="">
-                                    <p class="price">1517.16&euro;</p>
-                                    <p class="price-diff-percentage diff-negative">- 0.61 %</p>
-                                    <p class="quantity">broj akcija: 2</p>
-                                    <button id="btnSamsung" class="btn-block btn-danger" data-toggle="modal"
-                                        data-target="#exampleModalCenter"
-                                        onclick="setSellModal('samsung.png',1517.16,2)">PRODAJ</button>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4 col-xl-3 stock">
-                                    <img src="../assets/images/xiaomi.png" alt="">
-                                    <p class="price">2.61&euro;</p>
-                                    <p class="price-diff-percentage diff-negative">- 4.40 %</p>
-                                    <p class="quantity">broj akcija: 20</p>
-                                    <button id="btnXiaomi" class="btn-block btn-danger" data-toggle="modal"
-                                        data-target="#exampleModalCenter"
-                                        onclick="setSellModal('xiaomi.png',2.61,20)">PRODAJ</button>
-                                </div>
-
+                                        onclick="setSellModal('.$modalargs.')">PRODAJ</button>');
+                                    }
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -262,59 +186,62 @@
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">PRODAJ akcije</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body container">
-                    <div class="row mb-2">
-                        <div class="col-12  mb-2">
-                            <img id="modalStockImage" src="" alt="">
-                        </div>
+                <form name="sellStocks" method="post" action="<?= site_url("CollectionController/sellStock") ?>">
+                    <input type="hidden" id="stockName" name="stockName">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">PRODAJ akcije</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="row mb-4">
-                        <div class="col-12">
-                            <div class="input-group">
-                                <span class="input-group-btn">
-                                    <button id="quantityminus" type="button" class="btn btn-danger btn-number"
-                                        data-type="minus" data-field="stock-quantity">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                </span>
-                                <input id="quantityInputTextField" type="text" name="stock-quantity"
-                                    class="form-control input-number" value="1" min="1" max="100">
-                                <span class="input-group-btn">
-                                    <button id="quantityplus" type="button" class="btn btn-danger btn-number"
-                                        data-type="plus" data-field="stock-quantity">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </span>
+                    <div class="modal-body container">
+                        <div class="row mb-2">
+                            <div class="col-12  mb-2">
+                                <img id="modalStockImage" src="" alt="">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button id="quantityminus" type="button" class="btn btn-danger btn-number"
+                                            data-type="minus" data-field="stock-quantity">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                    </span>
+                                    <input id="quantityInputTextField" type="text" name="stock-quantity"
+                                        class="form-control input-number" value="1" min="1" max="100">
+                                    <span class="input-group-btn">
+                                        <button id="quantityplus" type="button" class="btn btn-danger btn-number"
+                                            data-type="plus" data-field="stock-quantity">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-9">
+                                <p>Price per stock: </p>
+                            </div>
+                            <div class="col-3">
+                                <p id="pricePerStock">100&euro;</p>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-9">
+                                <p class="total-price">Total amount: </p>
+                            </div>
+                            <div class="col-3">
+                                <p id="totalPrice" class="total-price">100&euro;</p>
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-2">
-                        <div class="col-9">
-                            <p>Price per stock: </p>
-                        </div>
-                        <div class="col-3">
-                            <p id="pricePerStock">100&euro;</p>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Odustani</button>
+                        <button type="submit" class="btn btn-outline-success">Potvrdi</button>
                     </div>
-                    <div class="row mb-2">
-                        <div class="col-9">
-                            <p class="total-price">Total amount: </p>
-                        </div>
-                        <div class="col-3">
-                            <p id="totalPrice" class="total-price">100&euro;</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Odustani</button>
-                    <button type="button" class="btn btn-outline-success">Potvrdi</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -332,8 +259,8 @@
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
     <script src="../assets/js/navbar.js"></script>
-    <script type="text/javascript" src="../assets/js/canvasjs.stock.min.js"></script>
-    <script src="../assets/js/chart.js"></script>
+    <!--<script type="text/javascript" src="../assets/js/canvasjs.stock.min.js"></script>
+    <script src="../assets/js/chart.js"></script>-->
     <script src="../assets/js/quantity_button.js"></script>
 </body>
 

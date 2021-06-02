@@ -35,11 +35,11 @@
             <!-- Sidebar  -->
             <nav id="sidebar" class="basic">
                 <div id="sidebarSelector" class="sidebar-header">
-                    <div id="user-image"><img src="../assets/images/user.png" alt="" /></div>
+                    <div id="user-image"><img src="<?php echo $imgPath?>" alt="" /></div>
                     <div id="user-data-info">
                         <h3><?php
                             if($menu=='guest')echo('Gost');
-                            else echo($username);
+                            else echo($name.' '.$surname);
                             ?></h3>
                         <p><?php
                             if($menu=='standard') echo('Standard user');
@@ -48,7 +48,7 @@
                             else if($menu=='admin') echo('Administrator');
                             ?></p>
                     </div>
-                    <strong>PP</strong>
+                    <strong><?php echo(substr($name,0,1).substr($surname,0,1))?></strong>
                 </div>
 
                 <ul class="list-unstyled components">

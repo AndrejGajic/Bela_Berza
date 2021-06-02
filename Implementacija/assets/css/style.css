@@ -546,6 +546,11 @@ a.btn-signup:hover {
     #asistentPromo a{
        font-size:11px;
     }
+    
+    /*here was a problem with showing text after sidebar is collapsed; code below this comment resolves it*/
+    #sidebar:not(.active) ul li{
+        display: none;
+    }
 }
 
 

@@ -46,7 +46,7 @@ class RegConfirmationController extends BaseController
     }
 
     /**
-     * Funkcija koja potvrdjuje registraciju na cekanju tako sto je prebacuje u status potvrdjene
+     * Funkcija koja potvrdjuje registraciju na cekanju tako sto joj postavlja status potvrdjene
      * i kreira novog korisnika koji odgovara podacima iz registracije
      * @param string $username
      * @throws \ReflectionException
@@ -69,9 +69,26 @@ class RegConfirmationController extends BaseController
         $regModel->save($reg[0]);
 
         //obavesti korisnika mailom da je ubacen
+        $email = \Config\Services::email();
+
+        $email->setFrom('leko.matijevic@gmail.com', 'Bela berza Admin');
+        $email->setTo('ruki.rukic@gmail.com');
+
+        $email->setSubject('Potvrda registracije');
+        $email->setMessage('Vasa registracija na sajt Bela Berza je potvrdjena. Sada mozete koristiti sve funkcionalnosti sajta.');
+
+        $email->send();
+        //return view('test',array('data'=>site_url('regconfirmation')));
+        return redirect()->to(site_url('regconfirmation'));
     }
 
 
+    /**
+     * Funkcija koja odbacuje registraciju na cekanju tako sto joj postavlja status odbijene
+     *
+     * @param $username
+     * @throws \ReflectionException
+     */
     public function rejectRegistration($username)
     {
         $regModel = new RegistrationModel();

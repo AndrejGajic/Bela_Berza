@@ -88,9 +88,11 @@ $(".input-number").keydown(function (e) {
 
 
 function setImageModal(filename,stockPrice) {
-    $('#modalStockImage').attr('src', 'images/'+filename);
+    $('#modalStockImage').attr('src', '../assets/images/'+filename);
     $('#quantityminus').attr('disabled', true);
     document.getElementById("quantityInputTextField").value="1";
+    let stockName=filename.split('.')[0];
+    $('#stockName').val(stockName);
     quantity=1;
     
     total=quantity*stockPrice;
@@ -102,9 +104,10 @@ function setImageModal(filename,stockPrice) {
 
 
 
-function setSellModal(filename,stockPrice,max) {
-    $('#modalStockImage').attr('src', 'images/'+filename);
+function setSellModal(filename,stockName,stockPrice,max) {
+    $('#modalStockImage').attr('src', filename);
     $('#quantityInputTextField').attr('max', max);
+    $('#stockName').val(stockName);
     document.getElementById("quantityInputTextField").value="1";
     quantity=1;
 
