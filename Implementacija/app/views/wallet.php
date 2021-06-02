@@ -1,9 +1,12 @@
 <!-- Luka Tomanovic 0410/2018
-     Kosta Matijevic 0034/2018-->
+     Kosta Matijevic 0034/2018
+     Andrej Gajic 0303/2018    -->
 
 <!DOCTYPE html>
 <html>
-
+<?php 
+use App\Models\TransactionModel;
+?>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -77,7 +80,7 @@
                                 <a href="privileges">Privilegije</a>
                             </li>
                             <li>
-                                <a href="login">Izloguj se</a>
+                                <a href="<?= site_url("LogoutController/logout") ?>">Izloguj se</a>
                             </li>
                         </ul>
                     </li>
@@ -154,95 +157,144 @@
                         </div>
                     </div>
                     <div class="row" id="walletTableName">
-                        <h2>PREGLED ISORIJE UPLATA I ISPLATA</h2>
+                        <h2>PREGLED ISTORIJE UPLATA I ISPLATA</h2>
                     </div>
                     <div class="row" id="walletTable">
                         <table class="table">
+                            <?php if($transactions != null) {?>
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Tip transakcije</th>
-                                    <th scope="col">Datum</th>
+                                    <th scope="col">Datum i vreme</th>
                                     <th scope="col">Iznos</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td class="wallet-in">Uplata</td>
-                                    <td>3/1/2021</td>
-                                    <td class="wallet-in">+500&euro;</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td class="wallet-out">Isplata</td>
-                                    <td>3/4/2021</td>
-                                    <td class="wallet-out">-300&euro;</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td class="wallet-out">Isplata</td>
-                                    <td>3/7/2021</td>
-                                    <td class="wallet-out">-300&euro;</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td class="wallet-in">Uplata</td>
-                                    <td>3/12/2021</td>
-                                    <td class="wallet-in">+200&euro;</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">5</th>
-                                    <td class="wallet-out">Isplata</td>
-                                    <td>3/16/2021</td>
-                                    <td class="wallet-out">-100&euro;</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">6</th>
-                                    <td class="wallet-in">Uplata</td>
-                                    <td>3/16/2021</td>
-                                    <td class="wallet-in">+20&euro;</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">7</th>
-                                    <td class="wallet-in">Uplata</td>
-                                    <td>3/17/2021</td>
-                                    <td class="wallet-in">+50&euro;</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">8</th>
-                                    <td class="wallet-in">Uplata</td>
-                                    <td>3/21/2021</td>
-                                    <td class="wallet-in">+100&euro;</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">9</th>
-                                    <td class="wallet-out">Isplata</td>
-                                    <td>3/22/2021</td>
-                                    <td class="wallet-out">-200&euro;</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">10</th>
-                                    <td class="wallet-out">Isplata</td>
-                                    <td>3/24/2021</td>
-                                    <td class="wallet-out">-300&euro;</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">11</th>
-                                    <td class="wallet-in">Uplata</td>
-                                    <td>3/25/2021</td>
-                                    <td class="wallet-in">+500&euro;</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">12</th>
-                                    <td class="wallet-out">Isplata</td>
-                                    <td>3/26/2021</td>
-                                    <td class="wallet-out">-1000&euro;</td>
-                                </tr>
+                                <?php
+                                $cnt = 1;
+                                foreach($transactions as $transaction) {
+                                    echo '<tr>';
+                                    echo '<th scope="row">'.$cnt.'</th>';
+                                    $cnt++;
+                                    if($transaction->type == 0) {
+                                        echo '<td class="wallet-in">Uplata</td>';
+                                    }
+                                    else {
+                                        echo '<td class="wallet-out">Isplata</td>';
+                                    }
+                                    echo '<td>'.$transaction->timestamp.'</td>';
+                                    if($transaction->type == 0) {
+                                        echo '<td class="wallet-in">+'.$transaction->amount.'&euro;</td>';
+                                    }
+                                    else {
+                                        echo '<td class="wallet-out">-'.$transaction->amount.'&euro;</td>';
+                                    }
+                                    echo '</tr>';
+                                }
+                                ?>
+                            <?php }
+                            else {
+                                $transactionType = $session->get("transactionType");
+                                if($transactionType == null || $transactionType == 0) {
+                                    echo "Nemate ni uplate ni isplate na vasem nalogu!";
+                                }
+                                else if($transactionType == 1) {
+                                    echo "Nema uplata na vas nalog!";
+                                }
+                                else {
+                                    echo "Nema isplata sa vaseg naloga!";
+                                }
+                            } ?>
                             </tbody>
                         </table>
                     </div>
+                    <form action="WalletController/filter" name="filter" method="post">
+                        <div class="row">
+                            <div class="col-6 text-center">
+                                <label for="tip"> Izaberite tip transakcije: &nbsp;&nbsp;</label>
+                                <select name="tip">
+                                    <option value="sve">Sve</option>
+                                    <option value="uplate">Uplate</option>
+                                    <option value="isplate">Isplate</option>
+                                </select>
+                            </div>
+                            <div class="col-6 text-left">
+                                <button class="btn btn-outline-primary form-control" type="submit">Filtriraj</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- PREGLED KUPLJENIH I PRODATIH AKCIJA ULOGOVANOG KORISNIKA -->
+                     <div class="row" id="walletTableName">
+                        <h2>PREGLED TRANSAKCIJA (kupljenih i prodatih akcija)</h2>
+                    </div>
+                    <div class="row" id="walletTable">
+                        <table class="table">
+                            <?php if($actions != null) {?>
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Tip transakcije</th>
+                                    <th scope="col">Datum i vreme</th>
+                                    <th scope="col">Vrsta akcije </th>
+                                    <th scope="col">Kolicina</th>
+                                    <th scope="col">Iznos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $cnt = 1;
+                                foreach($actions as $action) {
+                                    echo '<tr>';
+                                    echo '<th scope="row">'.$cnt.'</th>';
+                                    $cnt++;
+                                    if($action->type == 0) {
+                                        echo '<td class="wallet-in">Kupovina</td>';
+                                    }
+                                    else {
+                                        echo '<td class="wallet-out">Prodaja</td>';
+                                    }
+                                    echo '<td>'.$action->timestamp.'</td>';
+                                    echo '<td>'.$action->actionType.'</td>';
+                                    echo '<td>'.$action->actionType.'</td>';
+                                    if($action->type == 0) {
+                                        echo '<td class="wallet-in">+'.$action->amount.'&euro;</td>';
+                                    }
+                                    else {
+                                        echo '<td class="wallet-out">-'.$action->amount.'&euro;</td>';
+                                    }
+                                    echo '</tr>';
+                                }
+                                ?>
+                            <?php }
+                            else {
+                                echo 'Ne postoje akcije sa zadatim filtrom!';
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <form action="WalletController/filterActions" name="filterActions" method="post">
+                        <div class="row">
+                            <div class="col-6 text-center">
+                                <label for="tipAkcije"> Izaberite tip transakcije: &nbsp;&nbsp;</label>
+                                <select name="tipAkcije">
+                                    <option value="sve">Sve</option>
+                                    <option value="uplate">Kupovine</option>
+                                    <option value="isplate">Prodaje</option>
+                                </select>
+                            </div>
+                            <div class="col-6 text-left">
+                                <button class="btn btn-outline-primary form-control" type="submit">Filtriraj</button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                    
                 </div>
+                
+                
+                
 
             </div>
         </div>

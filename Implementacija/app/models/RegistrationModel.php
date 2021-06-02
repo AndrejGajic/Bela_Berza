@@ -17,6 +17,14 @@ class RegistrationModel extends Model
         $query = $db->query($sql);
         return $query->getResultObject();
     }
+    
+    public function getUserByEmail($email) {
+        return $this->where("email", $email)->first();
+    }
+    
+    public function getUserByUserName($username) {
+        return $this->where("username", $username)->first();
+    }
 }
 
 
