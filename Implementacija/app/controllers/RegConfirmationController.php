@@ -71,7 +71,7 @@ class RegConfirmationController extends BaseController
         //obavesti korisnika mailom da je ubacen
         $email = \Config\Services::email();
         $email->setFrom('svpirotehnika@gmail.com','Bela berza admin');
-        $email->setTo('ruki.rukic@gmail.com');
+        $email->setTo($reg[0]->email);
         $email->setSubject('Potvrda registracije');
         $email->setMessage('Vasa registracija na sajt Bela Berza je potvrdjena. Sada mozete koristiti sve funkcionalnosti sajta.');
 
@@ -104,7 +104,7 @@ class RegConfirmationController extends BaseController
         //obavesti korisnika mailom da je odbijen
         $email = \Config\Services::email();
         $email->setFrom('svpirotehnika@gmail.com','Bela berza admin');
-        $email->setTo('ruki.rukic@gmail.com');
+        $email->setTo($reg[0]->email);
         $email->setSubject('Odbijena registracija');
         $email->setMessage('Vasa registracija na sajt Bela Berza je odbijena. Ukoliko smatrate da ste greskom odbijeni kontaktirajte nas putem poruke.');
 
