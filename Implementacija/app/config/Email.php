@@ -47,28 +47,28 @@ class Email extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $SMTPHost = 'ssl://smtp.googlemail.com';
+	public $SMTPHost = 'smtp.gmail.com';
 
 	/**
 	 * SMTP Username
 	 *
 	 * @var string
 	 */
-	public $SMTPUser = 'leko.matijevic@gmail.com';
+	public $SMTPUser = 'svpirotehnika@gmail.com';
 
 	/**
 	 * SMTP Password
 	 *
 	 * @var string
 	 */
-	public $SMTPPass = 'degenoiD1d';
+	public $SMTPPass = 'degenoidsv1';
 
 	/**
 	 * SMTP Port
 	 *
 	 * @var integer
 	 */
-	public $SMTPPort = 465;
+	public $SMTPPort = 587;
 
 	/**
 	 * SMTP Timeout (in seconds)

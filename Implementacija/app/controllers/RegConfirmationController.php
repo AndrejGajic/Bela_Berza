@@ -21,7 +21,7 @@ class RegConfirmationController extends BaseController
      */
     public function index()
     {
-        if(!$this->session->get('adminId')){
+        if(!$this->session->get('IdAdministrator')){
             return redirect()->to('/home');
         }
         return $this->showRegConfirmPage();
@@ -39,7 +39,7 @@ class RegConfirmationController extends BaseController
             $error='Nema nijedne registracije na cekanju';
         }
         $username = $this->session->get('username');
-        $imgPath = $this->session->get('img');
+        $imgPath = $this->session->get('imagePath');
 
         $data = array('regs'=>$pendingRegs, 'username'=>$username, 'imgPath'=>$imgPath, 'error'=>$error);
         return view('confirmation.php',$data);
@@ -58,28 +58,30 @@ class RegConfirmationController extends BaseController
 
         $reg = $regModel->where('username',$username)->find();
 
-
+        //ubaci novog korisnika u bazu sa podacima iz registracije
         $data = array('name'=>$reg[0]->name,'surname'=>$reg[0]->surname,'username'=>$reg[0]->username,
             'email'=>$reg[0]->email, 'balance'=>0.00);
-        //ubaci novog korisnika u bazu sa podacima iz registracije
         $userModel->save($data);
 
-        $reg[0]->status=1; //potvrdjena registracija
-        $reg[0]->IdAdministrator = $this->session->get('adminId');
+        //azuriraj status registracije na potvrdjen i postavi administratora koji je odobrio
+        $reg[0]->status=1;
+        $reg[0]->IdAdministrator = $this->session->get('IdAdministrator');
         $regModel->save($reg[0]);
 
         //obavesti korisnika mailom da je ubacen
         $email = \Config\Services::email();
-
-        $email->setFrom('leko.matijevic@gmail.com', 'Bela berza Admin');
+        $email->setFrom('svpirotehnika@gmail.com','Bela berza admin');
         $email->setTo('ruki.rukic@gmail.com');
-
         $email->setSubject('Potvrda registracije');
         $email->setMessage('Vasa registracija na sajt Bela Berza je potvrdjena. Sada mozete koristiti sve funkcionalnosti sajta.');
 
-        $email->send();
-        //return view('test',array('data'=>site_url('regconfirmation')));
-        return redirect()->to(site_url('regconfirmation'));
+        if($email->send()){
+            return redirect()->to(site_url('regconfirmation'));
+        }
+        else{
+            $dump = $email->printDebugger(['headers']);
+            print_r($dump);
+        }
     }
 
 
@@ -94,11 +96,25 @@ class RegConfirmationController extends BaseController
         $regModel = new RegistrationModel();
         $reg = $regModel->where('username',$username)->find();
 
-        $reg[0]->status = 2;//odbijena registracija
+        //azuriraj status registracije na odbijen postavi administratora koji je odobrio
+        $reg[0]->status = 2;
         $reg[0]->IdAdministrator = $this->session->get('adminId');
         $regModel->save($reg[0]);
 
         //obavesti korisnika mailom da je odbijen
+        $email = \Config\Services::email();
+        $email->setFrom('svpirotehnika@gmail.com','Bela berza admin');
+        $email->setTo('ruki.rukic@gmail.com');
+        $email->setSubject('Odbijena registracija');
+        $email->setMessage('Vasa registracija na sajt Bela Berza je odbijena. Ukoliko smatrate da ste greskom odbijeni kontaktirajte nas putem poruke.');
+
+        if($email->send()){
+            return redirect()->to(site_url('regconfirmation'));
+        }
+        else{
+            $dump = $email->printDebugger(['headers']);
+            print_r($dump);
+        }
     }
 }
 

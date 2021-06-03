@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\PrivilegedUserModel;
 use App\Models\UserModel;
 use App\Models\BankAccountModel;
 use App\Models\CreditCardModel;
@@ -25,10 +26,30 @@ class WalletController extends BaseController
     */
     public function index()
     {
+        $userId = $this->session->get('IdUser');
+        if(!$userId){
+            return redirect()->to('/login');
+        }
+        if($this->session->get('IdAdministrator')){
+            return redirect()->to('/home');
+        }
+        $privUserId = (new PrivilegedUserModel())->find($userId);
+
+        //prijavljen je privilegovani korisnik
+        if($privUserId){
+            $menu='privileged';
+        }
+        else{
+            $menu='standard';
+        }
+        $img = $this->session->get('imagePath');
+        $name = $this->session->get('name');
+        $surname = $this->session->get('surname');
         $username= $this->session->get('username');
         $userModel=new UserModel();
+
         $userBalance=$userModel->getUserBalance($username);
-        return view('wallet.php',['userBalance'=>$userBalance]);
+        return view('wallet.php',['userBalance'=>$userBalance,'menu'=>$menu,'imgPath'=>$img,'name'=>$name,'surname'=>$surname]);
     }
     
      /**
@@ -97,6 +118,7 @@ class WalletController extends BaseController
         
         $bankAccount=$bankAccountModel->find($creditCard->BankAccountNumber);
         $userModel=new UserModel();
+
         $user=$userModel->getUserByUserName($this->session->get('username'));
         
         $this->createTransaction($user, $bankAccount, $user_data['paymentAmount'], 0, $bankAccountModel, $userModel);

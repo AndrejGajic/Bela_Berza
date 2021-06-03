@@ -44,8 +44,6 @@
                         <p><?php
                             if($menu=='standard') echo('Standard user');
                             else if($menu=='privileged') echo('Privileged user');
-                            else if($menu=='guest') echo('Guest');
-                            else if($menu=='admin') echo('Administrator');
                             ?></p>
                     </div>
                     <strong><?php echo(substr($name,0,1).substr($surname,0,1))?></strong>

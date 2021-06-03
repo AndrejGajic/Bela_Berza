@@ -30,17 +30,17 @@ class Home extends BaseController
      */
 	public function index()
 	{
-	    $this->session->destroy();
+	    //$this->session->destroy();
 	    $this->session->set('IdUser',1);
         //$this->session->destroy();
-	    //$this->session->set('adminId',1);
+	   // $this->session->set('IdAdministrator',1);
         $this->session->set('username','ppan');
         $this->session->set('imagePath','https://pbs.twimg.com/profile_images/378800000072031509/d0790345cadb70017182dc27ca1b9ae1.png');
         $this->session->set('name','Petar');
         $this->session->set('surname','Pan');
         //$this->session->destroy();
 
-        //$adminId = $this->session->get('adminId');
+        $adminId = $this->session->get('IdAdministrator');
 
         //administrator je prijavljen
         if($adminId){

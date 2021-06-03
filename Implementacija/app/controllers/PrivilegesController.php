@@ -106,9 +106,12 @@ class PrivilegesController extends BaseController
         }
 
         $username = $this->session->get('username');
-        $imgPath = $this->session->get('img');
+        $imgPath = $this->session->get('imagePath');
+        $name = $this->session->get('name');
+        $surname = $this->session->get('surname');
+
         $data = array('class'=>$class,'msg'=>$msg,'showBtn'=>$showBtn,
-            'modal'=>$modal, 'menu'=>$menu, 'username'=>$username,'imgPath'=>$imgPath);
+            'modal'=>$modal, 'menu'=>$menu, 'username'=>$username,'imgPath'=>$imgPath,'name'=>$name,'surname'=>$surname);
         return view('privileges.php',$data);
     }
 
