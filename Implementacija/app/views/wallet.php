@@ -249,19 +249,19 @@ use App\Models\TransactionModel;
                                     echo '<th scope="row">'.$cnt.'</th>';
                                     $cnt++;
                                     if($action->type == 0) {
-                                        echo '<td class="wallet-in">Kupovina</td>';
+                                        echo '<td class="wallet-out">Kupovina</td>';
                                     }
                                     else {
-                                        echo '<td class="wallet-out">Prodaja</td>';
+                                        echo '<td class="wallet-in">Prodaja</td>';
                                     }
                                     echo '<td>'.$action->timestamp.'</td>';
-                                    echo '<td>'.$action->actionType.'</td>';
-                                    echo '<td>'.$action->actionType.'</td>';
+                                    echo '<td>'.$action->IdStock.'</td>';
+                                    echo '<td>'.$action->quantity.'</td>';
                                     if($action->type == 0) {
-                                        echo '<td class="wallet-in">+'.$action->amount.'&euro;</td>';
+                                        echo '<td class="wallet-out">-'.$action->totalPrice.'&euro;</td>';
                                     }
                                     else {
-                                        echo '<td class="wallet-out">-'.$action->amount.'&euro;</td>';
+                                        echo '<td class="wallet-in">+'.$action->totalPrice.'&euro;</td>';
                                     }
                                     echo '</tr>';
                                 }
@@ -280,8 +280,8 @@ use App\Models\TransactionModel;
                                 <label for="tipAkcije"> Izaberite tip transakcije: &nbsp;&nbsp;</label>
                                 <select name="tipAkcije">
                                     <option value="sve">Sve</option>
-                                    <option value="uplate">Kupovine</option>
-                                    <option value="isplate">Prodaje</option>
+                                    <option value="kupovine">Kupovine</option>
+                                    <option value="prodaje">Prodaje</option>
                                 </select>
                             </div>
                             <div class="col-6 text-left">

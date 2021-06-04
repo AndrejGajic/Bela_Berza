@@ -6,6 +6,7 @@ use App\Models\UserModel;
 use App\Models\BankAccountModel;
 use App\Models\CreditCardModel;
 use App\Models\TransactionModel;
+use App\Models\StockTransactionModel;
 
 /** 
  * Luka Tomanović 0410/2018 ->index,payment,withdraw,createTransaction
@@ -261,8 +262,17 @@ class WalletController extends BaseController
      */
     
     private function getUserActions() {
-        
-        return null;
+        $stockTransactionModel = new StockTransactionModel();
+        if($this->actionType == 0) {
+            $actions = $stockTransactionModel->getTransactionsByUserId($this->session->get("userId"));
+        }
+        else if($this->actionType == 1) {
+            $actions = $stockTransactionModel->getTransactionsByUserIdAndType($this->session->get("userId"), 0);
+        }
+        else {
+            $actions = $stockTransactionModel->getTransactionsByUserIdAndType($this->session->get("userId"), 1);
+        }
+        return $actions;
     }
     /**
      * Funkcija za filtriranje prikaza kupljenih, odnosno prodatih akcija korisnika
@@ -273,7 +283,7 @@ class WalletController extends BaseController
        }
        $selectedType = $this->request->getVar("tipAkcije");
        if($selectedType == "sve") $this->actionType = 0;
-       else if($selectedType = "kupovine") $this->actionType = 1;
+       else if($selectedType == "kupovine") $this->actionType = 1;
        else $this->actionType = 2;
        $this->session->set("actionType", $this->actionType);
        return redirect()->to(site_url("WalletController"));

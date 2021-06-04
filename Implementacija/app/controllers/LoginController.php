@@ -30,6 +30,7 @@ class LoginController extends BaseController
      */
     public function login() {
         helper(["form"]);
+        $this->session->remove("adminId");
         if($this->request->getMethod() == "get") {
             return redirect()->to(site_url("LoginController"));
         }

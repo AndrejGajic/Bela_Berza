@@ -13,5 +13,17 @@ class StockTransactionModel extends Model
     
     //type 0-buying, 1-selling
     
+    public function getTransactionsByUserId($userId) {
+        return $this->where("IdUser", $userId)->findAll();
+    }
+    
+    public function getTransactionsByUserIdAndType($userId, $type) {
+        $tempArray = [
+          "IdUser" => $userId,
+          "type" => $type
+        ];
+        return $this->where($tempArray)->findAll();
+    }
+    
 }
 
