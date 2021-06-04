@@ -11,6 +11,8 @@ CREATE TABLE Stock
 	imagePath            VARCHAR(34) NOT NULL,
 	availableQty         INTEGER NULL,
 	isVolatile           boolean NOT NULL DEFAULT 0,
+	weight               INTEGER NULL CHECK ( weight BETWEEN 0 AND 5 ),
+	action               VARCHAR(5) NULL,
 	CONSTRAINT XPKStock PRIMARY KEY (IdStock)
 );
 

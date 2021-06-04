@@ -8,7 +8,7 @@ class StockModel extends Model
     protected $primaryKey = 'IdStock';
     protected $useAutoIncrement = true;
     protected $returnType ='object';
-    protected $allowedFields = ['companyName','value','rate','imagePath','availableQty','isVolatile'];
+    protected $allowedFields = ['companyName','value','rate','imagePath','availableQty','isVolatile','weight','action'];
     
     
     public function getStockByCompanyName($companyName){
