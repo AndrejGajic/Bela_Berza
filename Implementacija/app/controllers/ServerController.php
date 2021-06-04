@@ -16,9 +16,10 @@ namespace App\Controllers;
 
 class ServerController extends BaseController {
     
-    static $apiKeys = array("4c9b48580dmsh1474e734b15ec04p1bf687jsn1b7cacdeea16", "596939d60emsh17dede5c0ed3951p18cf6djsn7674766f4fde", "25161a4a2fmsh56563b0f98b3758p197dd6jsn6b84d98ba669", "f1e65fcca9mshafcbddf30bc160fp1a7e14jsna37a277cf664", "11df2299eemshed10c079dedf5a7p1d29e6jsn059e2f0c2060");
+    static $apiKeys = array("4c9b48580dmsh1474e734b15ec04p1bf687jsn1b7cacdeea16", "596939d60emsh17dede5c0ed3951p18cf6djsn7674766f4fde", "25161a4a2fmsh56563b0f98b3758p197dd6jsn6b84d98ba669", "f1e65fcca9mshafcbddf30bc160fp1a7e14jsna37a277cf664", "11df2299eemshed10c079dedf5a7p1d29e6jsn059e2f0c2060", "131cabc07emsh57a6203173b3ecdp1054d3jsn1cdba456fc1c", "cc7d1b47e1msh4769217179174e1p19b9c1jsn16ffde3c8c10", "cec88fcae7mshf782fb49976a3e8p1d30a2jsn7ca40b240a2b", "d6532ea06amsh3c2d2f1c2353ed9p10d276jsnac896ef68b09");
     static $volatileTreshold = 10;    
     static $trendDeviationTreshold = 0.03;
+    static $keyCnt = 0;
     
     
     public function index() {
@@ -27,8 +28,7 @@ class ServerController extends BaseController {
     
     public function getStockTimeData($stockName, $period, $outputSize) {
         
-        static $requestCnt = 0;
-        $apiKey = "x-rapidapi-key: " . self::$apiKeys[($requestCnt++) % count(self::$apiKeys)];
+        $apiKey = "x-rapidapi-key: " . self::$apiKeys[(self::$keyCnt++) % count(self::$apiKeys)];
         
         $curl = curl_init();
         
@@ -65,8 +65,7 @@ class ServerController extends BaseController {
     
     public function getStockCurrentPrice($stockName) {
         
-        static $requestCnt = 0;
-        $apiKey = "x-rapidapi-key: " . self::$apiKeys[($requestCnt++) % count(self::$apiKeys)];
+        $apiKey = "x-rapidapi-key: " . self::$apiKeys[(self::$keyCnt++) % count(self::$apiKeys)];
         
         $curl = curl_init();
         
@@ -103,7 +102,7 @@ class ServerController extends BaseController {
     public function getStockInfo($stockName) {
         
         static $requestCnt = 0;
-        $apiKey = "x-rapidapi-key: " . self::$apiKeys[($requestCnt++) % count(self::$apiKeys)];
+        $apiKey = "x-rapidapi-key: " . self::$apiKeys[(self::$keyCnt++) % count(self::$apiKeys)];
         
         $curl = curl_init();
 
@@ -203,7 +202,7 @@ class ServerController extends BaseController {
             $isVolatile = true;
             
             
-            /*if ($callCnt % 10 == 0) {
+            if ($callCnt % 10 == 0) {
                 
                 $stockInfo = $this->getStockInfo($stockName->companyName);
                 $jsonObj2 = json_decode($stockInfo, true);
@@ -217,7 +216,7 @@ class ServerController extends BaseController {
                 }
             
                 
-            }*/
+            }
             
             $stockModel->updateStock($stockName->companyName, $price, $rate, $isVolatile, $action, $weight);
         }
