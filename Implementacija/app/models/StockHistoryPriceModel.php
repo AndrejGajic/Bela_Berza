@@ -12,4 +12,3 @@ class StockHistoryPriceModel extends Model
     protected $allowedFields = ['IdStock','timestamp','price'];
     
 }
-

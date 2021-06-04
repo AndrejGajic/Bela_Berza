@@ -180,94 +180,202 @@
 
                 <div class="row stocks">
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
-                        <img src="../assets/images/microsoft.png" alt="">
-                        <p class="price">197.40&euro;</p>
-                        <p class="price-diff-percentage diff-negative">- 1.33 %</p>
+                        <a href="<?php echo site_url('Home/setChartTarget/1') ?>">
+                            <img src="../assets/images/microsoft.png" alt="">
+                        </a>
+                        <p class="price">
+                            <?php
+                                echo($MSFT);
+                            ?>
+                            	&#36;
+                        </p>
+                        <p class="price-diff-percentage <?php if ($MSFTR >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">
+                            <?php
+                                echo($MSFTR);
+                            ?>
+                            %</p>
                         <button id="btnMicrosoft" class="btn-block btn-success" data-toggle="modal"
                             data-target="#exampleModalCenter"
-                            onclick="setImageModal('microsoft.png',197.40)">KUPI</button>
+                            onclick="setImageModal('microsoft.png', <?php echo($MSFT); ?>)">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
                         <img src="../assets/images/apple.png" alt="">
-                        <p class="price">102.45&euro;</p>
-                        <p class="price-diff-percentage diff-positive">+ 0.45 %</p>
+                        <p class="price">
+                            <?php
+                                echo($AAPL);
+                            ?>
+                            	&#36;
+                        </p>
+                        <p class="price-diff-percentage <?php if ($AAPLR >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">
+                            <?php
+                                echo($AAPLR);
+                            ?>
+                            %</p>
                         <button id="btnApple" class="btn-block btn-success" data-toggle="modal"
-                            data-target="#exampleModalCenter" onclick="setImageModal('apple.png',102.45)">KUPI</button>
+                            data-target="#exampleModalCenter" 
+                            onclick="setImageModal('apple.png', <?php echo($AAPL); ?> )">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
                         <img src="../assets/images/amazon.png" alt="">
-                        <p class="price">2588.11&euro;</p>
-                        <p class="price-diff-percentage diff-negative">- 1.32 %</p>
+                        <p class="price">
+                            <?php
+                                echo($AMZN);
+                            ?>
+                            	&#36;
+                        </p>
+                        <p class="price-diff-percentage <?php if ($AMZNR >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">                            
+                            <?php
+                                echo($AMZNR);
+                            ?> 
+                            %</p>
                         <button id="btnAmazon" class="btn-block btn-success" data-toggle="modal"
                             data-target="#exampleModalCenter"
-                            onclick="setImageModal('amazon.png',2588.11)">KUPI</button>
+                            onclick="setImageModal('amazon.png', <?php echo($AMZN); ?>)">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
                         <img src="../assets/images/google.png" alt="">
-                        <p class="price">1726.57&euro;</p>
-                        <p class="price-diff-percentage diff-negative">- 0.0034 %</p>
+                        <p class="price">
+                            <?php
+                                echo($GOOGL);
+                            ?>
+                            	&#36;
+                        </p>
+                        <p class="price-diff-percentage <?php if ($GOOGLR >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">                            
+                            <?php
+                                echo($GOOGLR);
+                            ?> %</p>
                         <button id="btnGoogle" class="btn-block btn-success" data-toggle="modal"
                             data-target="#exampleModalCenter"
-                            onclick="setImageModal('google.png',1726.57)">KUPI</button>
+                            onclick="setImageModal('google.png', <?php echo($GOOGL); ?>)">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
                         <img src="../assets/images/facebook.png" alt="">
-                        <p class="price">236.79&euro;</p>
-                        <p class="price-diff-percentage diff-negative">- 1.21 %</p>
+                        <p class="price">
+                            <?php
+                                echo($FB);
+                            ?>
+                            	&#36;
+                        </p>
+                        <p class="price-diff-percentage <?php if ($FBR >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">                            
+                            <?php
+                                echo($FBR);
+                            ?> %</p>
                         <button id="btnFacebook" class="btn-block btn-success" data-toggle="modal"
                             data-target="#exampleModalCenter"
-                            onclick="setImageModal('facebook.png',236.79)">KUPI</button>
+                            onclick="setImageModal('facebook.png', <?php echo($FB); ?>)">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
                         <img src="../assets/images/uber.png" alt="">
-                        <p class="price">45.78&euro;</p>
-                        <p class="price-diff-percentage diff-positive">+ 2.51 %</p>
+                        <p class="price">
+                            <?php
+                                echo($UBER);
+                            ?>
+                            	&#36;
+                        </p>
+                        <p class="price-diff-percentage <?php if ($UBERR >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">                            
+                            <?php
+                                echo($UBERR);
+                            ?> %</p>
                         <button id="btnUber" class="btn-block btn-success" data-toggle="modal"
-                            data-target="#exampleModalCenter" onclick="setImageModal('uber.png',45.78)">KUPI</button>
+                            data-target="#exampleModalCenter" 
+                            onclick="setImageModal('uber.png', <?php echo($UBER); ?>)">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
                         <img src="../assets/images/intel.png" alt="">
-                        <p class="price">52.69&euro;</p>
-                        <p class="price-diff-percentage diff-negative">- 0.032 %</p>
+                        <p class="price">
+                            <?php
+                                echo($INTC);
+                            ?>
+                            	&#36;
+                        </p>
+                        <p class="price-diff-percentage <?php if ($INTCR >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">                            
+                            <?php
+                                echo($INTCR);
+                            ?> %</p>
                         <button id="btnIntel" class="btn-block btn-success" data-toggle="modal"
-                            data-target="#exampleModalCenter" onclick="setImageModal('intel.png',52.69)">KUPI</button>
+                            data-target="#exampleModalCenter" 
+                            onclick="setImageModal('intel.png', <?php echo($INTC); ?>)">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
                         <img src="../assets/images/tesla.png" alt="">
-                        <p class="price">544.01&euro;</p>
-                        <p class="price-diff-percentage diff-positive">+ 1.61 %</p>
+                        <p class="price">
+                            <?php
+                                echo($TSLA);
+                            ?>
+                            	&#36;
+                        </p>
+                        <p class="price-diff-percentage <?php if ($TSLAR >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">                            
+                            <?php
+                                echo($TSLAR);
+                            ?> %</p>
                         <button id="btnTesla" class="btn-block btn-success" data-toggle="modal"
-                            data-target="#exampleModalCenter" onclick="setImageModal('tesla.png',544.01)">KUPI</button>
+                            data-target="#exampleModalCenter" 
+                            onclick="setImageModal('tesla.png', <?php echo($TSLA); ?>)">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
                         <img src="../assets/images/bmw.png" alt="">
-                        <p class="price">83.50&euro;</p>
-                        <p class="price-diff-percentage diff-positive">+ 1.10 %</p>
+                        <p class="price">
+                            <?php
+                                echo($BAMXF);
+                            ?>
+                            	&#36;
+                        </p>
+                        <p class="price-diff-percentage <?php if ($BAMXF >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">                            
+                            <?php
+                                echo($BAMXFR);
+                            ?> %</p>
                         <button id="btnBMW" class="btn-block btn-success" data-toggle="modal"
-                            data-target="#exampleModalCenter" onclick="setImageModal('bmw.png',83.50)">KUPI</button>
+                            data-target="#exampleModalCenter" 
+                            onclick="setImageModal('bmw.png', <?php echo($BAMXF); ?>)">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
                         <img src="../assets/images/mcdonalds.png" alt="">
-                        <p class="price">190.46&euro;</p>
-                        <p class="price-diff-percentage diff-positive">+ 0.040 %</p>
+                        <p class="price">
+                            <?php
+                                echo($MCD);
+                            ?>
+                            	&#36;
+                        </p>
+                        <p class="price-diff-percentage <?php if ($MCDR >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">                            
+                            <?php
+                                echo($MCDR);
+                            ?> %</p>
                         <button id="btnMcDonalds" class="btn-block btn-success" data-toggle="modal"
                             data-target="#exampleModalCenter"
-                            onclick="setImageModal('mcdonalds.png',190.46)">KUPI</button>
+                            onclick="setImageModal('mcdonalds.png', <?php echo($MCD); ?>)">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
                         <img src="../assets/images/samsung.png" alt="">
-                        <p class="price">1517.16&euro;</p>
-                        <p class="price-diff-percentage diff-negative">- 0.61 %</p>
+                        <p class="price">
+                            <?php
+                                echo($SSNLF);
+                            ?>
+                            	&#36;
+                        </p>
+                        <p class="price-diff-percentage <?php if ($SSNLFR >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">                            
+                            <?php
+                                echo($SSNLFR);
+                            ?> %</p>
                         <button id="btnSamsung" class="btn-block btn-success" data-toggle="modal"
                             data-target="#exampleModalCenter"
-                            onclick="setImageModal('samsung.png',1517.16)">KUPI</button>
+                            onclick="setImageModal('samsung.png', <?php echo($SSNLF); ?>)">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
                         <img src="../assets/images/xiaomi.png" alt="">
-                        <p class="price">2.61&euro;</p>
-                        <p class="price-diff-percentage diff-negative">- 4.40 %</p>
+                        <p class="price">
+                            <?php
+                                echo($XIACF);
+                            ?>
+                            	&#36;
+                        </p>
+                        <p class="price-diff-percentage <?php if ($XIACFR >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">
+                            <?php
+                                echo($XIACFR);
+                            ?>
+                            %</p>
                         <button id="btnXiaomi" class="btn-block btn-success" data-toggle="modal"
-                            data-target="#exampleModalCenter" onclick="setImageModal('xiaomi.png',2.61)">KUPI</button>
+                            data-target="#exampleModalCenter" 
+                            onclick="setImageModal('xiaomi.png', <?php echo($XIACF); ?>)">KUPI</button>
                     </div>
 
                 </div>
@@ -281,9 +389,30 @@
                                 <h3 class="vol-table-header">VOLATILE STOCKS</h3>
                                 <table class="table">
                                     <tbody>
+                                        <?php
+                                            foreach ($volatileStocks as $vs) {
+                                                echo ('<tr>');
+                                                echo ('<td class="vol-logo"><img class="vol-logo-img" src="' . $vs->imagePath . '" alt=""></td>');
+                                                echo ('<td class="vol-name">' . $vs->companyName . '</td>');
+                                                echo ('<td class="vol-price">' . $vs->value . '&#36' .'</td>');
+                                                
+                                                $volchange = "vol-change-positive";
+                                                if ($vs->rate < 0) {
+                                                    $volchange = "vol-change-negative";
+                                                }
+                                                echo ('<td class="' . $volchange . '">' . $vs->rate .'%</td>');
+                                                echo ('                                            
+                                                    <td class="vol-buy"><button class="btn-block btn-success"
+                                                        data-toggle="modal" data-target="#exampleModalCenter"
+                                                        onclick="setImageModal("' . $vs->imagePath . '",' . $vs->value . ')">KUPI</button>
+                                                    </td>');
+                                                echo ('<tr>');
+                                            }
+                                        ?>
+                                        <!--
                                         <tr>
                                             <td class="vol-logo"><img class="vol-logo-img" src="../assets/images/xiaomi.png"
-                                                    alt=""></td>
+                                                alt=""></td>
                                             <td class="vol-name">Xiaomi</td>
                                             <td class="vol-price">2.61&euro;</td>
                                             <td class="vol-change-negative">-4.40%</td>
@@ -324,16 +453,21 @@
                                                     onclick="setImageModal('tesla.png',544.01)">KUPI</button>
                                             </td>
                                         </tr>
+                                        !-->
                                     </tbody>
                                 </table>
                             </div>
                             <div class="container-fluid" id="asistentWrapper">
                                 <div class="row" id="asistentHeader"> <h3>TRADE ASSISTANT</h3></div>
                                 <div class="row <?php echo (' '.$assistantClass);?>" id="asistent"> </div>
-                                 <?php if($showPromo) echo('
-                                            <div class="row" id="asistentPromo"> 
-                                                <a href="privileges"> <button class="btn-block btn-success">OSTVARI PRIVILEGIJE</button></a> 
-                                            </div>')
+                                 <?php 
+                                    if($showPromo) { echo('
+                                        <div class="row" id="asistentPromo"> 
+                                            <a href="privileges"> <button class="btn-block btn-success">OSTVARI PRIVILEGIJE</button></a> 
+                                        </div>');
+                                    } else {
+                                        
+                                    }
                                  ?>
                             </div>
                     </div>

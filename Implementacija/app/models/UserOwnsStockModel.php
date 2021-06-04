@@ -32,5 +32,12 @@ class UserOwnsStockModel extends Model
         $sql = "update userownsstock set quantity=? where IdUser=? and IdStock=?";
         return $db->query($sql,[$newQuantity,$userId,$stockId]);
     }
+    
+    public function isUserOwningStockQuantity(int $userId, string $idStock) {
+        $db = \Config\Database::connect();
+        $sql = "select quantity from userownsstock where IdUser=? and IdStock=?";
+        $query = $db->query($sql,[$userId, $idStock]);
+        return $query->getRow();
+    }
 
 }
