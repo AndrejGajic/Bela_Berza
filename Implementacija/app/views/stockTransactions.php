@@ -159,7 +159,7 @@
                 } else {
                     echo('</tbody></table> </div>');
                 } ?>
-            </div>
+
             <?php if(!$error) echo('
             <form action="StockTransactionHistoryController/filterTransactions" name="filterTransactions" method="post">
                 <div class="row">
@@ -176,7 +176,7 @@
                     </div>
                 </div>
             </form>');?>
-
+            </div>
         </div>
     </div>
 </div>

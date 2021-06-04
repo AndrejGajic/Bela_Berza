@@ -36,7 +36,11 @@ class StocKTransactionHistoryController extends BaseController
     {
 
         $transactionType = $this->session->get('transactionType');
-        //return view('test.php',array('data'=>$transactionType));
+
+
+        //ako nije selektovan tip podrazumeva se da je selektovano sve
+        if(is_null($transactionType))$transactionType=-1;
+
         $transactionInfos = (new StockTransactionModel())->getAllTransactionsInformation($transactionType);
         $error=null;
         if(count($transactionInfos)==0){
