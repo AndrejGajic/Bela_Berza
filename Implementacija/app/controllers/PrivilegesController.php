@@ -30,7 +30,7 @@ class PrivilegesController extends BaseController
     {
         //$this->removeExpiredPrivileges();
 
-        $userId = $this->session->get('userId');
+        $userId = $this->session->get('IdUser');
 
         //nijedan korisnik nije prijavljen
         if(!$userId){

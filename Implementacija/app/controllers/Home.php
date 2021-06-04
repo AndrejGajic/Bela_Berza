@@ -47,7 +47,7 @@ class Home extends BaseController
             return $this->showHomePage('admin');
         }
 
-        $userId = $this->session->get('userId');
+        $userId = $this->session->get('IdUser');
 
         //nijedan korisnik nije prijavljen
         if(!$userId){
