@@ -50,13 +50,13 @@
                         <span class="label">Berza</span>
                     </a>
                 </li>
-                <li class="active-item">
+                <li >
                     <a href="regconfirmation" class="menu-item">
                         <i class="fas fa-address-book"></i>
                         <span>Pregled registracija</span>
                     </a>
                 </li>
-                <li>
+                <li class="active-item">
                     <a href="stocktransactions" class="menu-item">
                         <i class="fas fa-dollar-sign"></i>
                         <span>&nbsp;Pregled transakcija</span>
@@ -106,7 +106,7 @@
 
             <div class="container" id="confirmContainer">
                 <div class="row" id="confirmTableName">
-                    <h2>PREGLED REGISTRACIJA NA ČEKANJU</h2>
+                    <h2>PREGLED SVIH KUPOVINA I PRODAJA AKCIJA</h2>
                 </div>
                 <?php
                 if (!$error) {
@@ -114,14 +114,15 @@
                          <div class="row" id="confirmTable">
                             <table class="table">
                                  <thead class="thead-dark">
-                                     <tr>
-                                         <th scope="col">#</th>
-                                         <th scope="col">Korisničko ime</th>
-                                         <th scope="col">Datum registracije</th>
-                                         <th scope="col">Email</th>
-                                         <th scope="col">IP</th>
-                                         <th scope="col">Action</th>
-                                     </tr>
+                                    <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Korisnik</th>
+                                    <th scope="col">Tip transakcije</th>
+                                    <th scope="col">Datum i vreme</th>
+                                    <th scope="col">Vrsta akcije </th>
+                                    <th scope="col">Kolicina</th>
+                                    <th scope="col">Iznos</th>
+                                    </tr>
                                  </thead>
                                  <tbody>');
                 }
@@ -129,23 +130,28 @@
 
                 <?php
                 $cnt = 1;
-                foreach ($regs as $reg) {
-                    $methodCallConfirm = "RegConfirmationController/confirmRegistration/" . $reg->username;
-                    $methodCallReject = "RegConfirmationController/rejectRegistration/" . $reg->username;
-                    $locationConfirm = site_url($methodCallConfirm);
-                    $locationReject = site_url($methodCallReject);
-                    $actionConfirm = 'window.location=\''.$locationConfirm.'\'';
-                    $actionReject = 'window.location=\''.$locationReject.'\'';
-                    $greenBtn = '<a data-toggle="modal" data-target="#confirmModal" onclick="setConfirmModal(\''.$reg->username.'\',\''.$locationConfirm.'\')"><i class="fas fa-check-circle"></i></a>';
-                    $redBtn = '<a data-toggle="modal" data-target="#rejectModal" onclick="setRejectModal(\''.$reg->username.'\',\''.$locationReject.'\')"><i class="fas fa-times-circle"></i></a>';
+                foreach ($infos as $info) {
 
-                    echo('<tr><th scope="row">' . $cnt . '</th>
-                                        <td>' . $reg->username . '</td>
-                                        <td>' . $reg->date . '</td>
-                                        <td>' . $reg->email . '</td>
-                                        <td>' . $reg->ipAddress . '</td>
-                                        <td>' . $greenBtn . $redBtn . '</td>');
+                    echo '<tr>';
+                    echo '<td scope="row">'.$cnt.'</td>';
+                    echo '<td scope="row">'.$info['username'].'</td>';
                     $cnt++;
+                    if($info['type'] == 1) {
+                        echo '<td class="wallet-in">Prodaja</td>';
+                    }
+                    else {
+                        echo '<td class="wallet-out">Kupovina</td>';
+                    }
+                    echo '<td>'.$info['timestamp'].'</td>';
+                    echo '<td>'.$info['stockName'].'</td>';
+                    echo '<td>'.$info['quantity'].'</td>';
+                    if($info['type'] == 1) {
+                        echo '<td class="wallet-in">+'.$info['totalPrice'].'&euro;</td>';
+                    }
+                    else {
+                        echo '<td class="wallet-out">-'.$info['totalPrice'].'&euro;</td>';
+                    }
+                    echo '</tr>';
                 }
                 ?>
                 <?php if ($error) {
@@ -154,6 +160,22 @@
                     echo('</tbody></table> </div>');
                 } ?>
             </div>
+            <?php if(!$error) echo('
+            <form action="StockTransactionHistoryController/filterTransactions" name="filterTransactions" method="post">
+                <div class="row">
+                    <div class="col-6 text-center">
+                        <label for="tipTransakcije"> Izaberite tip transakcije: &nbsp;&nbsp;</label>
+                        <select name="tipTransakcije">
+                            <option value="sve">Sve</option>
+                            <option value="kupovine">Kupovine</option>
+                            <option value="prodaje">Prodaje</option>
+                        </select>
+                    </div>
+                    <div class="col-6 text-left">
+                        <button class="btn btn-outline-primary form-control" type="submit">Filtriraj</button>
+                    </div>
+                </div>
+            </form>');?>
 
         </div>
     </div>
@@ -163,50 +185,6 @@
     <p>&copy; RisingEdge 2021</p>
 </footer>
 
-
-<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog"
-     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Potvrda registracije</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body container">
-                <p id='confirmText'>Da li ste sigurni da zelite da potvrdite registraciju korisnika?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Odustani</button>
-                <button id='confirmBtn'  type="button" class="btn btn-outline-success"
-                        onclick="">Potvrdi</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="rejectModal" tabindex="-1" role="dialog"
-     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Odbijanje registracije</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body container">
-                <p id="rejectText">Da li ste sigurni da zelite da odbijete registraciju korisnika?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Odustani</button>
-                <button id='rejectBtn' type="button" class="btn btn-outline-success"
-                        onclick="">Potvrdi</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- jQuery CDN - Slim version (=without AJAX) -->
 

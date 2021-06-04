@@ -115,6 +115,13 @@
 
                     </li>
                     <li>
+                        <a href="stocktransactions" class="menu-item">
+                           <i class="fas fa-dollar-sign"></i>
+                            <span>&nbsp;Pregled transakcija</span>
+                        </a>
+
+                    </li>
+                    <li>
                              <a href="login" class="menu-item">
                                  <i class="fas fa-sign-out-alt"></i>
                                  <span class="label">Izloguj se</span>

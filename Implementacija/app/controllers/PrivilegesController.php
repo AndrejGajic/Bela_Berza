@@ -121,7 +121,7 @@ class PrivilegesController extends BaseController
      */
     public function checkMoney()
     {
-        $balance = (new UserModel())->find($this->session->get('userId'))->balance;
+        $balance = (new UserModel())->find($this->session->get('IdUser'))->balance;
         if($balance<self::PRIVILEGES_PRICE){
             return false;
         }
@@ -135,7 +135,7 @@ class PrivilegesController extends BaseController
      */
     public function grantPrivileges()
     {
-        $userId = $this->session->get('userId');
+        $userId = $this->session->get('IdUser');
         $privModel = new PrivilegedUserModel();
 
         //racuna datum pocetka i kraja privilegije

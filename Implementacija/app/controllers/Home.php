@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\Models\PrivilegedUserModel;
 use App\Models\AdministratorModel;
+use App\Models\StockTransactionModel;
 use App\Models\UserModel;
 use App\Models\RegistrationModel;
 use App\Models\StockModel;
@@ -33,7 +34,7 @@ class Home extends BaseController
 	    //$this->session->destroy();
 	    $this->session->set('IdUser',1);
         //$this->session->destroy();
-	   // $this->session->set('IdAdministrator',1);
+	    $this->session->set('IdAdministrator',1);
         $this->session->set('username','ppan');
         $this->session->set('imagePath','https://pbs.twimg.com/profile_images/378800000072031509/d0790345cadb70017182dc27ca1b9ae1.png');
         $this->session->set('name','Petar');
@@ -113,58 +114,75 @@ class Home extends BaseController
             'stock-quantity'=>'required',
             'stock-quantity'=>'is_natural_no_zero'
         ])){
-           $this->session->setFlashdata('buyingStockError', 'Molimo Vas da ispoštujete format unosa i da ne menjate HTML kod jer takva radnja može biti sankcionicana!');
-           return redirect()->to(site_url("Home"));
-        }  
-        
+            $this->session->setFlashdata('buyingStockError', 'Molimo Vas da ispoštujete format unosa i da ne menjate HTML kod jer takva radnja može biti sankcionicana!');
+            return redirect()->to(site_url("Home"));
+        }
+
         $user_data['stockName']=$this->request->getVar('stockName');
         $user_data['quantity']= intval($this->request->getVar('stock-quantity'));
-        
+
         $db = \Config\Database::connect();
         $db->transBegin();
-        
+
         $userModel=new UserModel();
         $user=$userModel->getUserByUserName($this->session->get('username'));
-        
+        print_r($user);
+
         $stockModel=new StockModel();
         $stock=$stockModel->getStockByCompanyName($user_data['stockName']);
-        
+
         if($stock==null){
             $db->transRollback();
             $this->session->setFlashdata('buyingStockError', 'Željena akcija trenutno nije u ponudi! Molimo Vas da ne pokušavate nasilnu kupovinu kroz promenu HTML koda jer takva radnja može biti sankcionicana!');
             return redirect()->to(site_url("Home"));
         }
-        
+
         if(intval($stock->availableQty)< $user_data['quantity']){
             $db->transRollback();
             $this->session->setFlashdata('buyingStockError', 'Nažalost, nije moguće kupiti zahtevani broj akcija. Proverite njihovu trenutnu dostupnost i pokušajte ponovo.');
             return redirect()->to(site_url("Home"));
         }
-        
+
         $stockPrice= floatval($stock->value)*$user_data['quantity'];
-        
+
         if(floatval($user->balance)<$stockPrice){
             $db->transRollback();
             $this->session->setFlashdata('buyingStockError', 'Nemate dovoljno sredstava na računu!');
             return redirect()->to(site_url("Home"));
         }
-        
+
         //ubacivanje u kolekciju akcija
         $userOwnsStockModel=new UserOwnsStockModel();
         $userOwnsStock=$userOwnsStockModel->find(['IdUser'=>$user->IdUser,
-                                     'IdStock'=>$stock->IdStock]);
+            'IdStock'=>$stock->IdStock]);
         if($userOwnsStock==null){
             $userOwnsStockModel->insert(['IdUser'=>$user->IdUser,
-                                         'IdStock'=>$stock->IdStock,
-                                         'quantity'=>$user_data['quantity']]);
+                'IdStock'=>$stock->IdStock,
+                'quantity'=>$user_data['quantity']]);
         }else{
             $newQuantity=intval($userOwnsStock->quantity)+$user_data['quantity'];
             $userOwnsStockModel->updateQuantity($user->IdUser, $stock->IdStock, $newQuantity);
         }
-        
+
         //skidanje para sa racuna
         $userModel->update($user->IdUser,['balance'=>$user->balance-$stockPrice]);
-        
+
+        //akcije vise nisu dostupne za prodaju
+        $stockModel->update($stock->IdStock,['availableQty'=>$stock->availableQty-$user_data['quantity']]);
+
+
+
+        //insert stock transaction data
+        $stockTransactionModel=new StockTransactionModel();
+        $stockTransactionModel->insert([
+            'IdUser'=>$user->IdUser,
+            'IdStock'=>$stock->IdStock,
+            'totalPrice'=>$stockPrice,
+            'quantity'=>$user_data['quantity'],
+            'type'=>0,
+            'timestamp'=>date("Y-m-d H:i:s")
+        ]);
+
         if ($db->transStatus() === FALSE) {
             $db->transRollback();
             $this->session->setFlashdata('buyingStockError', 'Kupovina akcija nije uspela, molimo Vas pokušajte ponovo!');
@@ -172,10 +190,8 @@ class Home extends BaseController
         } else {
             $db->transCommit();
         }
-        
-        //akcije vise nisu dostupne za prodaju
-        $stockModel->update($stock->IdStock,['availableQty'=>$stock->availableQty-$user_data['quantity']]);
-        
+
+
         $this->session->setFlashdata('buyingStockSuccess', 'Kupovina je uspešno okončana, akcije su dodate u kolekciju i sredstva na vašem računu su ažurirana!');
         return redirect()->to(site_url("Home"));
     }
