@@ -15,7 +15,7 @@ class StockModel extends Model
     protected $primaryKey = 'IdStock';
     protected $useAutoIncrement = true;
     protected $returnType ='object';
-    protected $allowedFields = ['companyName','value','rate','imagePath','availableQty','isVolatile'];
+    protected $allowedFields = ['companyName','value','rate','imagePath','availableQty','isVolatile','weight','action'];
     
     public function getStockByCompanyName($companyName){
         return $this->where('companyName',$companyName)->first();
@@ -81,11 +81,11 @@ class StockModel extends Model
         
     }
     
-    public function updateStock(String $companyName, float $value, float $rate, bool $isVolatile) {
+    public function updateStock(string $companyName, float $value, float $rate, bool $isVolatile, string $action, int $weight) {
         
         $db = \Config\Database::connect();
-        $sql = "update stock set value=?, rate=?, isVolatile=? where companyName=?";
-        $res = $db->query($sql,[$value, $rate, $isVolatile, $companyName]);
+        $sql = "update stock set value=?, rate=?, isVolatile=?, weight=?, action=? where companyName=?";
+        $res = $db->query($sql,[$value, $rate, $isVolatile, $weight, $action, $companyName]);
         
     }
     
@@ -94,6 +94,15 @@ class StockModel extends Model
         $db = \Config\Database::connect();
         $sql = "select * from stock where isVolatile = true";
         $query = $db->query($sql);
+        return $query->getResultObject();
+        
+    }
+    
+    public function getActionAndWeight(string $companyName) {
+        
+        $db = \Config\Database::connect();
+        $sql = "select action, weight from stock where companyName=?";
+        $query = $db->query($sql, [$companyName]);
         return $query->getResultObject();
         
     }

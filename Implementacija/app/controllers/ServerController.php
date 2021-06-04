@@ -195,7 +195,15 @@ class ServerController extends BaseController {
             $jsonObj = json_decode($response, true);
             $price = $jsonObj["price"];
             
-            if ($callCnt % 10 == 0) {
+            $result = $this->immediateStockAction($stockName->companyName);
+            $action = $result['action'];
+            $weight = $result['weight'];
+            
+            $rate = 0;
+            $isVolatile = true;
+            
+            
+            /*if ($callCnt % 10 == 0) {
                 
                 $stockInfo = $this->getStockInfo($stockName->companyName);
                 $jsonObj2 = json_decode($stockInfo, true);
@@ -208,32 +216,24 @@ class ServerController extends BaseController {
                     $isVolatile = true;
                 }
             
-                $stockModel->updateStock($stockName->companyName, $price, $rate, $isVolatile);
-            }
-
+                
+            }*/
             
-            $res = "updated " . $stockName->companyName;
-            
-            echo $res;
+            $stockModel->updateStock($stockName->companyName, $price, $rate, $isVolatile, $action, $weight);
         }
-        
         echo "<script>window.close();</script>";
     }
     
+    
+    //Dummy for now
     public function tradingAssistant() {     
         
         $stockModel = new \App\Models\StockModel();
         $stockNames = $stockModel->getAllStockNames();
         
         foreach ($stockNames as $stockName) {
-            
             $result = $this->immediateStockAction($stockName->companyName);
-            
-            echo '<script language="javascript">';
-            echo 'alert("' . $result['action'] . " " . $result['strength'] . '")';
-            echo '</script>';
         }
-        
     }
     
     public function immediateStockAction($companyName) {
@@ -291,10 +291,10 @@ class ServerController extends BaseController {
         // if the current price is higher than next predicted, stock should be sold
         if ($currentValue < $nextPredictedValue) {
             //return $currentValue . " BUY " . $nextPredictedValue;
-            return array("action"=>"BUY", "strength"=>$tradeStrength);
+            return array("action"=>"BUY", "weight"=>$tradeStrength);
         } else {
             //return $currentValue . "SELL " . $nextPredictedValue;
-            return array("action"=>"SELL", "strength"=>$tradeStrength);
+            return array("action"=>"SELL", "weight"=>$tradeStrength);
         }
     }
     

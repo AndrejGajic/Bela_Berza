@@ -19,7 +19,7 @@
     let timeUpdate = setInterval(timer, 120000); 
     let callCnt = 0;
     function timer() {
-        window.open('<?= site_url("ServerController/tradingAssistant/")?>', '_blank');
+        window.open('<?= site_url("ServerController/updateStockPrices/")?>', '_blank');
         var cnt = document.getElementById("cnt").textContent;
         cnt = parseInt(cnt);
         cnt += 1;
