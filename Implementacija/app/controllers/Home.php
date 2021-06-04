@@ -24,6 +24,9 @@ use App\Models\UserOwnsStockModel;
 
 class Home extends BaseController
 {
+    
+    static $apiKeys = array("4c9b48580dmsh1474e734b15ec04p1bf687jsn1b7cacdeea16", "596939d60emsh17dede5c0ed3951p18cf6djsn7674766f4fde", "25161a4a2fmsh56563b0f98b3758p197dd6jsn6b84d98ba669", "f1e65fcca9mshafcbddf30bc160fp1a7e14jsna37a277cf664", "11df2299eemshed10c079dedf5a7p1d29e6jsn059e2f0c2060");
+    
     /**
      * indeks funkcija koja prepoznaje tip prijavljenog korisnika
      * prosledjuje ga funkciji za prikaz pocetne stranice
@@ -211,162 +214,8 @@ class Home extends BaseController
         $this->session->setFlashdata('buyingStockSuccess', 'Kupovina je uspešno okončana, akcije su dodate u kolekciju i sredstva na vašem računu su ažurirana!');
         return redirect()->to(site_url("Home"));
     }
-    
-  
-    public function setStockPrice(){
-        //$stockName=$this->request->getVar('stockName');
         
-        $db = \Config\Database::connect();
-        $db->transBegin();
-        
-        //$stockModel=new StockModel();
-        //$stock=$stockModel->getStockByCompanyName($stockName);
-        
-        /*if($stock==null){
-            $db->transRollback();
-            $this->session->setFlashdata('buyingStockError', 'Željena akcija trenutno nije u ponudi! Molimo Vas da ne pokušavate nasilnu kupovinu kroz promenu HTML koda jer takva radnja može biti sankcionicana!');
-            return redirect()->to(site_url("Home"));
-        }*/
-        
-        /*$curl = curl_init();
-        
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-        
-        curl_setopt_array($curl, [
-            CURLOPT_URL => "https://twelve-data1.p.rapidapi.com/quote?symbol=AMZN&interval=1day&outputsize=30&format=json",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
-            CURLOPT_HTTPHEADER => [
-                    "x-rapidapi-host: twelve-data1.p.rapidapi.com",
-                    "x-rapidapi-key: 4c9b48580dmsh1474e734b15ec04p1bf687jsn1b7cacdeea16"
-            ],
-        ]);
 
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
-                echo "cURL Error #:" . $err;
-        } else {
-                echo $response;
-        }
-        */
-        
-        
-        $stockName = "MSFT";
-        
-        $res = $this->getStockVolatility($stockName);
-        
-        echo "<script type='text/javascript'>alert('$res');</script>";
-
-        //$this->session->setFlashdata('stockPriceFetched', 'Amazon costs ' + $response);
-    }    
-    
-        
-    public function getStockVolatility($stockName) {   
-
-        $response = $this->getStockTimeData($stockName, "1day", "50");        
-        $response = json_decode($response, true);
-
-        $values = $response["values"];   
-        
-        $maxChange = 0;
-        
-        for ($i = 1; $i < 30; $i++) {
-            $change = abs(floatval(floatval(($values[$i]["open"] - $values[$i - 1]["open"])) / floatval(($values[$i]["open"]  + $values[$i-1]["open"]))));
-            if ($change > $maxChange) {
-                $maxChange = $change;
-            }
-        }
-        
-        $response = $this->getStockInfo($stockName);
-        $response = json_decode($response, true);
-        $change_percent = floatval($response["percent_change"]);
-        
-        if (abs($change_percent) > $maxChange) {
-            $maxChange = abs($change_percent);
-        }
-        
-        return $maxChange;
-    }
-    
-    public function getStockInfo($stockName) {
-        
-        $curl = curl_init();
-
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-        
-        curl_setopt_array($curl, [
-                CURLOPT_URL => "https://twelve-data1.p.rapidapi.com/quote?symbol=" . $stockName . "&interval=1day&outputsize=30&format=json",
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_ENCODING => "",
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 30,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "GET",
-                CURLOPT_HTTPHEADER => [
-                        "x-rapidapi-host: twelve-data1.p.rapidapi.com",
-                        "x-rapidapi-key: 596939d60emsh17dede5c0ed3951p18cf6djsn7674766f4fde"
-                ],
-        ]);
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
-                return "cURL Error #:" . $err;
-        } else {
-                return $response;
-        }
-    }
-    
-    public function getStockTimeData($stockName, $period, $outputSize) {
-        
-        $curl = curl_init();
-        
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-        
-        curl_setopt_array($curl, [
-                CURLOPT_URL => ("https://twelve-data1.p.rapidapi.com/time_series?symbol=" . $stockName . "&interval=" . $period . "&outputsize=" . $outputSize . "&format=json"),
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_ENCODING => "",
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 30,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "GET",
-                CURLOPT_HTTPHEADER => [
-                        "x-rapidapi-host: twelve-data1.p.rapidapi.com",
-                        "x-rapidapi-key: 596939d60emsh17dede5c0ed3951p18cf6djsn7674766f4fde"
-                ],
-        ]);
-        
-        
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
-                return $err;
-        } else {
-            
-                return $response;
-        }
-    }
     
     public function setChartTarget($IdStock) {
         return redirect()->to(site_url("Home/index/$IdStock"));

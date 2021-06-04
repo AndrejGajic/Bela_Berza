@@ -189,7 +189,7 @@
                             ?>
                             	&#36;
                         </p>
-                        <p class="price-diff-percentage diff-negative">
+                        <p class="price-diff-percentage <?php if ($MSFTR >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">
                             <?php
                                 echo($MSFTR);
                             ?>
@@ -206,7 +206,7 @@
                             ?>
                             	&#36;
                         </p>
-                        <p class="price-diff-percentage diff-positive">
+                        <p class="price-diff-percentage <?php if ($AAPLR >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">
                             <?php
                                 echo($AAPLR);
                             ?>
@@ -223,7 +223,7 @@
                             ?>
                             	&#36;
                         </p>
-                        <p class="price-diff-percentage diff-negative">                            
+                        <p class="price-diff-percentage <?php if ($AMZNR >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">                            
                             <?php
                                 echo($AMZNR);
                             ?> 
@@ -240,7 +240,7 @@
                             ?>
                             	&#36;
                         </p>
-                        <p class="price-diff-percentage diff-negative">                            
+                        <p class="price-diff-percentage <?php if ($GOOGLR >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">                            
                             <?php
                                 echo($GOOGLR);
                             ?> %</p>
@@ -256,7 +256,7 @@
                             ?>
                             	&#36;
                         </p>
-                        <p class="price-diff-percentage diff-negative">                            
+                        <p class="price-diff-percentage <?php if ($FBR >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">                            
                             <?php
                                 echo($FBR);
                             ?> %</p>
@@ -272,7 +272,7 @@
                             ?>
                             	&#36;
                         </p>
-                        <p class="price-diff-percentage diff-positive">                            
+                        <p class="price-diff-percentage <?php if ($UBERR >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">                            
                             <?php
                                 echo($UBERR);
                             ?> %</p>
@@ -288,7 +288,7 @@
                             ?>
                             	&#36;
                         </p>
-                        <p class="price-diff-percentage diff-negative">                            
+                        <p class="price-diff-percentage <?php if ($INTCR >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">                            
                             <?php
                                 echo($INTCR);
                             ?> %</p>
@@ -304,7 +304,7 @@
                             ?>
                             	&#36;
                         </p>
-                        <p class="price-diff-percentage diff-positive">                            
+                        <p class="price-diff-percentage <?php if ($TSLAR >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">                            
                             <?php
                                 echo($TSLAR);
                             ?> %</p>
@@ -320,7 +320,7 @@
                             ?>
                             	&#36;
                         </p>
-                        <p class="price-diff-percentage diff-positive">                            
+                        <p class="price-diff-percentage <?php if ($BAMXF >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">                            
                             <?php
                                 echo($BAMXFR);
                             ?> %</p>
@@ -336,7 +336,7 @@
                             ?>
                             	&#36;
                         </p>
-                        <p class="price-diff-percentage diff-positive">                            
+                        <p class="price-diff-percentage <?php if ($MCDR >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">                            
                             <?php
                                 echo($MCDR);
                             ?> %</p>
@@ -352,7 +352,7 @@
                             ?>
                             	&#36;
                         </p>
-                        <p class="price-diff-percentage diff-negative">                            
+                        <p class="price-diff-percentage <?php if ($SSNLFR >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">                            
                             <?php
                                 echo($SSNLFR);
                             ?> %</p>
@@ -368,7 +368,7 @@
                             ?>
                             	&#36;
                         </p>
-                        <p class="price-diff-percentage diff-negative">
+                        <p class="price-diff-percentage <?php if ($XIACFR >= 0) { echo "diff-positive"; } else { echo "diff-negative"; }  ?>">
                             <?php
                                 echo($XIACFR);
                             ?>
@@ -395,11 +395,16 @@
                                                 echo ('<td class="vol-logo"><img class="vol-logo-img" src="' . $vs->imagePath . '" alt=""></td>');
                                                 echo ('<td class="vol-name">' . $vs->companyName . '</td>');
                                                 echo ('<td class="vol-price">' . $vs->value . '&#36' .'</td>');
-                                                echo ('<td class="vol-change-negative">' . $vs->rate .'%</td>');
+                                                
+                                                $volchange = "vol-change-positive";
+                                                if ($vs->rate < 0) {
+                                                    $volchange = "vol-change-negative";
+                                                }
+                                                echo ('<td class="' . $volchange . '">' . $vs->rate .'%</td>');
                                                 echo ('                                            
                                                     <td class="vol-buy"><button class="btn-block btn-success"
                                                         data-toggle="modal" data-target="#exampleModalCenter"
-                                                        onclick="setImageModal(' . $vs->imagePath . ',' . $vs->value . ')">KUPI</button>
+                                                        onclick="setImageModal("' . $vs->imagePath . '",' . $vs->value . ')">KUPI</button>
                                                     </td>');
                                                 echo ('<tr>');
                                             }
@@ -455,10 +460,14 @@
                             <div class="container-fluid" id="asistentWrapper">
                                 <div class="row" id="asistentHeader"> <h3>TRADE ASSISTANT</h3></div>
                                 <div class="row <?php echo (' '.$assistantClass);?>" id="asistent"> </div>
-                                 <?php if($showPromo) echo('
-                                            <div class="row" id="asistentPromo"> 
-                                                <a href="privileges"> <button class="btn-block btn-success">OSTVARI PRIVILEGIJE</button></a> 
-                                            </div>')
+                                 <?php 
+                                    if($showPromo) { echo('
+                                        <div class="row" id="asistentPromo"> 
+                                            <a href="privileges"> <button class="btn-block btn-success">OSTVARI PRIVILEGIJE</button></a> 
+                                        </div>');
+                                    } else {
+                                        
+                                    }
                                  ?>
                             </div>
                     </div>

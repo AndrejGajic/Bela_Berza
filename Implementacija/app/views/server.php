@@ -8,16 +8,25 @@
 </head>
 <body>
     
+    
+    <h1>Server is working...</h1>
+    <h2 id="cnt">0</h2>
     <script>  
+        
     
-    let timeUpdate = setInterval(timer, 6000);
-    
+    alert("start");
+    timer();
+    let timeUpdate = setInterval(timer, 120000); 
+    let callCnt = 0;
     function timer() {
-        window.location.href="<?= site_url("ServerController/updateStockPrices")?>"
+        window.open('<?= site_url("ServerController/tradingAssistant/")?>', '_blank');
+        var cnt = document.getElementById("cnt").textContent;
+        cnt = parseInt(cnt);
+        cnt += 1;
+        document.getElementById("cnt").innerHTML = cnt;
     }
     
     </script>
-    <h1>Server...</h1>
     
 </body>
 </html>

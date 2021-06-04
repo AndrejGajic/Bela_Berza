@@ -16,17 +16,25 @@ namespace App\Controllers;
 
 class ServerController extends BaseController {
     
+    static $apiKeys = array("4c9b48580dmsh1474e734b15ec04p1bf687jsn1b7cacdeea16", "596939d60emsh17dede5c0ed3951p18cf6djsn7674766f4fde", "25161a4a2fmsh56563b0f98b3758p197dd6jsn6b84d98ba669", "f1e65fcca9mshafcbddf30bc160fp1a7e14jsna37a277cf664", "11df2299eemshed10c079dedf5a7p1d29e6jsn059e2f0c2060");
+    static $volatileTreshold = 10;    
+    static $trendDeviationTreshold = 0.03;
+    
+    
     public function index() {
         return view('server.php');
     }
     
     public function getStockTimeData($stockName, $period, $outputSize) {
         
+        static $requestCnt = 0;
+        $apiKey = "x-rapidapi-key: " . self::$apiKeys[($requestCnt++) % count(self::$apiKeys)];
+        
         $curl = curl_init();
         
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-        
+
         curl_setopt_array($curl, [
                 CURLOPT_URL => ("https://twelve-data1.p.rapidapi.com/time_series?symbol=" . $stockName . "&interval=" . $period . "&outputsize=" . $outputSize . "&format=json"),
                 CURLOPT_RETURNTRANSFER => true,
@@ -38,7 +46,7 @@ class ServerController extends BaseController {
                 CURLOPT_CUSTOMREQUEST => "GET",
                 CURLOPT_HTTPHEADER => [
                         "x-rapidapi-host: twelve-data1.p.rapidapi.com",
-                        "x-rapidapi-key: 596939d60emsh17dede5c0ed3951p18cf6djsn7674766f4fde"
+                        $apiKey
                 ],
         ]);
         
@@ -49,14 +57,16 @@ class ServerController extends BaseController {
         curl_close($curl);
 
         if ($err) {
-                return $err;
-        } else {
-            
-                return $response;
+            return $err;
+        } else {       
+            return $response;
         }
     }
     
     public function getStockCurrentPrice($stockName) {
+        
+        static $requestCnt = 0;
+        $apiKey = "x-rapidapi-key: " . self::$apiKeys[($requestCnt++) % count(self::$apiKeys)];
         
         $curl = curl_init();
         
@@ -74,7 +84,7 @@ class ServerController extends BaseController {
                 CURLOPT_CUSTOMREQUEST => "GET",
                 CURLOPT_HTTPHEADER => [
                         "x-rapidapi-host: twelve-data1.p.rapidapi.com",
-                        "x-rapidapi-key: 4c9b48580dmsh1474e734b15ec04p1bf687jsn1b7cacdeea16"
+                        $apiKey
                 ],
         ]);
 
@@ -92,6 +102,9 @@ class ServerController extends BaseController {
 
     public function getStockInfo($stockName) {
         
+        static $requestCnt = 0;
+        $apiKey = "x-rapidapi-key: " . self::$apiKeys[($requestCnt++) % count(self::$apiKeys)];
+        
         $curl = curl_init();
 
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
@@ -108,7 +121,7 @@ class ServerController extends BaseController {
                 CURLOPT_CUSTOMREQUEST => "GET",
                 CURLOPT_HTTPHEADER => [
                         "x-rapidapi-host: twelve-data1.p.rapidapi.com",
-                        "x-rapidapi-key: 596939d60emsh17dede5c0ed3951p18cf6djsn7674766f4fde"
+                        $apiKey
                 ],
         ]);
 
@@ -126,24 +139,42 @@ class ServerController extends BaseController {
             
     public function getStockVolatility($stockName) {   
 
-        $response = $this->getStockTimeData($stockName, "1day", "50");        
+        $response = $this->getStockTimeData($stockName, "5min", "30");        
         $response = json_decode($response, true);
 
         $values = $response["values"];   
         
-        $maxChange = 0;
+        $maxPrice = -1;
+        $minPrice = -1;
+        $totalValue = 0;
         
-        for ($i = 1; $i < 30; $i++) {
-            $change = abs(floatval(floatval(($values[$i]["open"] - $values[$i - 1]["open"])) / floatval(($values[$i]["open"]  + $values[$i-1]["open"]))));
-            if ($change > $maxChange) {
-                $maxChange = $change;
+        for ($i = 0; $i < count($values); $i++) {
+            
+            $currPriceMin = floatval($values[$i]["low"]);
+            $currPriceMax = floatval($values[$i]["high"]);
+            $currPrice = floatval($values[$i]["open"]);
+            
+            $totalValue += $currPrice;
+            
+            if ($maxPrice == -1) {
+                $maxPrice = $currPriceMax;
+                $minPrice = $currPriceMin;
+            } else {
+                if ($currPriceMax > $maxPrice) {
+                    $maxPrice = $currPriceMax;
+                }
+                if ($currPriceMin < $minPrice) {
+                    $minPrice = $currPriceMin;
+                }
             }
         }
         
+        $maxChange = floatval((floatval($maxPrice - $minPrice)) / floatval($totalValue / count($values)));
+        
         $response = $this->getStockInfo($stockName);
         $response = json_decode($response, true);
-        $change_percent = floatval($response["percent_change"]);
-        
+        $change_percent = floatval($response["percent_change"]) * floatval(log10(count($values)) / log10(2));
+
         if (abs($change_percent) > $maxChange) {
             $maxChange = abs($change_percent);
         }
@@ -152,7 +183,8 @@ class ServerController extends BaseController {
     }
     
     
-    public function updateStockPrices() {
+    public function updateStockPrices(int $callCnt = 0) {
+        
         
         $stockModel = new \App\Models\StockModel();
         $stockNames = $stockModel->getAllStockNames();
@@ -163,21 +195,138 @@ class ServerController extends BaseController {
             $jsonObj = json_decode($response, true);
             $price = $jsonObj["price"];
             
+            if ($callCnt % 10 == 0) {
+                
+                $stockInfo = $this->getStockInfo($stockName->companyName);
+                $jsonObj2 = json_decode($stockInfo, true);
+                $rate = $jsonObj2["percent_change"];
+
+
+                $volatility = $this->getStockVolatility($stockName->companyName);
+                $isVolatile = false;
+                if ($volatility > self::$volatileTreshold) {
+                    $isVolatile = true;
+                }
             
-            $stockInfo = $this->getStockInfo($stockName->companyName);
-            $jsonObj2 = json_decode($stockInfo, true);
-            $rate = $jsonObj2["percent_change"];
-            
-            
-            $volatility = $this->getStockVolatility($stockName->companyName);
-            $isVolatile = false;
-            if ($volatility > 0.01) {
-                $isVolatile = true;
+                $stockModel->updateStock($stockName->companyName, $price, $rate, $isVolatile);
             }
+
             
-            $stockModel->updateStock($stockName->companyName, $price, $rate, $isVolatile);
+            $res = "updated " . $stockName->companyName;
+            
+            echo $res;
         }
         
-        return view('server.php');
+        echo "<script>window.close();</script>";
+    }
+    
+    public function tradingAssistant() {     
+        
+        $stockModel = new \App\Models\StockModel();
+        $stockNames = $stockModel->getAllStockNames();
+        
+        foreach ($stockNames as $stockName) {
+            
+            $result = $this->immediateStockAction($stockName->companyName);
+            
+            echo '<script language="javascript">';
+            echo 'alert("' . $result['action'] . " " . $result['strength'] . '")';
+            echo '</script>';
+        }
+        
+    }
+    
+    public function immediateStockAction($companyName) {
+        
+        $response = $this->getStockCurrentPrice($companyName);
+        $jsonObj = json_decode($response, true);
+        $currentValue = $jsonObj["price"];
+        
+        $yArr = array();
+        $xArr = array();
+        
+        $response = $this->getStockTimeData($companyName, "1min", "180");        
+        $response = json_decode($response, true);
+        $values = $response["values"];   
+        
+        // x-axis goes from 0 to 30 (time)
+        // y-axis represents stock value (price)
+        $i = 0;
+        for (; $i < count($values); $i++) {
+            array_push($xArr, intval($i));
+            array_push($yArr, intval($values[$i]["close"]));
+        }
+     
+        $linRegResult = $this->linearRegression($xArr, $yArr);
+        $slope = $linRegResult['slope'];
+        $intercept = $linRegResult['intercept'];
+        
+        // y = a * x + b
+        $nextPredictedValue = $slope * $i + $intercept;
+        
+
+        
+        // there must be a treshold (+= trendDeviationTreshold%) that should be ignored due to standard market noise (no action)
+        $diff = floatval(abs($currentValue - $nextPredictedValue));
+        $diffPercent = floatval($diff / $currentValue);
+        
+        
+        $tradeStrength = 0;
+        
+        //found online
+        if ($diffPercent > 0.1) {
+            $tradeStrength = 5;
+        } else if ($diffPercent > 0.06) {
+            $tradeStrength = 4;
+        } else if ($diffPercent > 0.04) {
+            $tradeStrength = 3;
+        } else if ($diffPercent > 0.025) {
+            $tradeStrength = 2; 
+        } else if ($diffPercent > 0.01) {
+            $tradeStrength = 1;
+        }
+        
+       
+        // if the current price is lower than next predicted, stock should be bought
+        // if the current price is higher than next predicted, stock should be sold
+        if ($currentValue < $nextPredictedValue) {
+            //return $currentValue . " BUY " . $nextPredictedValue;
+            return array("action"=>"BUY", "strength"=>$tradeStrength);
+        } else {
+            //return $currentValue . "SELL " . $nextPredictedValue;
+            return array("action"=>"SELL", "strength"=>$tradeStrength);
+        }
+    }
+    
+    function linearRegression($x, $y) {
+
+        // calculate number points
+        $n = count($x);
+
+        // ensure both arrays of points are the same size
+        if ($n != count($y)) {
+          trigger_error("linear_regression(): Number of elements in coordinate arrays do not match.", E_USER_ERROR);
+        }
+
+        // calculate sums
+        $x_sum = array_sum($x);
+        $y_sum = array_sum($y);
+
+        $xx_sum = 0;
+        $xy_sum = 0;
+
+        for($i = 0; $i < $n; $i++) {
+          $xy_sum+=($x[$i]*$y[$i]);
+          $xx_sum+=($x[$i]*$x[$i]);
+        }
+
+        // calculate slope
+        $m = (($n * $xy_sum) - ($x_sum * $y_sum)) / (($n * $xx_sum) - ($x_sum * $x_sum));
+
+        // calculate intercept
+        $b = ($y_sum - ($m * $x_sum)) / $n;
+        
+        // return result
+        return array("slope"=>$m, "intercept"=>$b);
     }
 }
