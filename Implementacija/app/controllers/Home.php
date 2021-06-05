@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\Models\PrivilegedUserModel;
 use App\Models\AdministratorModel;
+use App\Models\StockTransactionModel;
 use App\Models\UserModel;
 use App\Models\RegistrationModel;
 use App\Models\StockModel;
@@ -12,9 +13,10 @@ use App\Models\StockTransactionModel;
 /** 
  * Kosta Matijevic 0034/2018 
  * Luka Tomanović 0410/2018 ->buy stock
+
  * Uros Stankovic 0270/2018 -> displaying stock prices & api calls
 
-  */
+*/
 
 /**
  * Home – klasa za kontroler glavne stranice
@@ -36,19 +38,16 @@ class Home extends BaseController
     public function index($IdStock = 1)   
     {        
 	    //$this->session->destroy();
-	    //$this->session->set('userId',1);
-        //$this->session->set('username','petarpan');
-        //$this->session->set('img','https://pbs.twimg.com/profile_images/378800000072031509/d0790345cadb70017182dc27ca1b9ae1.png');
         //$this->session->destroy();
 
-        $adminId = $this->session->get('adminId');
+        $adminId = $this->session->get('IdAdministrator');
 
         //administrator je prijavljen
         if($adminId){
             return $this->showHomePage('admin');
         }
 
-        $userId = $this->session->get('userId');
+        $userId = $this->session->get('IdUser');
 
         //nijedan korisnik nije prijavljen
         if(!$userId){
@@ -81,23 +80,24 @@ class Home extends BaseController
          * username ce sluziti za ispis u navigaciji, a u slucaju guesta je null
          */
 
-        $username = $this->session->get('username');
-        $imgPath = $this->session->get('img');
+        $imgPath = $this->session->get('imagePath');
+        $name = $this->session->get('name');
+        $surname = $this->session->get('surname');
 
         if($userType=='standard'){
-            $data=array('showPromo'=>true,'menu'=>'standard','assistantClass'=>'locked-assistant','username'=>$username,'imgPath'=>$imgPath);
+            $data=array('showPromo'=>true,'menu'=>'standard','assistantClass'=>'locked-assistant','name'=>$name,'surname'=>$surname,'imgPath'=>$imgPath);
         }
 
         else if($userType=='privileged'){
-            $data=array('showPromo'=>false,'menu'=>'privileged','assistantClass'=>'unlocked-assistant','username'=>$username,'imgPath'=>$imgPath);
+            $data=array('showPromo'=>false,'menu'=>'privileged','assistantClass'=>'unlocked-assistant','name'=>$name,'surname'=>$surname,'imgPath'=>$imgPath);
         }
 
         else if($userType=='guest'){
-            $data=array('showPromo'=>true,'menu'=>'guest','assistantClass'=>'locked-assistant','username'=>$username,'imgPath'=>$imgPath);
+            $data=array('showPromo'=>true,'menu'=>'guest','assistantClass'=>'locked-assistant','name'=>$name,'surname'=>$surname,'imgPath'=>$imgPath);
         }
 
         else if($userType=='admin'){
-            $data=array('showPromo'=>false,'menu'=>'admin','assistantClass'=>'admin-assistant','username'=>$username,'imgPath'=>$imgPath);
+            $data=array('showPromo'=>false,'menu'=>'admin','assistantClass'=>'admin-assistant','name'=>$name,'surname'=>$surname,'imgPath'=>$imgPath);
         }
         
         
@@ -165,12 +165,13 @@ class Home extends BaseController
         $stockModel=new StockModel();
         $stock=$stockModel->getStockByCompanyName($user_data['stockName']);
         
+
         if($stock==null){
             $db->transRollback();
             $this->session->setFlashdata('buyingStockError', 'Željena akcija trenutno nije u ponudi! Molimo Vas da ne pokušavate nasilnu kupovinu kroz promenu HTML koda jer takva radnja može biti sankcionicana!');
             return redirect()->to(site_url("Home"));
         }
-        
+
         if(intval($stock->availableQty)< $user_data['quantity']){
             $db->transRollback();
             $this->session->setFlashdata('buyingStockError', 'Nažalost, nije moguće kupiti zahtevani broj akcija. Proverite njihovu trenutnu dostupnost i pokušajte ponovo.');
@@ -179,6 +180,7 @@ class Home extends BaseController
         
         $stockPrice= floatval($stock->value)*$user_data['quantity'];
         
+
         if(floatval($user->balance)<$stockPrice){
             $db->transRollback();
             $this->session->setFlashdata('buyingStockError', 'Nemate dovoljno sredstava na računu!');
@@ -193,6 +195,7 @@ class Home extends BaseController
             $userOwnsStockModel->insert(['IdUser'=>$user->IdUser,
                                          'IdStock'=>$stock->IdStock,
                                          'quantity'=>$user_data['quantity']]);
+
         }else{
             $newQuantity=intval($userOwnsStock->quantity)+$user_data['quantity'];
             $userOwnsStockModel->updateQuantity($user->IdUser, $stock->IdStock, $newQuantity);
@@ -205,7 +208,6 @@ class Home extends BaseController
         $stockModel->update($stock->IdStock,['availableQty'=>$stock->availableQty-$user_data['quantity']]);
         
         
-        
         //insert stock transaction data
         $stockTransactionModel=new StockTransactionModel();
         $stockTransactionModel->insert([
@@ -216,7 +218,7 @@ class Home extends BaseController
             'type'=>0,
             'timestamp'=>date("Y-m-d H:i:s")
         ]);
-        
+
         if ($db->transStatus() === FALSE) {
             $db->transRollback();
             $this->session->setFlashdata('buyingStockError', 'Kupovina akcija nije uspela, molimo Vas pokušajte ponovo!');
@@ -224,8 +226,7 @@ class Home extends BaseController
         } else {
             $db->transCommit();
         }
-        
-        
+
         $this->session->setFlashdata('buyingStockSuccess', 'Kupovina je uspešno okončana, akcije su dodate u kolekciju i sredstva na vašem računu su ažurirana!');
         return redirect()->to(site_url("Home"));
     }
@@ -235,4 +236,5 @@ class Home extends BaseController
     public function setChartTarget($IdStock) {
         return redirect()->to(site_url("Home/index/$IdStock"));
     }
+
 }

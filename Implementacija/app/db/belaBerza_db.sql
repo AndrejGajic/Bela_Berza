@@ -68,6 +68,7 @@ CREATE TABLE Registration
 	password             VARCHAR(30) NOT NULL,
 	username             VARCHAR(30) NOT NULL,
 	ipAddress            VARCHAR(15) NULL,
+	date 				 DATE NULL,
 	status               boolean NULL,
 	IdAdministrator      INTEGER NULL,
 	CONSTRAINT XPKRegistration PRIMARY KEY (IdRegistration),

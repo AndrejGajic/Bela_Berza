@@ -30,7 +30,7 @@ class PrivilegesController extends BaseController
     {
         //$this->removeExpiredPrivileges();
 
-        $userId = $this->session->get('userId');
+        $userId = $this->session->get('IdUser');
 
         //nijedan korisnik nije prijavljen
         if(!$userId){
@@ -106,9 +106,12 @@ class PrivilegesController extends BaseController
         }
 
         $username = $this->session->get('username');
-        $imgPath = $this->session->get('img');
+        $imgPath = $this->session->get('imagePath');
+        $name = $this->session->get('name');
+        $surname = $this->session->get('surname');
+
         $data = array('class'=>$class,'msg'=>$msg,'showBtn'=>$showBtn,
-            'modal'=>$modal, 'menu'=>$menu, 'username'=>$username,'imgPath'=>$imgPath);
+            'modal'=>$modal, 'menu'=>$menu, 'username'=>$username,'imgPath'=>$imgPath,'name'=>$name,'surname'=>$surname);
         return view('privileges.php',$data);
     }
 
@@ -118,7 +121,7 @@ class PrivilegesController extends BaseController
      */
     public function checkMoney()
     {
-        $balance = (new UserModel())->find($this->session->get('userId'))->balance;
+        $balance = (new UserModel())->find($this->session->get('IdUser'))->balance;
         if($balance<self::PRIVILEGES_PRICE){
             return false;
         }
@@ -132,7 +135,7 @@ class PrivilegesController extends BaseController
      */
     public function grantPrivileges()
     {
-        $userId = $this->session->get('userId');
+        $userId = $this->session->get('IdUser');
         $privModel = new PrivilegedUserModel();
 
         //racuna datum pocetka i kraja privilegije

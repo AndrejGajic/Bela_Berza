@@ -103,7 +103,6 @@ function setImageModal(filename,stockPrice) {
 }
 
 
-
 function setSellModal(filename,stockPrice,max) {
     $('#modalStockImage').attr('src', '../assets/images/'+filename);
     $('#quantityInputTextField').attr('max', max);

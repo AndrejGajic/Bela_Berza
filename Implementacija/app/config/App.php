@@ -27,6 +27,7 @@ class App extends BaseConfig
     
         public $baseURL = 'http://localhost/Bela_Berza/Implementacija/public/';
 
+
 	/**
 	 * --------------------------------------------------------------------------
 	 * Index File

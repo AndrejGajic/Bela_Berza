@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 
+
+use App\Models\PrivilegedUserModel;
+use App\Models\StockTransactionModel;
 use App\Models\UserModel;
 use App\Models\BankAccountModel;
 use App\Models\CreditCardModel;
@@ -10,7 +13,7 @@ use App\Models\TransactionModel;
 /** 
  * Luka Tomanović 0410/2018 ->index,payment,withdraw,createTransaction
  * Andrej Gajic 0303/2018 -> index, getTransactions, filter, getUserActions, filterActions
-  */
+*/
 
 
 /**
@@ -21,16 +24,14 @@ use App\Models\TransactionModel;
 
 class WalletController extends BaseController
 {
-    
+
     
     private $transactionType = 0; // koristi se za ispis uplata i isplata (ako je 0 ispisuju se i uplate i isplate; ako je 1 samo uplate; ako je 2 samo isplate
     private $actionType = 0; // koristi se za ispis kupljenih i prodatih akcija (ako je 0 sve se ispisuje, ako je 1 ispisuju se kupljene akcije, ako je 2 ispisuju se prodate akcije
     
     /**
-        * index funkcija koja se koristi pri prikazu stranice moj novčanik
+    * index funkcija koja se koristi pri prikazu stranice moj novčanik
     */
-    
-    
     public function index()
     {
         if($this->session->get("transactionType")) {
@@ -45,16 +46,38 @@ class WalletController extends BaseController
         else {
             $this->actionType = 0;
         }
+
+        $userId = $this->session->get('IdUser');
+        if(!$userId){
+            return redirect()->to('/login');
+        }
+        if($this->session->get('IdAdministrator')){
+            return redirect()->to('/home');
+        }
+        $privUserId = (new PrivilegedUserModel())->find($userId);
+
+        //prijavljen je privilegovani korisnik
+        if($privUserId){
+            $menu='privileged';
+        }
+        else{
+            $menu='standard';
+        }
+        $img = $this->session->get('imagePath');
+        $name = $this->session->get('name');
+        $surname = $this->session->get('surname');
         $username= $this->session->get('username');
         $userModel=new UserModel();
-        $userBalance=$userModel->getUserBalance($username);
         $transactions=$this->getTransactions();
         $actions = $this->getUserActions();
-        return view('wallet.php',['userBalance'=>$userBalance, 'transactions'=>$transactions, 'actions'=>$actions]);
+
+        $userBalance=$userModel->getUserBalance($username);
+        return view('wallet.php',['userBalance'=>$userBalance,'menu'=>$menu,'imgPath'=>$img,'name'=>$name,'surname'=>$surname,
+            'transactions'=>$transactions, 'actions'=>$actions]);
     }
     
-     /**
-        * payment funkcija koja se koristi pri uplati novca na račun korisnika veb aplikacije
+    /**
+    * payment funkcija koja se koristi pri uplati novca na račun korisnika veb aplikacije
     */
     public function payment(){
         if(!$this->validate([
@@ -119,6 +142,7 @@ class WalletController extends BaseController
         
         $bankAccount=$bankAccountModel->find($creditCard->BankAccountNumber);
         $userModel=new UserModel();
+
         $user=$userModel->getUserByUserName($this->session->get('username'));
         
         $this->createTransaction($user, $bankAccount, $user_data['paymentAmount'], 0, $bankAccountModel, $userModel);
@@ -220,30 +244,27 @@ class WalletController extends BaseController
             'type'=>$type
         ]);
     }
-    
+
     /**
      * Funckija za prikaz uplata na racun i isplata sa racuna korisnika
-     * 
-     
      */
     private function getTransactions() {
         $transactionModel = new TransactionModel();
         if($this->transactionType == 0) {
-            $transactions = $transactionModel->getTransactionsByUserId($this->session->get("userId"));
+            $transactions = $transactionModel->getTransactionsByUserId($this->session->get("IdUser"));
         }
         else if($this->transactionType == 1) {
-            $transactions = $transactionModel->getTransactionsByUserIdAndType($this->session->get("userId"), 0);
+            $transactions = $transactionModel->getTransactionsByUserIdAndType($this->session->get("IdUser"), 0);
         }
         else {
-            $transactions = $transactionModel->getTransactionsByUserIdAndType($this->session->get("userId"), 1);
+            $transactions = $transactionModel->getTransactionsByUserIdAndType($this->session->get("IdUser"), 1);
         }
         return $transactions;
     }
-    
+
     /**
      * Funkcija za filtriranje prikaza uplata i isplata korisnika
      */
-    
     public function filter() {
         if($this->request->getMethod() == "get") {
             return redirect()->to(site_url("WalletController"));
@@ -255,28 +276,37 @@ class WalletController extends BaseController
         $this->session->set("transactionType", $this->transactionType);
         return redirect()->to(site_url("WalletController"));
     }
-    
+
+
     /**
      * Funckija za dohvatanje svih akcija koje je korisnik kupio, odnosno prodao na svom nalogu
      */
-    
     private function getUserActions() {
-        
-        return null;
+        $stockTransactionModel = new StockTransactionModel();
+        if($this->actionType == 0) {
+            $actions = $stockTransactionModel->getTransactionsByUserId($this->session->get("IdUser"));
+        }
+        else if($this->actionType == 1) {
+            $actions = $stockTransactionModel->getTransactionsByUserIdAndType($this->session->get("IdUser"), 0);
+        }
+        else {
+            $actions = $stockTransactionModel->getTransactionsByUserIdAndType($this->session->get("IdUser"), 1);
+        }
+        return $actions;
     }
+
     /**
      * Funkcija za filtriranje prikaza kupljenih, odnosno prodatih akcija korisnika
      */
     public function filterActions() {
-       if($this->request->getMethod() == "get") {
-           return redirect()->to(site_url("WalletController"));
-       }
-       $selectedType = $this->request->getVar("tipAkcije");
-       if($selectedType == "sve") $this->actionType = 0;
-       else if($selectedType = "kupovine") $this->actionType = 1;
-       else $this->actionType = 2;
-       $this->session->set("actionType", $this->actionType);
-       return redirect()->to(site_url("WalletController"));
+        if($this->request->getMethod() == "get") {
+            return redirect()->to(site_url("WalletController"));
+        }
+        $selectedType = $this->request->getVar("tipAkcije");
+        if($selectedType == "sve") $this->actionType = 0;
+        else if($selectedType == "kupovine") $this->actionType = 1;
+        else $this->actionType = 2;
+        $this->session->set("actionType", $this->actionType);
+        return redirect()->to(site_url("WalletController"));
     }
-    
 }

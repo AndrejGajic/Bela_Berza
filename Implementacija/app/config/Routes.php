@@ -41,6 +41,7 @@ $loginIndex = 'LoginController';
 $profileIndex = 'ProfileController';
 $walletIndex = 'WalletController';
 $regconfirmationIndex ='RegConfirmationController';
+$stockTransactionHistoryIndex = 'StockTransactionHistoryController';
 $homeIndex = 'Home';
 
 
@@ -51,6 +52,7 @@ $routes->get('wallet', $walletIndex);
 $routes->get('login', $loginIndex);
 $routes->get('profile', $profileIndex);
 $routes->get('regconfirmation', $regconfirmationIndex);
+$routes->get('stocktransactions', $stockTransactionHistoryIndex);
 
 
 /*

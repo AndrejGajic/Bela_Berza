@@ -39,18 +39,15 @@
                     <div id="user-data-info">
                         <h3><?php
                             if($menu=='guest')echo('Gost');
-                            else echo($username);
+                            else echo($name.' '.$surname);
                             ?></h3>
                         <p><?php
                             if($menu=='standard') echo('Standard user');
                             else if($menu=='privileged') echo('Privileged user');
-                            else if($menu=='guest') echo('Guest');
-                            else if($menu=='admin') echo('Administrator');
                             ?></p>
                     </div>
-                    <strong>PP</strong>
+                    <strong><?php echo(substr($name,0,1).substr($surname,0,1))?></strong>
                 </div>
-
                 <ul class="list-unstyled components">
                     <li>
                         <a href="home" class="menu-item">
@@ -162,7 +159,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Odustani</button>
-                    <?php $url = base_url().'privilegescontroller/index'; log_message('error',$url);?>
                     <button type="button" class="btn btn-outline-success"
                             onclick="window.location='<?php echo site_url("privilegescontroller/grantPrivileges");?>'">Potvrdi</button>
                 </div>

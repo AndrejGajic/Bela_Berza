@@ -39,7 +39,7 @@
                     <div id="user-data-info">
                         <h3><?php
                             if($menu=='guest')echo('Gost');
-                            else echo($username);
+                            else echo($name.' '.$surname);
                             ?></h3>
                         <p><?php
                             if($menu=='standard') echo('Standard user');
@@ -48,7 +48,7 @@
                             else if($menu=='admin') echo('Administrator');
                             ?></p>
                     </div>
-                    <strong>PP</strong>
+                    <strong><?php echo(substr($name,0,1).substr($surname,0,1))?></strong>
                 </div>
 
                 <ul class="list-unstyled components">
@@ -111,6 +111,13 @@
                         <a href="regconfirmation" class="menu-item">
                             <i class="fas fa-address-book"></i>
                             <span>Pregled registracija</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="stocktransactions" class="menu-item">
+                           <i class="fas fa-dollar-sign"></i>
+                            <span>&nbsp;Pregled transakcija</span>
                         </a>
 
                     </li>
