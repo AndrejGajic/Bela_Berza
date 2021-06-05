@@ -1,5 +1,6 @@
 <!-- Luka Tomanovic 0410/2018
-     Kosta Matijevic 0034/2018-->
+     Kosta Matijevic 0034/2018
+     Andrej Gajic 0303/2018    -->
 
 <!DOCTYPE html>
 <html>
@@ -121,14 +122,56 @@
                 </div>
 
                 <hr>
-
+                <?php
+                    $session = session(); 
+                    if($session->getFlashdata("emailChangeRefused")!=null) { 
+                        echo '<div class="row">';
+                        echo    '<div class="col-12" id="emailChangeRefused">';
+                        echo        '<div class="alert alert-danger alert-dismissible">';
+                        echo            '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+                        echo            $session->getFlashdata("emailChangeRefused");
+                        echo        '</div>';
+                        echo    '</div>';
+                        echo '</div>';
+                    }
+                    else if($session->getFlashdata("emailChangeAccepted")!=null) { 
+                        echo '<div class="row">';
+                        echo    '<div class="col-12" id="emailChangeAccepted">';
+                        echo        '<div class="alert alert-success alert-dismissible">';
+                        echo            '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+                        echo            $session->getFlashdata("emailChangeAccepted");
+                        echo        '</div>';
+                        echo    '</div>';
+                        echo '</div>';
+                    }
+                    else if($session->getFlashdata("passwordChangeRefused")!=null) { 
+                        echo '<div class="row">';
+                        echo    '<div class="col-12" id="passwordChangeRefused">';
+                        echo        '<div class="alert alert-danger alert-dismissible">';
+                        echo            '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+                        echo            $session->getFlashdata("passwordChangeRefused");
+                        echo        '</div>';
+                        echo    '</div>';
+                        echo '</div>';
+                    }
+                    else if($session->getFlashdata("passwordChangeAccepted")!=null) {
+                        echo '<div class="row">';
+                        echo    '<div class="col-12" id="passwordChangeAccepted">';
+                        echo        '<div class="alert alert-success alert-dismissible">';
+                        echo            '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+                        echo            $session->getFlashdata("passwordChangeAccepted");
+                        echo        '</div>';
+                        echo    '</div>';
+                        echo '</div>';
+                    }
+                ?>
 
                 <div class="container-fluid" id="profContainer">
                     <h4>Email</h4>
                     <hr>
                     <div class="row" id="profName">
                         <div class="col-8">
-                            <h1>petarpan@risingedge.rs</h1>
+                            <h1><?php echo $session->get("email") ?></h1>
                         </div>
                         <div class="col-1"><i data-toggle="modal" data-target="#emailModal"
                                 class="fas fa-edit edit-icon"></i></div>
@@ -171,15 +214,17 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body container" style="display: flex; flex-direction: column;">
-                    <input style="margin-top:10px;" type="password" placeholder="Trenutna lozinka">
-                    <input style="margin-top:10px;" type="password" placeholder="Nova lozinka">
-                    <input style="margin-top:10px;" type="password" placeholder="Potvrdi novu lozinku">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Odustani</button>
-                    <button type="button" class="btn btn-outline-success">Potvrdi</button>
-                </div>
+                <form action="ProfileController/changePassword" name="changePassword" method="post">
+                    <div class="modal-body container" style="display: flex; flex-direction: column;">
+                        <input style="margin-top:10px;" type="password" placeholder="Trenutna lozinka" name="oldPassword">
+                        <input style="margin-top:10px;" type="password" placeholder="Nova lozinka" name="newPassword">
+                        <input style="margin-top:10px;" type="password" placeholder="Potvrdi novu lozinku" name="newPasswordConfirmation">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Odustani</button>
+                        <button type="submit" class="btn btn-outline-success form-control">Potvrdi</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -194,14 +239,16 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body container" style="display: flex; flex-direction: column;">
-                    <input style="margin-top:10px;" type="email" placeholder="Nova email adresa">
-                    <input style="margin-top:10px;" type="password" placeholder="Potvrdi lozinku">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Odustani</button>
-                    <button type="button" class="btn btn-outline-success">Potvrdi</button>
-                </div>
+                <form action="ProfileController/changeEmail" name="changeEmail" method="post">
+                    <div class="modal-body container" style="display: flex; flex-direction: column;">
+                        <input style="margin-top:10px;" type="email" placeholder="Nova email adresa" name="newEmail">
+                        <input style="margin-top:10px;" type="password" placeholder="Potvrdi lozinku" name="passwordConfirmation">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Odustani</button>
+                        <button type="submit" class="btn btn-outline-success">Potvrdi</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -216,13 +263,15 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body container" style="display: flex; flex-direction: row;">
-                    <input type="file">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Odustani</button>
-                    <button type="button" class="btn btn-outline-success">Potvrdi</button>
-                </div>
+                    <form action="ProfileController/changeImage" name="changeImage" method="post">
+                    <div class="modal-body container" style="display: flex; flex-direction: row;">
+                        <input type="file" name="newImage" enctype="multipart/form-data>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Odustani</button>
+                        <button type="submit" class="btn btn-outline-success">Potvrdi</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

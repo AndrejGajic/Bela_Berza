@@ -9,7 +9,6 @@ use App\Models\UserModel;
 use App\Models\BankAccountModel;
 use App\Models\CreditCardModel;
 use App\Models\TransactionModel;
-use App\Models\StockTransactionModel;
 
 /** 
  * Luka Tomanović 0410/2018 ->index,payment,withdraw,createTransaction

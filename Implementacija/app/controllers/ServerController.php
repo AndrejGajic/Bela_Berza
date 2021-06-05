@@ -28,7 +28,9 @@ class ServerController extends BaseController {
     
     public function getStockTimeData($stockName, $period, $outputSize) {
         
-        $apiKey = "x-rapidapi-key: " . self::$apiKeys[(self::$keyCnt++) % count(self::$apiKeys)];
+        //$apiKey = "x-rapidapi-key: " . self::$apiKeys[(self::$keyCnt++) % count(self::$apiKeys)];
+        $index = rand(0, count(self::$apiKeys) - 1);
+        $apiKey = "x-rapidapi-key: ".self::$apiKeys[$index];
         
         $curl = curl_init();
         
@@ -65,8 +67,9 @@ class ServerController extends BaseController {
     
     public function getStockCurrentPrice($stockName) {
         
-        $apiKey = "x-rapidapi-key: " . self::$apiKeys[(self::$keyCnt++) % count(self::$apiKeys)];
-        
+        //$apiKey = "x-rapidapi-key: " . self::$apiKeys[(self::$keyCnt++) % count(self::$apiKeys)];
+        $index = rand(0, count(self::$apiKeys) - 1);
+        $apiKey = "x-rapidapi-key: ".self::$apiKeys[$index];
         $curl = curl_init();
         
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
@@ -102,8 +105,9 @@ class ServerController extends BaseController {
     public function getStockInfo($stockName) {
         
         static $requestCnt = 0;
-        $apiKey = "x-rapidapi-key: " . self::$apiKeys[(self::$keyCnt++) % count(self::$apiKeys)];
-        
+        //$apiKey = "x-rapidapi-key: " . self::$apiKeys[(self::$keyCnt++) % count(self::$apiKeys)];
+        $index = rand(0, count(self::$apiKeys) - 1);
+        $apiKey = "x-rapidapi-key: ".self::$apiKeys[$index];
         $curl = curl_init();
 
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
