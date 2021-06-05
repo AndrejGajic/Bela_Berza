@@ -230,13 +230,13 @@ class WalletController extends BaseController
     private function getTransactions() {
         $transactionModel = new TransactionModel();
         if($this->transactionType == 0) {
-            $transactions = $transactionModel->getTransactionsByUserId($this->session->get("userId"));
+            $transactions = $transactionModel->getTransactionsByUserId($this->session->get("IdUser"));
         }
         else if($this->transactionType == 1) {
-            $transactions = $transactionModel->getTransactionsByUserIdAndType($this->session->get("userId"), 0);
+            $transactions = $transactionModel->getTransactionsByUserIdAndType($this->session->get("IdUser"), 0);
         }
         else {
-            $transactions = $transactionModel->getTransactionsByUserIdAndType($this->session->get("userId"), 1);
+            $transactions = $transactionModel->getTransactionsByUserIdAndType($this->session->get("IdUser"), 1);
         }
         return $transactions;
     }
@@ -264,13 +264,13 @@ class WalletController extends BaseController
     private function getUserActions() {
         $stockTransactionModel = new StockTransactionModel();
         if($this->actionType == 0) {
-            $actions = $stockTransactionModel->getTransactionsByUserId($this->session->get("userId"));
+            $actions = $stockTransactionModel->getTransactionsByUserId($this->session->get("IdUser"));
         }
         else if($this->actionType == 1) {
-            $actions = $stockTransactionModel->getTransactionsByUserIdAndType($this->session->get("userId"), 0);
+            $actions = $stockTransactionModel->getTransactionsByUserIdAndType($this->session->get("IdUser"), 0);
         }
         else {
-            $actions = $stockTransactionModel->getTransactionsByUserIdAndType($this->session->get("userId"), 1);
+            $actions = $stockTransactionModel->getTransactionsByUserIdAndType($this->session->get("IdUser"), 1);
         }
         return $actions;
     }

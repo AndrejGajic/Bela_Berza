@@ -30,7 +30,7 @@ class LoginController extends BaseController
      */
     public function login() {
         helper(["form"]);
-        $this->session->remove("adminId");
+        $this->session->remove("IdAdministrator");
         if($this->request->getMethod() == "get") {
             return redirect()->to(site_url("LoginController"));
         }
@@ -63,7 +63,7 @@ class LoginController extends BaseController
                 
                 if($user->imagePath==null)$user->imagePath='../assets/images/user.png';
                 $this->session->set("username", $user->username);
-                $this->session->set("userId", $user->IdUser);
+                $this->session->set("IdUser", $user->IdUser);
                 $this->session->set("name", $user->name);
                 $this->session->set("surname", $user->surname);
                 $this->session->set("email", $user->email);
@@ -75,7 +75,7 @@ class LoginController extends BaseController
                     $this->session->setFlashData("loginError", "Pogresna lozinka!");
                     return redirect()->to(site_url("LoginController"));
                 }
-                $this->session->set("adminId", $user->IdAdministrator);
+                $this->session->set("IdAdministrator", $user->IdAdministrator);
                 $this->session->set("username", $user->username);
                 
             }
@@ -98,7 +98,7 @@ class LoginController extends BaseController
                 if($user->imagePath==null)$user->imagePath='../assets/images/user.png';
                 
                 $this->session->set("username", $user->username);
-                $this->session->set("userId", $user->IdUser);
+                $this->session->set("IdUser", $user->IdUser);
                 $this->session->set("name", $user->name);
                 $this->session->set("surname", $user->surname);
                 $this->session->set("email", $user->email);
@@ -110,7 +110,7 @@ class LoginController extends BaseController
                     $this->session->setFlashData("loginError", "Pogresna lozinka!");
                     return redirect()->to(site_url("LoginController"));
                 }
-                $this->session->set("adminId", $user->IdAdministrator);
+                $this->session->set("IdAdministrator", $user->IdAdministrator);
                 $this->session->set("username", $user->username);
             }
         }
@@ -156,13 +156,15 @@ class LoginController extends BaseController
             $this->session->setFlashData("registrationError", "Vec ste registrovani sa korisnickim imenom $username");
             return redirect()->to(site_url("LoginController"));
         }
-        
+        $startDate = date('Y-m-d');
         $data = [
             "name" => $this->request->getVar("nameReg"),
             "surname" => $this->request->getVar("surnameReg"),
             "email" => $this->request->getVar("emailReg"),
             "password" => $this->request->getVar("passwordReg"),
-            "username" => $this->request->getVar("usernameReg")
+            "username" => $this->request->getVar("usernameReg"),
+            "date" => $startDate,
+            "status" => 0
         ];
         
         $registrationModel = new RegistrationModel();
