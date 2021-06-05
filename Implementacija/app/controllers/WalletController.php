@@ -9,6 +9,7 @@ use App\Models\UserModel;
 use App\Models\BankAccountModel;
 use App\Models\CreditCardModel;
 use App\Models\TransactionModel;
+use App\Models\StockTransactionModel;
 
 /** 
  * Luka Tomanović 0410/2018 ->index,payment,withdraw,createTransaction
@@ -299,6 +300,7 @@ class WalletController extends BaseController
      * Funkcija za filtriranje prikaza kupljenih, odnosno prodatih akcija korisnika
      */
     public function filterActions() {
+        
         if($this->request->getMethod() == "get") {
             return redirect()->to(site_url("WalletController"));
         }
@@ -308,5 +310,6 @@ class WalletController extends BaseController
         else $this->actionType = 2;
         $this->session->set("actionType", $this->actionType);
         return redirect()->to(site_url("WalletController"));
+
     }
 }

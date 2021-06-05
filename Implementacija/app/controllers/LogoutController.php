@@ -24,7 +24,15 @@ class LogoutController extends BaseController {
      * 
      */
     public function logout() {
-        $this->session->destroy();
+        $this->session->destroy(); // iz nekog razloga ne brise nista ova metoda
+       /* $this->session->remove("IdAdministrator");
+        $this->session->remove("IdUser");
+        $this->session->remove("email");
+        $this->session->remove("username");
+        $this->session->remove("name");
+        $this->session->remove("surname");
+        $this->session->remove("img"); */
+        
         return redirect()->to(site_url("LoginController"));
     }
     
