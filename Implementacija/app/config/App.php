@@ -23,9 +23,9 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	//public $baseURL = 'http://localhost/bela_berza/public/';
+	public $baseURL = 'http://localhost/bela_berza_merged/public/';
     
-        public $baseURL = 'http://localhost/Bela_Berza/Implementacija/public/';
+        //public $baseURL = 'http://localhost/Bela_Berza/Implementacija/public/';
 
 
 	/**

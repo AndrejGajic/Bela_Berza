@@ -62,7 +62,7 @@ class LoginController extends BaseController
                 
                 if($user->imagePath==null)$user->imagePath='../assets/images/user.png';
                 $this->session->set("username", $user->username);
-                $this->session->set("userId", $user->IdUser);
+                $this->session->set("IdUser", $user->IdUser);
                 $this->session->set("name", $user->name);
                 $this->session->set("surname", $user->surname);
                 $this->session->set("email", $user->email);
@@ -74,7 +74,7 @@ class LoginController extends BaseController
                     $this->session->setFlashData("loginError", "Pogresna lozinka!");
                     return redirect()->to(site_url("LoginController"));
                 }
-                $this->session->set("adminId", $user->IdAdministrator);
+                $this->session->set("IdAdministrator", $user->IdAdministrator);
                 $this->session->set("username", $user->username);
                 
             }

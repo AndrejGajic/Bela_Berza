@@ -8,7 +8,6 @@ use App\Models\UserModel;
 use App\Models\RegistrationModel;
 use App\Models\StockModel;
 use App\Models\UserOwnsStockModel;
-use App\Models\StockTransactionModel;
 
 /** 
  * Kosta Matijevic 0034/2018 
@@ -39,6 +38,7 @@ class Home extends BaseController
     {        
 	    //$this->session->destroy();
         //$this->session->destroy();
+        //$this->session->set('IdAdministrator',1);
 
         $adminId = $this->session->get('IdAdministrator');
 

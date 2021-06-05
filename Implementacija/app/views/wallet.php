@@ -4,8 +4,7 @@
 
 <!DOCTYPE html>
 <html>
-
-<?php 
+<?php
 use App\Models\TransactionModel;
 ?>
 <head>
@@ -123,6 +122,7 @@ use App\Models\TransactionModel;
 
             <hr>
 
+
             <div class="container" id="walletContainer">
                 <div class="row">
                     <div class="col-12">
@@ -216,33 +216,6 @@ use App\Models\TransactionModel;
                 </div>
                 <form action="WalletController/filter" name="filter" method="post">
                     <div class="row">
-
-                        <div class="col-12">
-                            <h1>STANJE:&nbsp; <?php echo "$userBalance"; ?> &euro;</h1>
-                        </div>
-                    </div>
-                    <?php
-                        $session = session(); 
-                        if($session->getFlashdata('transactionError')!=null){ 
-                            echo '<div class="row">';
-                            echo    '<div class="col-12" id="transactionError">';
-                            echo        '<div class="alert alert-danger alert-dismissible">';
-                            echo            '<button type="button" class="close" data-dismiss="alert">&times;</button>';
-                            echo            '<strong>Neuspešna transakcija!</strong>&nbsp'.$session->getFlashdata('transactionError');
-                            echo        '</div>';
-                            echo    '</div>';
-                            echo '</div>';
-                        }else if($session->getFlashdata('transactionSuccess')!=null){
-                            echo '<div class="row">';
-                            echo    '<div class="col-12" id="transactionSuccess">';
-                            echo        '<div class="alert alert-success alert-dismissible">';
-                            echo            '<button type="button" class="close" data-dismiss="alert">&times;</button>';
-                            echo            '<strong>'.$session->getFlashdata('transactionSuccess').'</strong>&nbsp';
-                            echo        '</div>';
-                            echo    '</div>';
-                            echo '</div>';
-                        }
-                    ?>
                         <div class="col-6 text-center">
                             <label for="tip"> Izaberite tip transakcije: &nbsp;&nbsp;</label>
                             <select name="tip">
@@ -256,143 +229,72 @@ use App\Models\TransactionModel;
                         </div>
                     </div>
                 </form>
-
-                    <div class="row" id="walletTableName">
-                        <h2>PREGLED ISTORIJE UPLATA I ISPLATA</h2>
-                    </div>
-                    <div class="row" id="walletTable">
-                        <table class="table">
-                            <?php if($transactions != null) {?>
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Tip transakcije</th>
-                                    <th scope="col">Datum i vreme</th>
-                                    <th scope="col">Iznos</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $cnt = 1;
-                                foreach($transactions as $transaction) {
-                                    echo '<tr>';
-                                    echo '<th scope="row">'.$cnt.'</th>';
-                                    $cnt++;
-                                    if($transaction->type == 0) {
-                                        echo '<td class="wallet-in">Uplata</td>';
-                                    }
-                                    else {
-                                        echo '<td class="wallet-out">Isplata</td>';
-                                    }
-                                    echo '<td>'.$transaction->timestamp.'</td>';
-                                    if($transaction->type == 0) {
-                                        echo '<td class="wallet-in">+'.$transaction->amount.'&euro;</td>';
-                                    }
-                                    else {
-                                        echo '<td class="wallet-out">-'.$transaction->amount.'&euro;</td>';
-                                    }
-                                    echo '</tr>';
-                                }
-                                ?>
-                            <?php }
-                            else {
-                                $transactionType = $session->get("transactionType");
-                                if($transactionType == null || $transactionType == 0) {
-                                    echo "Nemate ni uplate ni isplate na vasem nalogu!";
-                                }
-                                else if($transactionType == 1) {
-                                    echo "Nema uplata na vas nalog!";
-                                }
-                                else {
-                                    echo "Nema isplata sa vaseg naloga!";
-                                }
-                            } ?>
-                            </tbody>
-                        </table>
-                    </div>
-                    <form action="WalletController/filter" name="filter" method="post">
-                        <div class="row">
-                            <div class="col-6 text-center">
-                                <label for="tip"> Izaberite tip transakcije: &nbsp;&nbsp;</label>
-                                <select name="tip">
-                                    <option value="sve">Sve</option>
-                                    <option value="uplate">Uplate</option>
-                                    <option value="isplate">Isplate</option>
-                                </select>
-                            </div>
-                            <div class="col-6 text-left">
-                                <button class="btn btn-outline-primary form-control" type="submit">Filtriraj</button>
-                            </div>
-                        </div>
-                    </form>
-                    <!-- PREGLED KUPLJENIH I PRODATIH AKCIJA ULOGOVANOG KORISNIKA -->
-                     <div class="row" id="walletTableName">
-                        <h2>PREGLED TRANSAKCIJA (kupljenih i prodatih akcija)</h2>
-                    </div>
-                    <div class="row" id="walletTable">
-                        <table class="table">
-                            <?php if($actions != null) {?>
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Tip transakcije</th>
-                                    <th scope="col">Datum i vreme</th>
-                                    <th scope="col">Vrsta akcije </th>
-                                    <th scope="col">Kolicina</th>
-                                    <th scope="col">Iznos</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $cnt = 1;
-                                foreach($actions as $action) {
-                                    echo '<tr>';
-                                    echo '<th scope="row">'.$cnt.'</th>';
-                                    $cnt++;
-                                    if($action->type == 0) {
-                                        echo '<td class="wallet-in">Kupovina</td>';
-                                    }
-                                    else {
-                                        echo '<td class="wallet-out">Prodaja</td>';
-                                    }
-                                    echo '<td>'.$action->timestamp.'</td>';
-                                    echo '<td>'.$action->actionType.'</td>';
-                                    echo '<td>'.$action->actionType.'</td>';
-                                    if($action->type == 0) {
-                                        echo '<td class="wallet-in">+'.$action->amount.'&euro;</td>';
-                                    }
-                                    else {
-                                        echo '<td class="wallet-out">-'.$action->amount.'&euro;</td>';
-                                    }
-                                    echo '</tr>';
-                                }
-                                ?>
-                            <?php }
-                            else {
-                                echo 'Ne postoje akcije sa zadatim filtrom!';
-                            }
-                            ?>
-                            </tbody>
-                        </table>
-                    </div>
-                    <form action="WalletController/filterActions" name="filterActions" method="post">
-                        <div class="row">
-                            <div class="col-6 text-center">
-                                <label for="tipAkcije"> Izaberite tip transakcije: &nbsp;&nbsp;</label>
-                                <select name="tipAkcije">
-                                    <option value="sve">Sve</option>
-                                    <option value="uplate">Kupovine</option>
-                                    <option value="isplate">Prodaje</option>
-                                </select>
-                            </div>
-                            <div class="col-6 text-left">
-                                <button class="btn btn-outline-primary form-control" type="submit">Filtriraj</button>
-                            </div>
-                        </div>
-                    </form>
-                    
-                    
+                <!-- PREGLED KUPLJENIH I PRODATIH AKCIJA ULOGOVANOG KORISNIKA -->
+                <div class="row" id="walletTableName">
+                    <h2>PREGLED TRANSAKCIJA (kupljenih i prodatih akcija)</h2>
                 </div>
+                <div class="row" id="walletTable">
+                    <table class="table">
+                        <?php if($actions != null) {?>
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Tip transakcije</th>
+                            <th scope="col">Datum i vreme</th>
+                            <th scope="col">Naziv akcije </th>
+                            <th scope="col">Kolicina</th>
+                            <th scope="col">Iznos</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $cnt = 1;
+                        foreach($actions as $action) {
+                            echo '<tr>';
+                            echo '<th scope="row">'.$cnt.'</th>';
+                            $cnt++;
+                            if($action->type == 1) {
+                                echo '<td class="wallet-in">Prodaja</td>';
+                            }
+                            else {
+                                echo '<td class="wallet-out">Kupovina</td>';
+                            }
+                            echo '<td>'.$action->timestamp.'</td>';
+                            echo '<td>'.(new \App\Models\StockModel())->find($action->IdStock)->companyName.'</td>';
+                            echo '<td>'.$action->quantity.'</td>';
+                            if($action->type == 1) {
+                                echo '<td class="wallet-in">+'.$action->totalPrice.'&euro;</td>';
+                            }
+                            else {
+                                echo '<td class="wallet-out">-'.$action->totalPrice.'&euro;</td>';
+                            }
+                            echo '</tr>';
+                        }
+                        ?>
+                        <?php }
+                        else {
+                            echo 'Ne postoje akcije sa zadatim filtrom!';
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+                <form action="WalletController/filterActions" name="filterActions" method="post">
+                    <div class="row">
+                        <div class="col-6 text-center">
+                            <label for="tipAkcije"> Izaberite tip transakcije: &nbsp;&nbsp;</label>
+                            <select name="tipAkcije">
+                                <option value="sve">Sve</option>
+                                <option value="uplate">Kupovine</option>
+                                <option value="isplate">Prodaje</option>
+                            </select>
+                        </div>
+                        <div class="col-6 text-left">
+                            <button class="btn btn-outline-primary form-control" type="submit">Filtriraj</button>
+                        </div>
+                    </div>
+                </form>
+
 
             </div>
 
@@ -408,29 +310,6 @@ use App\Models\TransactionModel;
 </footer>
 
 
-
-    <!-- Modal Uplata -->
-    <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Uplata novca</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form name="paymentForm" method="post" action="<?= site_url("WalletController/payment") ?>">
-                        <div class="form-group row">
-                            <label for="amountInputFieldGroupPayment" class="col-sm-4 col-form-label">Iznos</label>
-                            <div class="col-sm-8">
-                                <div class="input-group" id="amountInputFieldGroupPayment">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">&euro;</div>
-                                    </div>
-                                    <input type="number" name="amountInputFieldPayment" class="form-control" placeholder="0&euro;" value="0" min="0.01"
-                                        step="0.01" required>
 
 
 <!-- Modal Uplata -->
@@ -458,14 +337,14 @@ use App\Models\TransactionModel;
 
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="nameInputFieldPayment" class="col-sm-4 col-form-label">Ime</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="nameInputFieldPayment" name="nameInputFieldPayment" placeholder="npr. Pera"
-                                    value="" required>
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="nameInputFieldPayment" class="col-sm-4 col-form-label">Ime</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="nameInputFieldPayment" name="nameInputFieldPayment" placeholder="npr. Pera"
+                                   value="" required>
                         </div>
-                  
+                    </div>
 
                     <div class="form-group row">
                         <label for="surnameInputFieldPayment" class="col-sm-4 col-form-label">Prezime</label>
@@ -530,35 +409,36 @@ use App\Models\TransactionModel;
                         </div>
                     </div>
 
-                        <div class="form-group row">
-                            <label for="surnameInputFieldWithdraw" class="col-sm-4 col-form-label">Prezime</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="surnameInputFieldWithdraw" name="surnameInputFieldWithdraw" value="Pan" required
-                                    readonly="true">
-                            </div>
+                    <div class="form-group row">
+                        <label for="surnameInputFieldWithdraw" class="col-sm-4 col-form-label">Prezime</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="surnameInputFieldWithdraw" name="surnameInputFieldWithdraw" value="Pan" required
+                                   readonly="true">
                         </div>
-                        <div class="form-group row">
-                            <label for="amountInputFieldGroupWithdraw" class="col-sm-4 col-form-label">Iznos</label>
-                            <div class="col-sm-8">
-                                <div class="input-group" id="amountInputFieldGroupWithdraw">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">&euro;</div>
-                                    </div>
-                                    <input type="number" name="amountInputFieldWithdraw" class="form-control" placeholder="0&euro;" value="0" min="<?php if($userBalance>0)
-                                                                                                                                                                echo "0.01";
-                                                                                                                                                         else  echo "0.00";
-                                                                                                                                                    ?>"
-                                        max="<?php echo "$userBalance"; ?>" step="0.01" required>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="amountInputFieldGroupWithdraw" class="col-sm-4 col-form-label">Iznos</label>
+                        <div class="col-sm-8">
+                            <div class="input-group" id="amountInputFieldGroupWithdraw">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">&euro;</div>
+                                </div>
+                                <input type="number" name="amountInputFieldWithdraw" class="form-control" placeholder="0&euro;" value="0" min="<?php if($userBalance>0)
+                                    echo "0.01";
+                                else  echo "0.00";
+                                ?>"
+                                       max="<?php echo "$userBalance"; ?>" step="0.01" required>
 
-                        <div class="form-group row">
-                            <label for="bankAccountNumberInput" class="col-sm-4 col-form-label">Broj
-                                računa</label>
-                            <div class="col-sm-8">
-                                <input id="bankAccountNumberInput" type="tel" class="form-control" name="bankAccountNumberInput" inputmode="numeric"
-                                    pattern="[0-9]{3}-[0-9]{13}-[0-9]{2}" maxlength="20" autocomplete="cc-number" placeholder="xxx-xxxxxxxxxxxxx-xx" required>
                             </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="bankAccountNumberInput" class="col-sm-4 col-form-label">Broj
+                            računa</label>
+                        <div class="col-sm-8">
+                            <input id="bankAccountNumberInput" type="tel" class="form-control" name="bankAccountNumberInput" inputmode="numeric"
+                                   pattern="[0-9]{3}-[0-9]{13}-[0-9]{2}" maxlength="20" autocomplete="cc-number" placeholder="xxx-xxxxxxxxxxxxx-xx" required>
+                        </div>
                     </div>
 
                     <div class="modal-footer">
@@ -584,7 +464,7 @@ use App\Models\TransactionModel;
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
-    <script src="../assets/js/navbar.js"></script>
+<script src="../assets/js/navbar.js"></script>
 </body>
 
 </html>

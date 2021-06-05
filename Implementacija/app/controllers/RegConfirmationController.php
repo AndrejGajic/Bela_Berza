@@ -60,7 +60,7 @@ class RegConfirmationController extends BaseController
 
         //ubaci novog korisnika u bazu sa podacima iz registracije
         $data = array('name'=>$reg[0]->name,'surname'=>$reg[0]->surname,'username'=>$reg[0]->username,
-            'email'=>$reg[0]->email, 'balance'=>0.00);
+            'email'=>$reg[0]->email, 'password'=>$reg[0]->password, 'balance'=>0.00);
         $userModel->save($data);
 
         //azuriraj status registracije na potvrdjen i postavi administratora koji je odobrio
