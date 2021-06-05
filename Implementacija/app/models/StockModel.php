@@ -106,5 +106,12 @@ class StockModel extends Model
         return $query->getResultObject();
         
     }
+    
+    public function getIdStockByCompanyName(string $companyName) {
+        $db = \Config\Database::connect();
+        $sql = "select IdStock from stock where companyName=?";
+        $query = $db->query($sql, [$companyName]);
+        return $query->getResultObject();
+    }
 }
 

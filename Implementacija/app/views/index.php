@@ -26,10 +26,18 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
         integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
         crossorigin="anonymous"></script>
-
+    <script src="../assets/js/chart.js"></script>
 </head>
 
-<body>
+<body onload="displayGraph()">
+    
+    <?php
+    
+        $i = 0;
+        for ($i = 0; $i < 30; $i++) {
+        }
+    ?>
+    
     <div class="body-wrraper">
         <div class="wrapper">
             <!-- Sidebar  -->
@@ -196,7 +204,7 @@
                             %</p>
                         <button id="btnMicrosoft" class="btn-block btn-success" data-toggle="modal"
                             data-target="#exampleModalCenter"
-                            onclick="setImageModal('microsoft.png', <?php echo($MSFT); ?>)">KUPI</button>
+                            onclick="setImageModal('../assets/images/microsoft.png', <?php echo($MSFT); ?>)">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
                         <img src="../assets/images/apple.png" alt="">
@@ -213,7 +221,7 @@
                             %</p>
                         <button id="btnApple" class="btn-block btn-success" data-toggle="modal"
                             data-target="#exampleModalCenter" 
-                            onclick="setImageModal('apple.png', <?php echo($AAPL); ?> )">KUPI</button>
+                            onclick="setImageModal('../assets/images/apple.png', <?php echo($AAPL); ?> )">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
                         <img src="../assets/images/amazon.png" alt="">
@@ -230,7 +238,7 @@
                             %</p>
                         <button id="btnAmazon" class="btn-block btn-success" data-toggle="modal"
                             data-target="#exampleModalCenter"
-                            onclick="setImageModal('amazon.png', <?php echo($AMZN); ?>)">KUPI</button>
+                            onclick="setImageModal('../assets/images/amazon.png', <?php echo($AMZN); ?>)">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
                         <img src="../assets/images/google.png" alt="">
@@ -246,7 +254,7 @@
                             ?> %</p>
                         <button id="btnGoogle" class="btn-block btn-success" data-toggle="modal"
                             data-target="#exampleModalCenter"
-                            onclick="setImageModal('google.png', <?php echo($GOOGL); ?>)">KUPI</button>
+                            onclick="setImageModal('../assets/images/google.png', <?php echo($GOOGL); ?>)">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
                         <img src="../assets/images/facebook.png" alt="">
@@ -262,7 +270,7 @@
                             ?> %</p>
                         <button id="btnFacebook" class="btn-block btn-success" data-toggle="modal"
                             data-target="#exampleModalCenter"
-                            onclick="setImageModal('facebook.png', <?php echo($FB); ?>)">KUPI</button>
+                            onclick="setImageModal('../assets/images/facebook.png', <?php echo($FB); ?>)">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
                         <img src="../assets/images/uber.png" alt="">
@@ -278,7 +286,7 @@
                             ?> %</p>
                         <button id="btnUber" class="btn-block btn-success" data-toggle="modal"
                             data-target="#exampleModalCenter" 
-                            onclick="setImageModal('uber.png', <?php echo($UBER); ?>)">KUPI</button>
+                            onclick="setImageModal('../assets/images/uber.png', <?php echo($UBER); ?>)">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
                         <img src="../assets/images/intel.png" alt="">
@@ -294,7 +302,7 @@
                             ?> %</p>
                         <button id="btnIntel" class="btn-block btn-success" data-toggle="modal"
                             data-target="#exampleModalCenter" 
-                            onclick="setImageModal('intel.png', <?php echo($INTC); ?>)">KUPI</button>
+                            onclick="setImageModal('../assets/images/intel.png', <?php echo($INTC); ?>)">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
                         <img src="../assets/images/tesla.png" alt="">
@@ -310,7 +318,7 @@
                             ?> %</p>
                         <button id="btnTesla" class="btn-block btn-success" data-toggle="modal"
                             data-target="#exampleModalCenter" 
-                            onclick="setImageModal('tesla.png', <?php echo($TSLA); ?>)">KUPI</button>
+                            onclick="setImageModal('../assets/images/tesla.png', <?php echo($TSLA); ?>)">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
                         <img src="../assets/images/bmw.png" alt="">
@@ -326,7 +334,7 @@
                             ?> %</p>
                         <button id="btnBMW" class="btn-block btn-success" data-toggle="modal"
                             data-target="#exampleModalCenter" 
-                            onclick="setImageModal('bmw.png', <?php echo($BAMXF); ?>)">KUPI</button>
+                            onclick="setImageModal('../assets/images/bmw.png', <?php echo($BAMXF); ?>)">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
                         <img src="../assets/images/mcdonalds.png" alt="">
@@ -342,7 +350,7 @@
                             ?> %</p>
                         <button id="btnMcDonalds" class="btn-block btn-success" data-toggle="modal"
                             data-target="#exampleModalCenter"
-                            onclick="setImageModal('mcdonalds.png', <?php echo($MCD); ?>)">KUPI</button>
+                            onclick="setImageModal('../assets/images/mcdonalds.png', <?php echo($MCD); ?>)">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
                         <img src="../assets/images/samsung.png" alt="">
@@ -358,7 +366,7 @@
                             ?> %</p>
                         <button id="btnSamsung" class="btn-block btn-success" data-toggle="modal"
                             data-target="#exampleModalCenter"
-                            onclick="setImageModal('samsung.png', <?php echo($SSNLF); ?>)">KUPI</button>
+                            onclick="setImageModal('../assets/images/samsung.png', <?php echo($SSNLF); ?>)">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
                         <img src="../assets/images/xiaomi.png" alt="">
@@ -375,7 +383,7 @@
                             %</p>
                         <button id="btnXiaomi" class="btn-block btn-success" data-toggle="modal"
                             data-target="#exampleModalCenter" 
-                            onclick="setImageModal('xiaomi.png', <?php echo($XIACF); ?>)">KUPI</button>
+                            onclick="setImageModal('../assets/images/xiaomi.png', <?php echo($XIACF); ?>)">KUPI</button>
                     </div>
 
                 </div>
@@ -404,7 +412,7 @@
                                                 echo ('                                            
                                                     <td class="vol-buy"><button class="btn-block btn-success"
                                                         data-toggle="modal" data-target="#exampleModalCenter"
-                                                        onclick="setImageModal("' . $vs->imagePath . '",' . $vs->value . ')">KUPI</button>
+                                                        onclick=\'setImageModal("' . $vs->imagePath . '",' . $vs->value . ')\'>KUPI</button>
                                                     </td>');
                                                 echo ('<tr>');
                                             }
@@ -565,7 +573,6 @@
         crossorigin="anonymous"></script>
     <script src="../assets/js/navbar.js"></script>
     <script type="text/javascript" src="../assets/js/canvasjs.stock.min.js"></script>
-    <script src="../assets/js/chart.js"></script>
     <script src="../assets/js/quantity_button.js"></script>
 </body>
 

@@ -15,11 +15,14 @@ namespace App\Controllers;
  */
 
 class ServerController extends BaseController {
-    
-    static $apiKeys = array("4c9b48580dmsh1474e734b15ec04p1bf687jsn1b7cacdeea16", "596939d60emsh17dede5c0ed3951p18cf6djsn7674766f4fde", "25161a4a2fmsh56563b0f98b3758p197dd6jsn6b84d98ba669", "f1e65fcca9mshafcbddf30bc160fp1a7e14jsna37a277cf664", "11df2299eemshed10c079dedf5a7p1d29e6jsn059e2f0c2060");
+   
     static $volatileTreshold = 10;    
     static $trendDeviationTreshold = 0.03;
     
+    static $apiKeys = array("cec88fcae7mshf782fb49976a3e8p1d30a2jsn7ca40b240a2b");
+
+    static $keyCnt = 0;
+
     
     public function index() {
         return view('server.php');
@@ -30,6 +33,8 @@ class ServerController extends BaseController {
         static $requestCnt = 0;
         $apiKey = "x-rapidapi-key: " . self::$apiKeys[($requestCnt++) % count(self::$apiKeys)];
         
+        $apiKey = "x-rapidapi-key: " . self::$apiKeys[(self::$keyCnt++) % count(self::$apiKeys)];
+              
         $curl = curl_init();
         
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
@@ -137,7 +142,7 @@ class ServerController extends BaseController {
         }
     }
             
-    public function getStockVolatility($stockName) {   
+    public function getStockVolatility($stockName) {
 
         $response = $this->getStockTimeData($stockName, "5min", "30");        
         $response = json_decode($response, true);
@@ -153,6 +158,18 @@ class ServerController extends BaseController {
             $currPriceMin = floatval($values[$i]["low"]);
             $currPriceMax = floatval($values[$i]["high"]);
             $currPrice = floatval($values[$i]["open"]);
+
+            $stockModel = new \App\Models\StockModel();
+            $stockHistoryPriceModel = new \App\Models\StockHistoryPriceModel();
+            $IdStock = $stockModel->getIdStockByCompanyName($stockName);
+            $IdStock = $IdStock[0]->IdStock;
+            $data = [
+                "IdStock" => $IdStock, 
+                "timestamp" => $values[$i]["datetime"], 
+                "price" => $values[$i]["high"]
+            ];
+            //$stockHistoryPriceModel->clearTable();
+            $stockHistoryPriceModel->insert($data); 
             
             $totalValue += $currPrice;
             
@@ -171,9 +188,8 @@ class ServerController extends BaseController {
         
         $maxChange = floatval((floatval($maxPrice - $minPrice)) / floatval($totalValue / count($values)));
         
-        $response = $this->getStockInfo($stockName);
-        $response = json_decode($response, true);
-        $change_percent = floatval($response["percent_change"]) * floatval(log10(count($values)) / log10(2));
+        $stockModel = new \App\Models\StockModel();
+        $change_percent = $stockModel->getStockRate($stockName)[0]->rate;
 
         if (abs($change_percent) > $maxChange) {
             $maxChange = abs($change_percent);
@@ -182,76 +198,58 @@ class ServerController extends BaseController {
         return $maxChange;
     }
     
-    
-    public function updateStockPrices(int $callCnt = 0) {
-        
+    public function updateStockPrices(int $callCnt = 0) {  
         
         $stockModel = new \App\Models\StockModel();
         $stockNames = $stockModel->getAllStockNames();
         
         foreach ($stockNames as $stockName) {
             
-            $response = $this->getStockCurrentPrice($stockName->companyName);
+            $response = $this->getStockCurrentPrice($stockName->companyName);       //first api call
             $jsonObj = json_decode($response, true);
             $price = $jsonObj["price"];
             
-            $result = $this->immediateStockAction($stockName->companyName);
+            $result = $this->immediateStockAction($stockName->companyName);         //second api call
             $action = $result['action'];
             $weight = $result['weight'];
             
-            $rate = 0;
             $isVolatile = true;
             
             
-            /*if ($callCnt % 10 == 0) {
+            if ($callCnt % 10 == 0) {
                 
-                $stockInfo = $this->getStockInfo($stockName->companyName);
+                $stockInfo = $this->getStockInfo($stockName->companyName);          //third api call
                 $jsonObj2 = json_decode($stockInfo, true);
                 $rate = $jsonObj2["percent_change"];
 
 
-                $volatility = $this->getStockVolatility($stockName->companyName);
+                $volatility = $this->getStockVolatility($stockName->companyName);   //fourth api call, total 48 calls (12 * 4)
                 $isVolatile = false;
                 if ($volatility > self::$volatileTreshold) {
                     $isVolatile = true;
                 }
-            
-                
-            }*/
+            }
             
             $stockModel->updateStock($stockName->companyName, $price, $rate, $isVolatile, $action, $weight);
         }
         echo "<script>window.close();</script>";
     }
     
-    
-    //Dummy for now
-    public function tradingAssistant() {     
-        
-        $stockModel = new \App\Models\StockModel();
-        $stockNames = $stockModel->getAllStockNames();
-        
-        foreach ($stockNames as $stockName) {
-            $result = $this->immediateStockAction($stockName->companyName);
-        }
-    }
-    
     public function immediateStockAction($companyName) {
         
-        $response = $this->getStockCurrentPrice($companyName);
-        $jsonObj = json_decode($response, true);
-        $currentValue = $jsonObj["price"];
+        $stockModel = new \App\Models\StockModel();
+        $currentValue = $stockModel->getStockValue($companyName)[0]->value;
         
         $yArr = array();
         $xArr = array();
         
-        $response = $this->getStockTimeData($companyName, "1min", "180");        
+        $response = $this->getStockTimeData($companyName, "1min", "180");
         $response = json_decode($response, true);
         $values = $response["values"];   
         
         // x-axis goes from 0 to 30 (time)
         // y-axis represents stock value (price)
-        $i = 0;
+        $i = 0; 
         for (; $i < count($values); $i++) {
             array_push($xArr, intval($i));
             array_push($yArr, intval($values[$i]["close"]));
@@ -263,9 +261,7 @@ class ServerController extends BaseController {
         
         // y = a * x + b
         $nextPredictedValue = $slope * $i + $intercept;
-        
-
-        
+                
         // there must be a treshold (+= trendDeviationTreshold%) that should be ignored due to standard market noise (no action)
         $diff = floatval(abs($currentValue - $nextPredictedValue));
         $diffPercent = floatval($diff / $currentValue);

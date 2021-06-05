@@ -88,10 +88,12 @@ $(".input-number").keydown(function (e) {
 
 
 function setImageModal(filename,stockPrice) {
-    $('#modalStockImage').attr('src', '../assets/images/'+filename);
+    let stockNamePathArr = filename.split("/");
+    let stockNamePath = stockNamePathArr[stockNamePathArr.length - 1];
+    $('#modalStockImage').attr('src', filename);
     $('#quantityminus').attr('disabled', true);
     document.getElementById("quantityInputTextField").value="1";
-    let stockName=filename.split('.')[0];
+    let stockName=stockNamePath.split('.')[0];
     $('#stockName').val(stockName);
     quantity=1;
     
