@@ -263,9 +263,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                    <form action="ProfileController/changeImage" name="changeImage" method="post">
+                <form action="ProfileController/changeImage" name="changeImage" method="post" enctype="multipart/form-data">
                     <div class="modal-body container" style="display: flex; flex-direction: row;">
-                        <input type="file" name="newImage" enctype="multipart/form-data>
+                        <input type="file" name="newImage">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Odustani</button>

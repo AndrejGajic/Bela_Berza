@@ -70,6 +70,7 @@ class ProfileController extends BaseController
         ];
         $userModel->update($user->IdUser, $data);
         $this->session->setFlashData("emailChangeAccepted", "Promena prihvacena - vasa e-mail adresa je uspesno promenjena!");
+        $this->session->set("email", $newEmail);
         return redirect()->to(site_url("ProfileController"));
     }
     
@@ -86,6 +87,9 @@ class ProfileController extends BaseController
             "newPasswordConfirmation" => "required"
         ])) {
             $this->session->setFlashData("passwordChangeRefused", "Promena odbijena - niste uneli podatke u odgovarajucem formatu!");
+            return redirect()->to(site_url("ProfileController"));
+        }
+        if(!$this->validateNewPassword()) {
             return redirect()->to(site_url("ProfileController"));
         }
         $oldPassword = $this->request->getVar("oldPassword");
@@ -124,6 +128,37 @@ class ProfileController extends BaseController
         ];
         $userModel->update($user->IdUser, $data);
         return redirect()->to(site_url("ProfileController"));
+    }
+    
+    
+    /**
+     * Pomocna funkcija za validaciju nove lozinke.
+     * @return boolean
+     */
+    
+    private function validateNewPassword() {
+        if(!$this->validate([
+            "newPassword" => "min_length[6]|max_length[100]"
+        ])) {
+            $this->session->setFlashData("passwordChangeRefused", "Promena odbijena - nova lozinka mora imati izmedju 6 i 10 karaktera!");
+            $ret = false;
+        }
+        else {
+            $password = $this->request->getVar("newPassword");
+            if(!preg_match("/[a-z]/", $password)) {
+                $this->session->setFlashData("passwordChangeRefused", "Promena odbijena - nova lozinka mora sadrzati bar jedno malo slovo!");
+                $ret = false;
+            }
+            else if(!preg_match("/[A-Z]/", $password)) {
+                $this->session->setFlashData("passwordChangeRefused", "Promena odbijena - nova lozinka mora sadrzati bar jedno veliko slovo!");
+                $ret = false;
+            }
+            else if(!preg_match("/[0-9]/", $password)) {
+                $this->session->setFlashData("passwordChangeRefused", "Promena odbijena - nova lozinka mora sadrzati bar jedan broj!");
+                $ret = false;
+            }
+        }
+        return $ret;
     }
     
     
