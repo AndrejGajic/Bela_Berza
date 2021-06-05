@@ -1,12 +1,5 @@
-/* Luka Tomanovic 0410/2018
-   Kosta Matijevic 0034/2018 */
-
-import axios from "axios";
-
-var dataPoints = [];
-
-window.onload = function () {
-    var currentDate = new Date(), rangeChangedTriggered = false;
+function displayGraph () {
+    var dataPoints = [], currentDate = new Date(), rangeChangedTriggered = false;
     var stockChart = new CanvasJS.StockChart("chartContainer",{
       theme: "light2",
       title:{
@@ -52,33 +45,9 @@ window.onload = function () {
         enabled: false
       }
     });
-    
-    
-    var dataCount = 30, ystart = 50, interval = 1000, xstart = (currentDate.getTime() - (700 * 1000));
+    var dataCount = 700, ystart = 50, interval = 1000, xstart = (currentDate.getTime() - (700 * 1000));
     updateChart(xstart, ystart, dataCount, interval);
-    
     function updateChart(xstart, ystart, length, interval) {
-        
-        const data = null;
-
-        const xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
-
-        xhr.addEventListener("readystatechange", function () {
-                if (this.readyState === this.DONE) {
-                        console.log(this.responseText);
-                }
-        });
-
-        xhr.open("GET", "https://twelve-data1.p.rapidapi.com/time_series?symbol=AMZN&interval=1min&outputsize=30&format=json/");
-        xhr.setRequestHeader("x-rapidapi-key", "4c9b48580dmsh1474e734b15ec04p1bf687jsn1b7cacdeea16");
-        xhr.setRequestHeader("x-rapidapi-host", "twelve-data1.p.rapidapi.com");
-
-        xhr.send(data);
-        
-        alert(data);
-        
-        
       var xVal = xstart, yVal = ystart;
       for(var i = 0; i < length; i++) {
         yVal = yVal +  Math.round(5 + Math.random() *(-5-5));

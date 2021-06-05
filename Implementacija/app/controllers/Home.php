@@ -7,6 +7,7 @@ use App\Models\StockTransactionModel;
 use App\Models\UserModel;
 use App\Models\RegistrationModel;
 use App\Models\StockModel;
+use App\Models\StockHistoryPriceModel;
 use App\Models\UserOwnsStockModel;
 
 /** 
@@ -44,25 +45,25 @@ class Home extends BaseController
 
         //administrator je prijavljen
         if($adminId){
-            return $this->showHomePage('admin');
+            return $this->showHomePage('admin', $IdStock);
         }
 
         $userId = $this->session->get('IdUser');
 
         //nijedan korisnik nije prijavljen
         if(!$userId){
-            return $this->showHomePage('guest');
+            return $this->showHomePage('guest', $IdStock);
         }
 
         $privUserId = (new PrivilegedUserModel())->find($userId);
 
         //prijavljen je privilegovani korisnik
         if($privUserId){
-            return $this->showHomePage('privileged');
+            return $this->showHomePage('privileged', $IdStock);
         }
 
         //prijavljen je obican korisnik
-        return $this->showHomePage('standard');
+        return $this->showHomePage('standard', $IdStock);
 	}
 
 	/**
@@ -71,7 +72,7 @@ class Home extends BaseController
      *
      * @param string $userType
 	 */
-    public function showHomePage($userType)
+    public function showHomePage($userType, $IdStock = 1)
     {
         /*
          * showPromo oznacava da li ce biti prikazana reklamno dugme za privilegovanog korisnika
@@ -131,10 +132,26 @@ class Home extends BaseController
         
         $wrapper = array('volatileStocks'=>$volatileStocks = $stockModel->getVolatileStocks());
         
+        /*$stockHistoryPriceModel = new StockHistoryPriceModel();
+        $coordinatesResult = $stockHistoryPriceModel->getCoordinates($IdStock);
+        $coordinates = array();
+        
+        $res = var_dump($coordinatesResult);
+        
+        echo "<script type='text/javascript'>alert('$res');</script>";
+           
+        $cnt = 0;
+        
+        foreach($coordinatesResult as $coordinateXY) {
+            echo "<script type='text/javascript'>alert('$coordinateXY->price');</script>";
+            $coordinates["x" . $cnt] = $coordinateXY->timestamp;
+            $coordinates["y" . $cnt] = $coordinateXY->timestamp;
+        }*/
         
         $data = array_merge($data, $stockValues);
         $data = array_merge($data, $stockRates);
         $data = array_merge($data, $wrapper);
+        /*$data["coordinates"] = $coordinates;*/
 
         return view('index.php',$data);
     }
