@@ -114,10 +114,7 @@ class LoginController extends BaseController
                 $this->session->set("username", $user->username);
             }
         }
-        
-        
-        
-        
+      
         return redirect()->to(site_url("Home"));
         
     }
@@ -126,18 +123,13 @@ class LoginController extends BaseController
      * Funkcija za obradu registracije korisnika na sistem.
      */
     public function registration() {
-        helper(["form"]);
+        
         if($this->request->getMethod() == "get") {
             return redirect()->to(site_url("LoginController"));
         }
-        if(!$this->validate([
-            "nameReg" => "required|max_length[20]",
-            "surnameReg" => "required|max_length[20]",
-            "usernameReg" => "required|min_length[3]|max_length[50]",
-            "emailReg" => "required|valid_email",
-            "passwordReg" => "required|min_length[6]|max_length[100]"
-        ])) {
-            $this->session->setFlashData("registrationError", "Registracija odbijena - uneli ste nekorektne ili nepostojece podatke!");
+        
+        
+        if(!$this->validateRegistration()) {
             return redirect()->to(site_url("LoginController"));
         }
         
@@ -171,10 +163,61 @@ class LoginController extends BaseController
         $registrationModel->insert($data);
         
         $this->session->setFlashData("registrationSuccess", "Vas zahtev za registraciju je poslat!");
-        return redirect()->to(site_url("LoginController"));
-        
-       
+        return redirect()->to(site_url("LoginController")); 
     }
     
+    /**
+     * Pomocna funkcija za validaciju unetih podataka pri registraciji korisnika na sistem.
+     * @return boolean
+     */
+    
+    private function validateRegistration() {
+        helper(["form"]);
+        $ret = true;
+        if(!$this->validate([
+            "nameReg" => "required|max_length[50]",
+            "surnameReg" => "required|max_length[50]",
+            "usernameReg" => "required",
+            "emailReg" => "required",
+            "passwordReg" => "required"
+        ])) {
+            $this->session->setFlashData("registrationError", "Registracija odbijena - morate popuniti sva polja!");
+            $ret = false;
+        }
+        else if(!$this->validate([
+            "usernameReg" => "min_length[3]|max_length[50]"
+        ])) {
+            $this->session->setFlashData("registrationError", "Registracija odbijena - korisnicko ime mora sadrzati izmedju 3 i 50 karaktera!");
+            $ret = false;
+        }
+        else if(!$this->validate([
+            "emailReg" => "valid_email"
+        ])) {
+            $this->session->setFlashData("registrationError", "Registracija odbijena - neispravan format e-mail adrese!");
+            $ret = false;
+        }
+        else if(!$this->validate([
+            "passwordReg" => "min_length[6]|max_length[100]"
+        ])) {
+            $this->session->setFlashData("registrationError", "Registracija odbijena - lozinka mora sadrzati izmedju 6 i 100 karaktera!");
+            $ret = false;
+        }
+        else {
+            $password = $this->request->getVar("passwordReg");
+            if(!preg_match("/[a-z]/", $password)) {
+                $this->session->setFlashData("registrationError", "Registracija odbijena - lozinka mora sadrzati bar jedno malo slovo!");
+                $ret = false;
+            }
+            else if(!preg_match("/[A-Z]/", $password)) {
+                $this->session->setFlashData("registrationError", "Registracija odbijena - lozinka mora sadrzati bar jedno veliko slovo!");
+                $ret = false;
+            }
+            else if(!preg_match("/[0-9]/", $password)) {
+                $this->session->setFlashData("registrationError", "Registracija odbijena - lozinka mora sadrzati bar jedan broj!");
+                $ret = false;
+            }
+        }
+        return $ret;
+    }
     
 }

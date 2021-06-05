@@ -10,6 +10,10 @@ use App\Models\UserModel;
  * Andrej Gajic 0303/2018 - 
  */
 
+
+/**
+ *  ProfileController - klasa kontrolera za rad sa izmenom korisnickih informacija
+ */
 class ProfileController extends BaseController
 {
     public function index()
@@ -39,7 +43,9 @@ class ProfileController extends BaseController
         return view('profile.php',['menu'=>$menu,'imgPath'=>$img,'name'=>$name,'surname'=>$surname]);
     }
     
-    
+    /**
+     * Funkcija za promenu e-mail adrese korisnika.  
+     */
     public function changeEmail() {
         if($this->request->getMethod() == "get") {
             return redirect()->to(site_url("ProfileController"));
@@ -67,7 +73,9 @@ class ProfileController extends BaseController
         return redirect()->to(site_url("ProfileController"));
     }
     
-    
+    /**
+     * Funckija za promenu lozinke korisnika.
+     */
     public function changePassword() {
         if($this->request->getMethod() == "get") {
             return redirect()->to(site_url("ProfileController"));
@@ -101,7 +109,9 @@ class ProfileController extends BaseController
         return redirect()->to(site_url("ProfileController"));
         
     }
-    
+    /**
+     * Funkcija za promenu profilne slike korisnika.
+     */
     public function changeImage() {
         if($this->request->getMethod() == "get") {
             return redirect()->to(site_url("ProfileController"));
