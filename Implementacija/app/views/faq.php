@@ -1,6 +1,4 @@
-<!-- Luka Tomanovic 0410/2018
-     Kosta Matijevic 0034/2018-->
-
+<!-- Andrej Gajic 0303/2018  -->
 <!DOCTYPE html>
 <html>
 
@@ -17,7 +15,7 @@
         integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/privileges_style.css">
+    <link rel="stylesheet" href="../assets/css/collection_style.css">
 
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
@@ -38,8 +36,7 @@
                     <div id="user-image"><img src="<?php echo $imgPath?>" alt="" /></div>
                     <div id="user-data-info">
                         <h3><?php
-                            if($menu=='guest')echo('Gost');
-                            else echo($name.' '.$surname);
+                            echo($name.' '.$surname);
                             ?></h3>
                         <p><?php
                             if($menu=='standard') echo('Standard user');
@@ -48,6 +45,7 @@
                     </div>
                     <strong><?php echo(substr($name,0,1).substr($surname,0,1))?></strong>
                 </div>
+
                 <ul class="list-unstyled components">
                     <li>
                         <a href="home" class="menu-item">
@@ -68,31 +66,33 @@
                             <span>Moj novcanik</span>
                         </a>
                     </li>
-                    <li class="active-item">
+                    <li>
                         <a href="#userMenu" data-toggle="collapse" aria-expanded="false"
                             class="dropdown-toggle menu-item">
                             <i class="fas fa-user"></i>
                             <span>Moj profil</span>
                         </a>
-                        <ul class="collapse list-unstyled " id="userMenu">
+                        <ul class="collapse list-unstyled" id="userMenu">
                             <li>
                                 <a href="profile">Izmeni</a>
                             </li>
                             <li>
-                                <a class="active-profile-item" href="#">Privilegije</a>
+                                <a href="privileges">Privilegije</a>
                             </li>
                             <li>
                                 <a href="<?= site_url("LogoutController/logout") ?>">Izloguj se</a>
-                            </li>
+                            </li>       
                         </ul>
                     </li>
-                    <li>
-                        <a href="faq" class="menu-item">
+                    <li class="active-item">
+                        <a href="#" class="menu-item">
                             <i class="fas fa-question"></i>
                             <span>FAQ</span>
                         </a>
                     </li>
                 </ul>
+
+
             </nav>
 
             <!-- Page Content  -->
@@ -118,21 +118,67 @@
                 </div>
 
                 <hr>
+                <br>
+                <div class="row">
+                    <div class="col-12">
+                        <h4> 1. Ko su korisnici ovog sistema? </h4>
+                        <p>
+                            Većini ljudi trgovina na berzi izgleda kao mistična i nedostižna delatnost 
+                            ekonomije i tehnologije. Cilj našeg projekta je da omogućimo početnicima i 
+                            entuzijastima da se upoznaju sa osnovama ovog načina trgovine i da steknu  
+                            Tim: Rising Edge [5]
+                            sposobnost trgovine na berzi. Sa druge strane, ovaj projekat će omogućiti 
+                            profesionalnim trgovcima da trguju i imaju pregled vrednosti akcija.
 
-                <div class="container-fluid" id="privContainer">
-                    <div class="row" id="privStatus">
-                        <h1 class="<?php echo($class); ?>">
-                            <?php echo($msg)?>
-                        </h1>
+                        </p>
                     </div>
-                    <?php if($showBtn) echo('<div class="row" id="privButton">
-                        <button data-toggle="modal" data-target="'.$modal.'" class="btn no-priv-button">POSTANI
-                            PRIVILEGOVANI KORISNIK</button>
-                    </div>');?>
                 </div>
-
-            </div>
-
+                <div class="row">
+                    <div class="col-12">
+                        <h4> 2. Sta je volatile stock? </h4>
+                        <p>
+                            Volatile stock, ili nepostojana akcija, je akcija cija vrednost najvise fluktuira u poslednje vreme i ciju vrednost je veoma tesko predvideti
+                            u narednom vremenskom periodu zbog svoje nestabilnosti. Ove akcije mogu biti najinteresantnije za trgovinu.
+                        </p>
+                    </div>
+                </div>  
+                <div class="row">
+                      <div class="col-12">
+                          <h4> 3. Koji su tipovi korisnika u sistemu? </h4>
+                          <p>
+                            Korisnici ovog sistema se dele na 2 kategorije: obican korisnik (User) i privilegovani korisnik (Privileged User). Privilegovanom korisniku
+                            su dostupne usluge asistenta u trgovini (trade assistant), dok su ostale funkcionalnosti dostupne i obicnim korisnicima. Ukoliko
+                            nemate nalog, pristupate sistemu kao gost.
+                          </p>
+                      </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h4> 4. Kako mozete postati privilegovan korisnik? </h4>
+                        <p>
+                            Ukoliko zelite da postanete privilegovani korisnik, mozete otici na sekciju Moj profil, pa Privilegije, i tu mozete zatraziti da
+                            postanete privilegovani korisnik. Usluga prelaska u status privilegovanog korisnika se naplacuje 30 evra i vas status vazi godinu dana
+                            nakon kupovine. Ukoliko nemate novca na vasem nalogu, nece vam biti odobrena usluga.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h4> 5. Koje sve akcije imamo na raspolaganju? </h4>
+                        <p>
+                            Trenutno na raspolaganju imamo 12 razlicitih akcija: Microsoft, Apple, Amazon, Google, Facebook, Uber, Intel, Tesla, BMW, McDonald's, Samsung i Xiaomi.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h4> 6. Koje je radno vreme berze? </h4>
+                        <p>
+                            Radno vreme berze, tj. vreme u kojem se vrsi promena vrednosti akcija, je od 09:30 do 16:00.
+                        </p>
+                    </div>
+                </div>  
+            </div>  
         </div>
     </div>
 
@@ -141,50 +187,7 @@
     </footer>
 
 
-    <!-- Modals -->
-    <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Ostvari privilegije</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body container">
-                    <p>Ukoliko nastavite, prelazite u status Privilegovanog Korisnika i sa vaseg racuna bice skinuto
-                        30&euro;</p>
-                    <p>Vase privilegije trajace do 3/27/2022</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Odustani</button>
-                    <button type="button" class="btn btn-outline-success"
-                            onclick="window.location='<?php echo site_url("privilegescontroller/grantPrivileges");?>'">Potvrdi</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="error" tabindex="-1" role="dialog"
-         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Greska</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body container">
-                    <p>Na vasem racunu je manje od 30 &euro;. Ne mozete ostvariti status privilegovanog korisnika.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">OK</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -199,9 +202,9 @@
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
     <script src="../assets/js/navbar.js"></script>
-    <script type="text/javascript" src="../assets/js/canvasjs.stock.min.js"></script>
-    <script src="../assets/js/chart.js"></script>
-    <script src="../assets/js/script.js"></script>
+    <!--<script type="text/javascript" src="../assets/js/canvasjs.stock.min.js"></script>
+    <script src="../assets/js/chart.js"></script>-->
+    <script src="../assets/js/quantity_button.js"></script>
 </body>
 
 </html>

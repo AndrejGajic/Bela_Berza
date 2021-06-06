@@ -124,9 +124,10 @@ class ProfileController extends BaseController
         $userModel = new UserModel();
         $user = $userModel->find($this->session->get("IdUser"));
         $data = [
-            "imagePath" => $newImage
+            "imagePath" =>"../assets/images/$newImage"
         ];
         $userModel->update($user->IdUser, $data);
+        $this->session->set("imagePath", "../assets/images/$newImage");
         return redirect()->to(site_url("ProfileController"));
     }
     

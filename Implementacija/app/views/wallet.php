@@ -90,7 +90,7 @@ use App\Models\TransactionModel;
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="menu-item">
+                    <a href="faq" class="menu-item">
                         <i class="fas fa-question"></i>
                         <span>FAQ</span>
                     </a>
