@@ -179,7 +179,7 @@ class Home extends BaseController
         $stock=$stockModel->getStockByCompanyName($user_data['stockName']);
         
 
-        if($stock==null){
+        if($stock==null||$user==null){
             $db->transRollback();
             $this->session->setFlashdata('buyingStockError', 'Željena akcija trenutno nije u ponudi! Molimo Vas da ne pokušavate nasilnu kupovinu kroz promenu HTML koda jer takva radnja može biti sankcionicana!');
             return redirect()->to(site_url("Home"));

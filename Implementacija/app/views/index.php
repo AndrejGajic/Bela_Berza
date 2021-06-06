@@ -608,7 +608,7 @@
         crossorigin="anonymous"></script>
     <script src="../assets/js/navbar.js"></script>
     <script type="text/javascript" src="../assets/js/canvasjs.stock.min.js"></script>
-    <script src="../assets/js/quantity_button.js"></script>
+    <script src="../assets/js/script.js"></script>
 </body>
 
 </html>
