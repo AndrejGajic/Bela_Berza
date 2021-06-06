@@ -61,13 +61,20 @@ class LoginController extends BaseController
                     return redirect()->to(site_url("LoginController"));
                 }
                 
-                if($user->imagePath==null)$user->imagePath='../assets/images/user.png';
+                if($user->imagePath==null) {
+                    $user->imagePath='../assets/images/user.png';
+                    $userModel = new UserModel();
+                    $data = [
+                        "imagePath" => $user->imagePath
+                    ];
+                    $userModel->update($user->IdUser, $data);
+                }
                 $this->session->set("username", $user->username);
                 $this->session->set("IdUser", $user->IdUser);
                 $this->session->set("name", $user->name);
                 $this->session->set("surname", $user->surname);
                 $this->session->set("email", $user->email);
-                $this->session->set("img", $user->imagePath);
+                $this->session->set("imagePath", $user->imagePath);
             }
             else {
                 // nadjen administrator
@@ -95,14 +102,21 @@ class LoginController extends BaseController
                     return redirect()->to(site_url("LoginController"));
                 }
                 
-                if($user->imagePath==null)$user->imagePath='../assets/images/user.png';
+                if($user->imagePath==null) {
+                    $user->imagePath='../assets/images/user.png';
+                    $userModel = new UserModel();
+                    $data = [
+                        "imagePath" => $user->imagePath
+                    ];
+                    $userModel->update($user->IdUser, $data);
+                }
                 
                 $this->session->set("username", $user->username);
                 $this->session->set("IdUser", $user->IdUser);
                 $this->session->set("name", $user->name);
                 $this->session->set("surname", $user->surname);
                 $this->session->set("email", $user->email);
-                $this->session->set("img", $user->imagePath);
+                $this->session->set("imagePath", $user->imagePath);
             }
             else {
                 // nadjen administrator

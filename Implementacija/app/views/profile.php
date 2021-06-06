@@ -91,7 +91,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="" class="menu-item">
+                        <a href="faq" class="menu-item">
                             <i class="fas fa-question"></i>
                             <span>FAQ</span>
                         </a>
@@ -188,7 +188,7 @@
                     <h4>Profile picture</h4>
                     <hr>
                     <div class="row" id="profPic">
-                        <div class="col-8"><img id="profilePict" src="../assets/images/user.png" alt="profile picture"></div>
+                        <div class="col-8"><img id="profilePict" src=<?php echo $imgPath?> alt="profile picture"></div>
                         <div class="col-1"><i data-toggle="modal" data-target="#pictureModal"
                                 class="fas fa-edit edit-icon"></i></div>
                     </div>
@@ -263,7 +263,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="ProfileController/changeImage" name="changeImage" method="post" enctype="multipart/form-data">
+                <form action="ProfileController/changeImage" name="changeImage" method="post">
                     <div class="modal-body container" style="display: flex; flex-direction: row;">
                         <input type="file" name="newImage">
                     </div>

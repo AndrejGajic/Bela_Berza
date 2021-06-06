@@ -1,6 +1,4 @@
-<!-- Luka Tomanovic 0410/2018
-     Kosta Matijevic 0034/2018-->
-
+<!-- Andrej Gajic 0303/2018  -->
 <!DOCTYPE html>
 <html>
 
@@ -17,7 +15,7 @@
         integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/privileges_style.css">
+    <link rel="stylesheet" href="../assets/css/collection_style.css">
 
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
@@ -38,8 +36,7 @@
                     <div id="user-image"><img src="<?php echo $imgPath?>" alt="" /></div>
                     <div id="user-data-info">
                         <h3><?php
-                            if($menu=='guest')echo('Gost');
-                            else echo($name.' '.$surname);
+                            echo($name.' '.$surname);
                             ?></h3>
                         <p><?php
                             if($menu=='standard') echo('Standard user');
@@ -48,6 +45,7 @@
                     </div>
                     <strong><?php echo(substr($name,0,1).substr($surname,0,1))?></strong>
                 </div>
+
                 <ul class="list-unstyled components">
                     <li>
                         <a href="home" class="menu-item">
@@ -68,31 +66,33 @@
                             <span>Moj novcanik</span>
                         </a>
                     </li>
-                    <li class="active-item">
+                    <li>
                         <a href="#userMenu" data-toggle="collapse" aria-expanded="false"
                             class="dropdown-toggle menu-item">
                             <i class="fas fa-user"></i>
                             <span>Moj profil</span>
                         </a>
-                        <ul class="collapse list-unstyled " id="userMenu">
+                        <ul class="collapse list-unstyled" id="userMenu">
                             <li>
                                 <a href="profile">Izmeni</a>
                             </li>
                             <li>
-                                <a class="active-profile-item" href="#">Privilegije</a>
+                                <a href="privileges">Privilegije</a>
                             </li>
                             <li>
                                 <a href="<?= site_url("LogoutController/logout") ?>">Izloguj se</a>
-                            </li>
+                            </li>       
                         </ul>
                     </li>
-                    <li>
-                        <a href="faq" class="menu-item">
+                    <li class="active-item">
+                        <a href="#" class="menu-item">
                             <i class="fas fa-question"></i>
                             <span>FAQ</span>
                         </a>
                     </li>
                 </ul>
+
+
             </nav>
 
             <!-- Page Content  -->
@@ -118,21 +118,56 @@
                 </div>
 
                 <hr>
-
-                <div class="container-fluid" id="privContainer">
-                    <div class="row" id="privStatus">
-                        <h1 class="<?php echo($class); ?>">
-                            <?php echo($msg)?>
-                        </h1>
+                <br>
+                <div class="row">
+                    <div class="col-12">
+                        <h5> 1. Ko su korisnici ovog sistema? </h5>
+                        <p>
+                            
+                        </p>
                     </div>
-                    <?php if($showBtn) echo('<div class="row" id="privButton">
-                        <button data-toggle="modal" data-target="'.$modal.'" class="btn no-priv-button">POSTANI
-                            PRIVILEGOVANI KORISNIK</button>
-                    </div>');?>
                 </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h4> 2. Sta je volatile stock? </h4>
+                        <p>
+                            
+                        </p>
+                    </div>
+                </div>  
+                <div class="row">
+                      <div class="col-12">
+                          <h3> 3. Koji su tipovi korisnika u sistemu? </h3>
+                          <p>
 
-            </div>
-
+                          </p>
+                      </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h3> 4. Kako mozete postati privilegovan korisnik? </h3>
+                        <p>
+                            
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h3> 5. Koje sve akcije imamo na raspolaganju? </h3>
+                        <p>
+                            
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h3> 6. Koje je radno vreme berze? </h3>
+                        <p>
+                            
+                        </p>
+                    </div>
+                </div>  
+            </div>  
         </div>
     </div>
 
@@ -141,50 +176,7 @@
     </footer>
 
 
-    <!-- Modals -->
-    <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Ostvari privilegije</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body container">
-                    <p>Ukoliko nastavite, prelazite u status Privilegovanog Korisnika i sa vaseg racuna bice skinuto
-                        30&euro;</p>
-                    <p>Vase privilegije trajace do 3/27/2022</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Odustani</button>
-                    <button type="button" class="btn btn-outline-success"
-                            onclick="window.location='<?php echo site_url("privilegescontroller/grantPrivileges");?>'">Potvrdi</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="error" tabindex="-1" role="dialog"
-         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Greska</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body container">
-                    <p>Na vasem racunu je manje od 30 &euro;. Ne mozete ostvariti status privilegovanog korisnika.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">OK</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -199,8 +191,8 @@
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
     <script src="../assets/js/navbar.js"></script>
-    <script type="text/javascript" src="../assets/js/canvasjs.stock.min.js"></script>
-    <script src="../assets/js/chart.js"></script>
+    <!--<script type="text/javascript" src="../assets/js/canvasjs.stock.min.js"></script>
+    <script src="../assets/js/chart.js"></script>-->
     <script src="../assets/js/quantity_button.js"></script>
 </body>
 

@@ -265,7 +265,8 @@ class ServerController extends BaseController {
                 
         // there must be a treshold (+= trendDeviationTreshold%) that should be ignored due to standard market noise (no action)
         $diff = floatval(abs($currentValue - $nextPredictedValue));
-        $diffPercent = floatval($diff / $currentValue);
+        if($currentValue != 0) $diffPercent = floatval($diff / $currentValue);
+        else $diffPercent = 0;
         
         
         $tradeStrength = 0;
