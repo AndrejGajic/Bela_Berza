@@ -31,12 +31,6 @@
 
 <body onload="displayGraph()">
     
-    <?php
-    
-        $i = 0;
-        for ($i = 0; $i < 30; $i++) {
-        }
-    ?>
     
     <div class="body-wrraper">
         <div class="wrapper">
@@ -414,7 +408,7 @@
                                                         data-toggle="modal" data-target="#exampleModalCenter"
                                                         onclick=\'setImageModal("' . $vs->imagePath . '",' . $vs->value . ')\'>KUPI</button>
                                                     </td>');
-                                                echo ('<tr>');
+                                                echo ('</tr>');
                                             }
                                         ?>
                                         <!--
@@ -474,7 +468,24 @@
                                             <a href="privileges"> <button class="btn-block btn-success">OSTVARI PRIVILEGIJE</button></a> 
                                         </div>');
                                     } else {
-                                        
+                                        echo '<div>';
+                                        echo '<table class="table">';
+                                        foreach ($actions as $action) {
+                                            
+                                            
+                                            echo ('<tr>');
+                                            echo ('<td class="vol-logo"><img class="vol-logo-img" src="' . $action["imagePath"] . '" alt=""></td>');
+                                            echo ('<td class="vol-name">' . $action["companyName"] . '</td>');
+                                            echo ('<td class="vol-price">' . $action["action"] .'</td>');
+                                            echo '<td>';
+                                            echo ('<progress value="' . $action["weight"] * 20 . '" max="100">' . $action["weight"] .  '</progress>');
+                                            echo '</td>';
+                                            
+                                            echo ('</tr>');
+                                            
+                                        }
+                                        echo '</table">';
+                                        echo '</div>';
                                     }
                                  ?>
                             </div>

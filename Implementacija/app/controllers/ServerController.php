@@ -16,7 +16,7 @@ namespace App\Controllers;
 
 class ServerController extends BaseController {
    
-    static $volatileTreshold = 10;    
+    static $volatileTreshold = 3;    
     static $trendDeviationTreshold = 0.03;
     
     static $apiKeys = array("cec88fcae7mshf782fb49976a3e8p1d30a2jsn7ca40b240a2b");

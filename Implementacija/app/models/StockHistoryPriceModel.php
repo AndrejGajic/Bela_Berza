@@ -22,7 +22,7 @@ class StockHistoryPriceModel extends Model
         $db = \Config\Database::connect();
         $sql = "select timestamp, price from stockhistoryprice";
         $res = $db->query($sql, [$IdStock]);
-        return $res;
+        return $res->getResultObject();
     }
     
 }

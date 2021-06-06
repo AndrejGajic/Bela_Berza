@@ -1,4 +1,5 @@
 function displayGraph () {
+        
     var dataPoints = [], currentDate = new Date(), rangeChangedTriggered = false;
     var stockChart = new CanvasJS.StockChart("chartContainer",{
       theme: "light2",

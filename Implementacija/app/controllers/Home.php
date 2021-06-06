@@ -128,29 +128,34 @@ class Home extends BaseController
                 'MCDR'=>$stockModel->getStockRate("MCD")[0]->rate,
                 'SSNLFR'=>$stockModel->getStockRate("SSNLF")[0]->rate,
                 'XIACFR'=>$stockModel->getStockRate("XIACF")[0]->rate);
-        
+            
         $wrapper = array('volatileStocks'=>$volatileStocks = $stockModel->getVolatileStocks());
         
-        /*$stockHistoryPriceModel = new StockHistoryPriceModel();
+        $stockHistoryPriceModel = new StockHistoryPriceModel();
         $coordinatesResult = $stockHistoryPriceModel->getCoordinates($IdStock);
         $coordinates = array();
         
-        $res = var_dump($coordinatesResult);
+        $actionRes = $stockModel->getActions();
+        $actions = array();
         
-        echo "<script type='text/javascript'>alert('$res');</script>";
-           
+        foreach ($actionRes as $actionEl) {
+            $action = array("action"=>$actionEl->action, "companyName"=>$actionEl->companyName, "weight"=>$actionEl->weight, "imagePath"=>$actionEl->imagePath);
+            array_push($actions, $action);
+        }
+        
+
         $cnt = 0;
         
         foreach($coordinatesResult as $coordinateXY) {
-            echo "<script type='text/javascript'>alert('$coordinateXY->price');</script>";
             $coordinates["x" . $cnt] = $coordinateXY->timestamp;
             $coordinates["y" . $cnt] = $coordinateXY->timestamp;
-        }*/
+        }
         
         $data = array_merge($data, $stockValues);
         $data = array_merge($data, $stockRates);
         $data = array_merge($data, $wrapper);
-        /*$data["coordinates"] = $coordinates;*/
+        $data["coordinates"] = $coordinates;
+        $data["actions"] = $actions;
 
         return view('index.php',$data);
     }
@@ -237,4 +242,5 @@ class Home extends BaseController
     public function setChartTarget($IdStock) {
         return redirect()->to(site_url("Home/index/$IdStock"));
     }
+
 }
