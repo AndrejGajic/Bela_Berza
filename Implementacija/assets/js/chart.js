@@ -1,5 +1,10 @@
 function displayGraph () {
+    
+    var data = document.getElementById("chartData").innerHTML.replace("\n", "").replace("\t","").trim().split(";");
+    alert(data);
+    
     var dataPoints = [], currentDate = new Date(), rangeChangedTriggered = false;
+    
     var stockChart = new CanvasJS.StockChart("chartContainer",{
       theme: "light2",
       title:{
@@ -12,7 +17,7 @@ function displayGraph () {
         axisX: {
            crosshair: {
             enabled: true,
-            valueFormatString: "MMM DD, YYYY HH:mm:ss"
+            valueFormatString: "YYYY-MM-DD HH:mm:ss"
           }
         },
         axisY: {
@@ -31,7 +36,7 @@ function displayGraph () {
         data: [{
           type: "line",
           name: "Pageviews",
-          xValueFormatString: "MMM DD, YYYY HH:mm:ss",
+          xValueFormatString: "YYYY-MM-DD HH:mm:ss",
           xValueType: "dateTime",
           dataPoints : dataPoints,
         }]
@@ -45,16 +50,26 @@ function displayGraph () {
         enabled: false
       }
     });
-    var dataCount = 700, ystart = 50, interval = 1000, xstart = (currentDate.getTime() - (700 * 1000));
+    
+    
+    var dataCount = 30, xstart = data[0], interval = 1000, ystart = parseInt(data[1]);
     updateChart(xstart, ystart, dataCount, interval);
+    
+    
     function updateChart(xstart, ystart, length, interval) {
-      var xVal = xstart, yVal = ystart;
-      for(var i = 0; i < length; i++) {
-        yVal = yVal +  Math.round(5 + Math.random() *(-5-5));
-        yVal = Math.min(Math.max(yVal, 5), 90);
+        
+      var xVal = xstart.replace("\n", "").replace("\t",""), yVal = ystart;
+      
+      for(var i = 0; i < data.length; i+= 2) {
+        //yVal = yVal +  Math.round(5 + Math.random() *(-5-5));
+        
+        xVal = data[i].replace("\n", "").replace("\t","");
+        yVal = parseInt(data[i + 1]);
+        
         dataPoints.push({x: xVal,y: yVal});
-        xVal += interval;
+        //xVal += interval;
       }
+      
       if(!rangeChangedTriggered) {
           stockChart.options.navigator.slider.minimum = new Date(xVal - (90 * 1000));
       }

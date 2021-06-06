@@ -30,13 +30,19 @@
 </head>
 
 <body onload="displayGraph()">
-    
-    <?php
-    
-        $i = 0;
-        for ($i = 0; $i < 30; $i++) {
-        }
-    ?>
+        
+    <div style="visibility: collapse; height: 0;" id="chartData">
+          <?php 
+                $tempX = 0;
+                $tempY = 0;
+                for ($i = 0; $i < 30; $i++) {
+                    echo ($coordinates["x". $i] . ";" . $coordinates["y" . $i] . ";");
+                    $tempX = $coordinates["x". $i];
+                    $tempY = $coordinates["y". $i];
+                }
+                echo ($tempX . ";" . $tempY);
+            ?>
+    </div>
     
     <div class="body-wrraper">
         <div class="wrapper">

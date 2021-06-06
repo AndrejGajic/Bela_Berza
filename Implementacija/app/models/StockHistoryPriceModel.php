@@ -20,9 +20,9 @@ class StockHistoryPriceModel extends Model {
     
     public function getCoordinates(int $IdStock) {
         $db = \Config\Database::connect();
-        $sql = "select timestamp, price from stockhistoryprice";
+        $sql = "select distinct timestamp, price from stockhistoryprice where IdStock=? order by timestamp desc limit 30";
         $res = $db->query($sql, [$IdStock]);
-        return $res;
+        return $res->getResultObject();
     }
     
 }

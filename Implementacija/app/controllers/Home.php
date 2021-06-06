@@ -132,26 +132,22 @@ class Home extends BaseController
         
         $wrapper = array('volatileStocks'=>$volatileStocks = $stockModel->getVolatileStocks());
         
-        /*$stockHistoryPriceModel = new StockHistoryPriceModel();
+        $stockHistoryPriceModel = new StockHistoryPriceModel();
         $coordinatesResult = $stockHistoryPriceModel->getCoordinates($IdStock);
         $coordinates = array();
-        
-        $res = var_dump($coordinatesResult);
-        
-        echo "<script type='text/javascript'>alert('$res');</script>";
-           
+                           
         $cnt = 0;
         
         foreach($coordinatesResult as $coordinateXY) {
-            echo "<script type='text/javascript'>alert('$coordinateXY->price');</script>";
             $coordinates["x" . $cnt] = $coordinateXY->timestamp;
-            $coordinates["y" . $cnt] = $coordinateXY->timestamp;
-        }*/
+            $coordinates["y" . $cnt] = $coordinateXY->price;
+            $cnt++;
+        }
         
         $data = array_merge($data, $stockValues);
         $data = array_merge($data, $stockRates);
         $data = array_merge($data, $wrapper);
-        /*$data["coordinates"] = $coordinates;*/
+        $data["coordinates"] = $coordinates;
 
         return view('index.php',$data);
     }
