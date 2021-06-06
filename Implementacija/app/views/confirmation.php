@@ -225,7 +225,7 @@
 <script type="text/javascript" src="../assets/js/canvasjs.stock.min.js"></script>
 <script src="../assets/js/chart.js"></script>
 <script src="../assets/js/confirmation.js"></script>
-<script src="../assets/js/quantity_button.js"></script>
+<script src="../assets/js/script.js"></script>
 </body>
 
 </html>

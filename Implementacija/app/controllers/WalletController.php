@@ -11,7 +11,7 @@ use App\Models\CreditCardModel;
 use App\Models\TransactionModel;
 
 /** 
- * Luka Tomanović 0410/2018 ->index,payment,withdraw,createTransaction
+ * 
  * Andrej Gajic 0303/2018 -> index, getTransactions, filter, getUserActions, filterActions
 */
 
@@ -20,6 +20,7 @@ use App\Models\TransactionModel;
 * WalletController – klasa kontrolera za rad sa transakcijama
 *
 * @version 1.0
+* @author Luka Tomanović 0410/2018 ->index,payment,withdraw,createTransaction
 */
 
 class WalletController extends BaseController
@@ -77,7 +78,8 @@ class WalletController extends BaseController
     }
     
     /**
-    * payment funkcija koja se koristi pri uplati novca na račun korisnika veb aplikacije
+     * payment funkcija koja se koristi pri uplati novca na račun korisnika veb aplikacije
+     * @author Luka Tomanović
     */
     public function payment(){
         if(!$this->validate([
@@ -159,7 +161,8 @@ class WalletController extends BaseController
     }
     
     /**
-        * withdraw funkcija koja se koristi pri isplati novca na račun korisnika veb aplikacije
+     * withdraw funkcija koja se koristi pri isplati novca na račun korisnika veb aplikacije
+     * @author Luka Tomanović
     */
     public function withdraw(){
         
@@ -214,15 +217,16 @@ class WalletController extends BaseController
     }
     
     /**
-        * createTransaction funkcija koja koristi interno za evidentiranje transakcije u bazi
-        *
-        * @param User $user 
-        * @param BankAccount $bankAccount 
-        * @param float $amount 
-        * @param int $type 
-        * @param BankAccountModel $bankAccountModel 
-        * @param UserModel $user 
-        *  
+     * createTransaction funkcija koja koristi interno za evidentiranje transakcije u bazi
+     *
+     * @param User $user 
+     * @param BankAccount $bankAccount 
+     * @param float $amount 
+     * @param int $type 
+     * @param BankAccountModel $bankAccountModel 
+     * @param UserModel $user 
+     * 
+     * @author Luka Tomanović 
     */
     private function createTransaction($user,$bankAccount,$amount,$type, $bankAccountModel,$userModel){      
         if($type==1){
@@ -299,6 +303,7 @@ class WalletController extends BaseController
      * Funkcija za filtriranje prikaza kupljenih, odnosno prodatih akcija korisnika
      */
     public function filterActions() {
+        
         if($this->request->getMethod() == "get") {
             return redirect()->to(site_url("WalletController"));
         }
@@ -308,5 +313,6 @@ class WalletController extends BaseController
         else $this->actionType = 2;
         $this->session->set("actionType", $this->actionType);
         return redirect()->to(site_url("WalletController"));
+
     }
 }

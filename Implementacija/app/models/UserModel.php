@@ -23,4 +23,5 @@ class UserModel extends Model
         return $this->where("email", $email)->first(); // mora samo jedan da bude svejedno
     }
 
+    
 }

@@ -1,12 +1,10 @@
-/* Luka Tomanovic 0410/2018
-   Kosta Matijevic 0034/2018 */
+function displayGraph () {
+    
+    var data = document.getElementById("chartData").value.replace("\n", "").replace("\t","").trim().split(";");
 
-import axios from "axios";
-
-var dataPoints = [];
-
-window.onload = function () {
-    var currentDate = new Date(), rangeChangedTriggered = false;
+    
+    var dataPoints = [], currentDate = new Date(), rangeChangedTriggered = false;
+    
     var stockChart = new CanvasJS.StockChart("chartContainer",{
       theme: "light2",
       title:{
@@ -19,7 +17,7 @@ window.onload = function () {
         axisX: {
            crosshair: {
             enabled: true,
-            valueFormatString: "MMM DD, YYYY HH:mm:ss"
+            valueFormatString: "YYYY-MM-DD HH:mm:ss"
           }
         },
         axisY: {
@@ -38,14 +36,14 @@ window.onload = function () {
         data: [{
           type: "line",
           name: "Pageviews",
-          xValueFormatString: "MMM DD, YYYY HH:mm:ss",
+          xValueFormatString: "YYYY-MM-DD HH:mm:ss",
           xValueType: "dateTime",
           dataPoints : dataPoints,
         }]
       }],
       navigator: {
         slider: {
-          minimum: new Date(currentDate.getTime() - (90 * 1000))
+          minimum: new Date(data[data.lenght-3])
         }
       },
       rangeSelector: {
@@ -54,42 +52,29 @@ window.onload = function () {
     });
     
     
-    var dataCount = 30, ystart = 50, interval = 1000, xstart = (currentDate.getTime() - (700 * 1000));
+    var dataCount = 30, xstart = data[0], interval = 1000, ystart = parseFloat(data[1]);
     updateChart(xstart, ystart, dataCount, interval);
+    
     
     function updateChart(xstart, ystart, length, interval) {
         
-        const data = null;
-
-        const xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
-
-        xhr.addEventListener("readystatechange", function () {
-                if (this.readyState === this.DONE) {
-                        console.log(this.responseText);
-                }
-        });
-
-        xhr.open("GET", "https://twelve-data1.p.rapidapi.com/time_series?symbol=AMZN&interval=1min&outputsize=30&format=json/");
-        xhr.setRequestHeader("x-rapidapi-key", "4c9b48580dmsh1474e734b15ec04p1bf687jsn1b7cacdeea16");
-        xhr.setRequestHeader("x-rapidapi-host", "twelve-data1.p.rapidapi.com");
-
-        xhr.send(data);
-        
-        alert(data);
-        
-        
       var xVal = xstart, yVal = ystart;
-      for(var i = 0; i < length; i++) {
-        yVal = yVal +  Math.round(5 + Math.random() *(-5-5));
-        yVal = Math.min(Math.max(yVal, 5), 90);
+      
+      for(var i = 0; i < data.length-2; i+= 2) {
+        //yVal = yVal +  Math.round(5 + Math.random() *(-5-5));
+        
+        datum = new Date(data[i].replace("\n", "").replace("\t",""));
+        xVal=datum.getTime();
+        yVal = parseFloat(data[i + 1]);
+        
         dataPoints.push({x: xVal,y: yVal});
-        xVal += interval;
+        //xVal += interval;
       }
+      
       if(!rangeChangedTriggered) {
-          stockChart.options.navigator.slider.minimum = new Date(xVal - (90 * 1000));
+          stockChart.options.navigator.slider.minimum = new Date(data[data.lenght-3]);
       }
-      stockChart.options.charts[0].axisY.stripLines[0].value =  dataPoints[dataPoints.length - 1].y;
+      stockChart.options.charts[0].axisY.stripLines[0].value =  dataPoints[0].y;
       stockChart.options.charts[0].axisY.stripLines[0].label = stockChart.options.charts[0].axisY.stripLines[0]["value"];
       var turn=Math.random()%2;
       stockChart.options.charts[0].color="green";
@@ -97,6 +82,6 @@ window.onload = function () {
       dataCount = 1;
       ystart = yVal;
       stockChart.render();
-      setTimeout(function() { updateChart(xstart, ystart, dataCount, interval); }, 1000);
+      //setTimeout(function() { updateChart(xstart, ystart, dataCount, interval); }, 1000);
     }
   }
