@@ -72,7 +72,11 @@ class CollectionController extends BaseController
         return view('collection.php',$data);
     }
 
-    
+    /**
+     * funkcija za kupovinu akcija na berzi
+     * 
+     * @author Luka Tomanović
+    */
     public function sellStock(){
 
         if(!$this->validate([
