@@ -5,5 +5,23 @@
         <group>
             <file>file:/C:/wamp64/www/Bela_Berza/Implementacija/app/controllers/Home.php</file>
         </group>
+        <group name="ProizvodnjaAutoobila">
+            <file>file:/E:/wamp64/www/Bela_Berza/Implementacija/app/controllers/Home.php</file>
+            <file>file:/E:/wamp64/www/Bela_Berza/Implementacija/app/controllers/ServerController.php</file>
+            <file>file:/E:/wamp64/www/Bela_Berza/Implementacija/app/controllers/WalletController.php</file>
+            <file>file:/E:/wamp64/www/Bela_Berza/Implementacija/app/views/test.php</file>
+            <file>file:/E:/wamp64/www/Bela_Berza/Implementacija/app/views/privileges.php</file>
+            <file>file:/E:/wamp64/www/Bela_Berza/Implementacija/app/views/profile.php</file>
+            <file>file:/E:/wamp64/www/Bela_Berza/Implementacija/assets/css/style.css</file>
+            <file>file:/E:/wamp64/www/Bela_Berza/Implementacija/app/controllers/CollectionController.php</file>
+            <file>file:/E:/wamp64/www/Bela_Berza/Implementacija/assets/css/profile_style.css</file>
+            <file>file:/E:/wamp64/www/Bela_Berza/Implementacija/app/views/stockTransactions.php</file>
+            <file>file:/E:/wamp64/www/Bela_Berza/Implementacija/app/models/BankAccountModel.php</file>
+            <file>file:/E:/wamp64/www/Bela_Berza/Implementacija/app/views/index.php</file>
+            <file>file:/E:/wamp64/www/Bela_Berza/Implementacija/app/views/wallet.php</file>
+            <file>file:/E:/wamp64/www/Bela_Berza/Implementacija/assets/js/script.js</file>
+            <file>file:/E:/wamp64/www/Bela_Berza/Implementacija/app/views/login.php</file>
+            <file>file:/E:/wamp64/www/Bela_Berza/Implementacija/app/views/server.php</file>
+        </group>
     </open-files>
 </project-private>

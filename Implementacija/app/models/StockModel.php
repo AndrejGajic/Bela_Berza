@@ -115,5 +115,12 @@ class StockModel extends Model
         $query = $db->query($sql, [$companyName]);
         return $query->getResultObject();
     }
+    
+    public function getActions() {
+        $db = \Config\Database::connect();
+        $sql = "select companyName, action, weight, imagePath from stock where weight > 0 order by weight desc";
+        $query = $db->query($sql);
+        return $query->getResultObject();
+    }
 }
 

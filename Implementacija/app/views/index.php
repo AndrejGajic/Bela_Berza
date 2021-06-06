@@ -449,7 +449,7 @@
                                                         data-toggle="modal" data-target="#exampleModalCenter"
                                                         onclick=\'setImageModal("' . $vs->imagePath . '",' . $vs->value . ','.$vs->companyName.')\'>KUPI</button>
                                                     </td>');
-                                                echo ('<tr>');
+                                                echo ('</tr>');
                                             }
                                         ?>
                                         <!--
@@ -502,7 +502,31 @@
                             </div>
                             <div class="container-fluid" id="asistentWrapper">
                                 <div class="row" id="asistentHeader"> <h3>TRADE ASSISTANT</h3></div>
-                                <div class="row <?php echo (' '.$assistantClass);?>" id="asistent"> </div>
+                                <div class="row <?php echo (' '.$assistantClass);?>" id="asistent"> 
+                                    <?php
+                                    if($showPromo==null){
+                                        echo '<div class="col-12">';
+                                            echo '<table class="table">';
+                                                echo '<tbody>';
+
+                                                        foreach ($actions as $action) {
+                                                            echo ('<tr>');
+                                                            echo ('<td class="vol-logo"><img class="vol-logo-img" src="' . $action["imagePath"] . '" alt=""></td>');
+                                                            echo ('<td class="vol-name">' . $action["companyName"] . '</td>');
+                                                            echo ('<td class="vol-price">' . $action["action"] .'</td>');
+
+                                                            echo '<td>';
+                                                            echo ('<progress value="' . $action["weight"] * 20 . '" max="100">' . $action["weight"] .  '</progress>');
+                                                            echo '</td>';
+                                                            echo ('</tr>');
+                                                        }
+
+                                                echo '</tbody>';
+                                            echo '</table>';
+                                        echo '</div>' ; 
+                                    }
+                                    ?>
+                                </div>
                                  <?php 
                                     if($showPromo) { echo('
                                         <div class="row" id="asistentPromo"> 

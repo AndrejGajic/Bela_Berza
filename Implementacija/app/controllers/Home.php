@@ -135,7 +135,15 @@ class Home extends BaseController
         $stockHistoryPriceModel = new StockHistoryPriceModel();
         $coordinatesResult = $stockHistoryPriceModel->getCoordinates($IdStock);
         $coordinates = array();
-                           
+        
+        $actionRes = $stockModel->getActions();
+        $actions = array();
+
+        foreach ($actionRes as $actionEl) {
+            $action = array("action"=>$actionEl->action, "companyName"=>$actionEl->companyName, "weight"=>$actionEl->weight, "imagePath"=>$actionEl->imagePath);
+            array_push($actions, $action);
+        }
+        
         $cnt = 0;
         
         foreach($coordinatesResult as $coordinateXY) {
@@ -148,6 +156,7 @@ class Home extends BaseController
         $data = array_merge($data, $stockRates);
         $data = array_merge($data, $wrapper);
         $data["coordinates"] = $coordinates;
+        $data["actions"]=$actions;
 
         return view('index.php',$data);
     }
