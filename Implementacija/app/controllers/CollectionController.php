@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 /**
+ * @author Luka Tomanović 0410/2018
  * Kosta Matijevic 0034/2018
  *
  * CollectionController - klasa za prikaz riznice akcija i njihovu prodaju
