@@ -917,7 +917,7 @@
 <XPD:REF name="Namespace">R96AoLDBBkSMyCJrzN6n7QAA</XPD:REF>
 <XPD:ATTR name="#OwnedDiagrams" type="integer">1</XPD:ATTR>
 <XPD:OBJ name="OwnedDiagrams[0]" type="UMLUseCaseDiagram" guid="2rmAlxsGVUKmMJf6aEwVkAAA">
-<XPD:ATTR name="Name" type="string">Pregled riznice akcija</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">UseCaseDiagram1</XPD:ATTR>
 <XPD:REF name="DiagramOwner">ANGGJhYTqEq3kLtguoVlIQAA</XPD:REF>
 <XPD:OBJ name="DiagramView" type="UMLUseCaseDiagramView" guid="CxVw7SqQdEiUDGp/yYvYgAAA">
 <XPD:REF name="Diagram">2rmAlxsGVUKmMJf6aEwVkAAA</XPD:REF>
