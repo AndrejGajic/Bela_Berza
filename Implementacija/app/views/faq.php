@@ -121,9 +121,15 @@
                 <br>
                 <div class="row">
                     <div class="col-12">
-                        <h5> 1. Ko su korisnici ovog sistema? </h5>
+                        <h4> 1. Ko su korisnici ovog sistema? </h4>
                         <p>
-                            
+                            Većini ljudi trgovina na berzi izgleda kao mistična i nedostižna delatnost 
+                            ekonomije i tehnologije. Cilj našeg projekta je da omogućimo početnicima i 
+                            entuzijastima da se upoznaju sa osnovama ovog načina trgovine i da steknu  
+                            Tim: Rising Edge [5]
+                            sposobnost trgovine na berzi. Sa druge strane, ovaj projekat će omogućiti 
+                            profesionalnim trgovcima da trguju i imaju pregled vrednosti akcija.
+
                         </p>
                     </div>
                 </div>
@@ -131,39 +137,44 @@
                     <div class="col-12">
                         <h4> 2. Sta je volatile stock? </h4>
                         <p>
-                            
+                            Volatile stock, ili nepostojana akcija, je akcija cija vrednost najvise fluktuira u poslednje vreme i ciju vrednost je veoma tesko predvideti
+                            u narednom vremenskom periodu zbog svoje nestabilnosti. Ove akcije mogu biti najinteresantnije za trgovinu.
                         </p>
                     </div>
                 </div>  
                 <div class="row">
                       <div class="col-12">
-                          <h3> 3. Koji su tipovi korisnika u sistemu? </h3>
+                          <h4> 3. Koji su tipovi korisnika u sistemu? </h4>
                           <p>
-
+                            Korisnici ovog sistema se dele na 2 kategorije: obican korisnik (User) i privilegovani korisnik (Privileged User). Privilegovanom korisniku
+                            su dostupne usluge asistenta u trgovini (trade assistant), dok su ostale funkcionalnosti dostupne i obicnim korisnicima. Ukoliko
+                            nemate nalog, pristupate sistemu kao gost.
                           </p>
                       </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <h3> 4. Kako mozete postati privilegovan korisnik? </h3>
+                        <h4> 4. Kako mozete postati privilegovan korisnik? </h4>
                         <p>
-                            
+                            Ukoliko zelite da postanete privilegovani korisnik, mozete otici na sekciju Moj profil, pa Privilegije, i tu mozete zatraziti da
+                            postanete privilegovani korisnik. Usluga prelaska u status privilegovanog korisnika se naplacuje 30 evra i vas status vazi godinu dana
+                            nakon kupovine. Ukoliko nemate novca na vasem nalogu, nece vam biti odobrena usluga.
                         </p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <h3> 5. Koje sve akcije imamo na raspolaganju? </h3>
+                        <h4> 5. Koje sve akcije imamo na raspolaganju? </h4>
                         <p>
-                            
+                            Trenutno na raspolaganju imamo 12 razlicitih akcija: Microsoft, Apple, Amazon, Google, Facebook, Uber, Intel, Tesla, BMW, McDonald's, Samsung i Xiaomi.
                         </p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <h3> 6. Koje je radno vreme berze? </h3>
+                        <h4> 6. Koje je radno vreme berze? </h4>
                         <p>
-                            
+                            Radno vreme berze, tj. vreme u kojem se vrsi promena vrednosti akcija, je od 09:30 do 16:00.
                         </p>
                     </div>
                 </div>  
