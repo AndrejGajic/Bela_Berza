@@ -1,7 +1,7 @@
 function displayGraph () {
     
-    var data = document.getElementById("chartData").innerHTML.replace("\n", "").replace("\t","").trim().split(";");
-    alert(data);
+    var data = document.getElementById("chartData").value.replace("\n", "").replace("\t","").trim().split(";");
+
     
     var dataPoints = [], currentDate = new Date(), rangeChangedTriggered = false;
     
@@ -43,7 +43,7 @@ function displayGraph () {
       }],
       navigator: {
         slider: {
-          minimum: new Date(currentDate.getTime() - (90 * 1000))
+          minimum: new Date(data[data.lenght-3])
         }
       },
       rangeSelector: {
@@ -52,28 +52,29 @@ function displayGraph () {
     });
     
     
-    var dataCount = 30, xstart = data[0], interval = 1000, ystart = parseInt(data[1]);
+    var dataCount = 30, xstart = data[0], interval = 1000, ystart = parseFloat(data[1]);
     updateChart(xstart, ystart, dataCount, interval);
     
     
     function updateChart(xstart, ystart, length, interval) {
         
-      var xVal = xstart.replace("\n", "").replace("\t",""), yVal = ystart;
+      var xVal = xstart, yVal = ystart;
       
-      for(var i = 0; i < data.length; i+= 2) {
+      for(var i = 0; i < data.length-2; i+= 2) {
         //yVal = yVal +  Math.round(5 + Math.random() *(-5-5));
         
-        xVal = data[i].replace("\n", "").replace("\t","");
-        yVal = parseInt(data[i + 1]);
+        datum = new Date(data[i].replace("\n", "").replace("\t",""));
+        xVal=datum.getTime();
+        yVal = parseFloat(data[i + 1]);
         
         dataPoints.push({x: xVal,y: yVal});
         //xVal += interval;
       }
       
       if(!rangeChangedTriggered) {
-          stockChart.options.navigator.slider.minimum = new Date(xVal - (90 * 1000));
+          stockChart.options.navigator.slider.minimum = new Date(data[data.lenght-3]);
       }
-      stockChart.options.charts[0].axisY.stripLines[0].value =  dataPoints[dataPoints.length - 1].y;
+      stockChart.options.charts[0].axisY.stripLines[0].value =  dataPoints[0].y;
       stockChart.options.charts[0].axisY.stripLines[0].label = stockChart.options.charts[0].axisY.stripLines[0]["value"];
       var turn=Math.random()%2;
       stockChart.options.charts[0].color="green";
@@ -81,6 +82,6 @@ function displayGraph () {
       dataCount = 1;
       ystart = yVal;
       stockChart.render();
-      setTimeout(function() { updateChart(xstart, ystart, dataCount, interval); }, 1000);
+      //setTimeout(function() { updateChart(xstart, ystart, dataCount, interval); }, 1000);
     }
   }

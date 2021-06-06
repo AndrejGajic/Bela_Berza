@@ -27,7 +27,6 @@ use App\Models\UserOwnsStockModel;
 
 class Home extends BaseController
 {
-    
     static $apiKeys = array("4c9b48580dmsh1474e734b15ec04p1bf687jsn1b7cacdeea16", "596939d60emsh17dede5c0ed3951p18cf6djsn7674766f4fde", "25161a4a2fmsh56563b0f98b3758p197dd6jsn6b84d98ba669", "f1e65fcca9mshafcbddf30bc160fp1a7e14jsna37a277cf664", "11df2299eemshed10c079dedf5a7p1d29e6jsn059e2f0c2060");
     
     /**
@@ -35,12 +34,13 @@ class Home extends BaseController
      * prosledjuje ga funkciji za prikaz pocetne stranice
      * Ovde se korisnik preusmerava nakon Logina
      */
-    public function index($IdStock = 1)   
+    public function index()   
     {        
 	    //$this->session->destroy();
         //$this->session->destroy();
         //$this->session->set('IdAdministrator',1);
-
+        $IdStock= $this->session->get("activeIdStock");
+        if($IdStock==null)$IdStock=1;
         $adminId = $this->session->get('IdAdministrator');
 
         //administrator je prijavljen
@@ -247,7 +247,9 @@ class Home extends BaseController
 
     
     public function setChartTarget($IdStock) {
-        return redirect()->to(site_url("Home/index/$IdStock"));
+        $this->session->set("activeIdStock",$IdStock);
+        //return view("test.php",['data'=> $this->session->get("activeIdStock")]);
+        return redirect()->to(site_url("Home"));
     }
 
 }

@@ -31,7 +31,7 @@
 
 <body onload="displayGraph()">
         
-    <div style="visibility: collapse; height: 0;" id="chartData">
+    <input type="hidden" id="chartData" value="
           <?php 
                 $tempX = 0;
                 $tempY = 0;
@@ -41,8 +41,8 @@
                     $tempY = $coordinates["y". $i];
                 }
                 echo ($tempX . ";" . $tempY);
-            ?>
-    </div>
+            ?>">
+    
     
     <div class="body-wrraper">
         <div class="wrapper">
@@ -220,7 +220,9 @@
                             onclick="setImageModal('../assets/images/microsoft.png', <?php echo($MSFT); ?>,'MSFT')">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
-                        <img src="../assets/images/apple.png" alt="">
+                        <a href="<?php echo site_url('Home/setChartTarget/2') ?>">
+                            <img src="../assets/images/apple.png" alt="">
+                        </a>
                         <p class="price">
                             <?php
                                 echo($AAPL);
@@ -237,7 +239,9 @@
                             onclick="setImageModal('../assets/images/apple.png', <?php echo($AAPL); ?>,'AAPL' )">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
-                        <img src="../assets/images/amazon.png" alt="">
+                        <a href="<?php echo site_url('Home/setChartTarget/3') ?>">
+                            <img src="../assets/images/amazon.png" alt="">
+                        </a>
                         <p class="price">
                             <?php
                                 echo($AMZN);
@@ -254,7 +258,9 @@
                             onclick="setImageModal('../assets/images/amazon.png', <?php echo($AMZN); ?>,'AMZN')">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
-                        <img src="../assets/images/google.png" alt="">
+                        <a href="<?php echo site_url('Home/setChartTarget/4') ?>">
+                            <img src="../assets/images/google.png" alt="">
+                        </a>
                         <p class="price">
                             <?php
                                 echo($GOOGL);
@@ -270,7 +276,9 @@
                             onclick="setImageModal('../assets/images/google.png', <?php echo($GOOGL); ?>,'GOOGL')">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
-                        <img src="../assets/images/facebook.png" alt="">
+                        <a href="<?php echo site_url('Home/setChartTarget/5') ?>">
+                            <img src="../assets/images/facebook.png" alt="">
+                        </a>
                         <p class="price">
                             <?php
                                 echo($FB);
@@ -286,7 +294,9 @@
                             onclick="setImageModal('../assets/images/facebook.png', <?php echo($FB); ?>,'FB')">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
-                        <img src="../assets/images/uber.png" alt="">
+                        <a href="<?php echo site_url('Home/setChartTarget/6') ?>">
+                            <img src="../assets/images/uber.png" alt="">
+                        </a>
                         <p class="price">
                             <?php
                                 echo($UBER);
@@ -302,7 +312,9 @@
                             onclick="setImageModal('../assets/images/uber.png', <?php echo($UBER); ?>,'UBER')">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
-                        <img src="../assets/images/intel.png" alt="">
+                        <a href="<?php echo site_url('Home/setChartTarget/7') ?>">
+                            <img src="../assets/images/intel.png" alt="">
+                        </a>
                         <p class="price">
                             <?php
                                 echo($INTC);
@@ -318,7 +330,9 @@
                             onclick="setImageModal('../assets/images/intel.png', <?php echo($INTC); ?>,'INTC')">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
-                        <img src="../assets/images/tesla.png" alt="">
+                        <a href="<?php echo site_url('Home/setChartTarget/8') ?>">
+                            <img src="../assets/images/tesla.png" alt="">
+                        </a>
                         <p class="price">
                             <?php
                                 echo($TSLA);
@@ -334,7 +348,9 @@
                             onclick="setImageModal('../assets/images/tesla.png', <?php echo($TSLA); ?>,'TSLA')">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
-                        <img src="../assets/images/bmw.png" alt="">
+                        <a href="<?php echo site_url('Home/setChartTarget/9') ?>">
+                            <img src="../assets/images/bmw.png" alt="">
+                        </a>
                         <p class="price">
                             <?php
                                 echo($BAMXF);
@@ -350,7 +366,9 @@
                             onclick="setImageModal('../assets/images/bmw.png', <?php echo($BAMXF); ?>,'BAMXF')">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
-                        <img src="../assets/images/mcdonalds.png" alt="">
+                        <a href="<?php echo site_url('Home/setChartTarget/10') ?>">
+                            <img src="../assets/images/mcdonalds.png" alt="">
+                        </a>
                         <p class="price">
                             <?php
                                 echo($MCD);
@@ -366,7 +384,9 @@
                             onclick="setImageModal('../assets/images/mcdonalds.png', <?php echo($MCD); ?>)">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
-                        <img src="../assets/images/samsung.png" alt="">
+                        <a href="<?php echo site_url('Home/setChartTarget/11') ?>">
+                            <img src="../assets/images/samsung.png" alt="">
+                        </a>
                         <p class="price">
                             <?php
                                 echo($SSNLF);
@@ -382,7 +402,9 @@
                             onclick="setImageModal('../assets/images/samsung.png', <?php echo($SSNLF); ?>,'SSNLF')">KUPI</button>
                     </div>
                     <div class="col-6 col-md-4 col-lg-2 col-xl-1 stock">
-                        <img src="../assets/images/xiaomi.png" alt="">
+                        <a href="<?php echo site_url('Home/setChartTarget/12') ?>">
+                            <img src="../assets/images/xiaomi.png" alt="">
+                        </a>
                         <p class="price">
                             <?php
                                 echo($XIACF);
