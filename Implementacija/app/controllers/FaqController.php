@@ -26,12 +26,6 @@ class FaqController extends BaseController {
      */
     public function index() {
         $userId = $this->session->get("IdUser");
-        if(!$userId){
-            return redirect()->to("/login");
-        }
-        if($this->session->get('IdAdministrator')){
-             return redirect()->to("/home");
-        }
         $privUserId = (new PrivilegedUserModel())->find($userId);
 
         //prijavljen je privilegovani korisnik
