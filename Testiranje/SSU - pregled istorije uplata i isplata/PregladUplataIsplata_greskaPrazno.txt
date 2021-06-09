@@ -1,0 +1,16 @@
+Running 'PregladUplataIsplata_greskaPrazno'
+01:52:31
+1.
+open on http://localhost/bela_berza/public/WalletController OK
+01:52:32
+2.
+setWindowSize on 1920x1040 OK
+01:52:32
+3.
+click on css=form:nth-child(5) .btn OK
+01:52:32
+4.
+assertText on id=walletTable with value Nemate ni uplate ni isplate na vasem nalogu! OK
+01:52:33
+'PregladUplataIsplata_greskaPrazno' completed successfully
+01:52:33

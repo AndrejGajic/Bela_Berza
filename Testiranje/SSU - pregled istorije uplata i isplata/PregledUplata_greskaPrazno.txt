@@ -1,0 +1,25 @@
+Running 'PregledUplata_greskaPrazno'
+01:50:37
+1.
+open on http://localhost/bela_berza/public/WalletController OK
+01:50:38
+2.
+setWindowSize on 1920x1040 OK
+01:50:38
+3.
+click on name=tip OK
+01:50:38
+4.
+select on name=tip with value label=Uplate OK
+01:50:39
+5.
+click on name=tip OK
+01:50:39
+6.
+click on css=form:nth-child(5) .btn OK
+01:50:39
+7.
+assertText on id=walletTable with value Nema uplata na vas nalog! OK
+01:50:39
+'PregledUplata_greskaPrazno' completed successfully
+01:50:40

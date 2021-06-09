@@ -1,0 +1,28 @@
+Running 'PregledTransakcijaKupovine_uspesno'
+01:45:32
+1.
+open on http://localhost/bela_berza/public/WalletController OK
+01:45:33
+2.
+setWindowSize on 1936x1056 OK
+01:45:33
+3.
+click on name=tipAkcije OK
+01:45:33
+4.
+select on name=tipAkcije with value label=Kupovine OK
+01:45:34
+5.
+click on name=tipAkcije OK
+01:45:35
+6.
+click on css=form:nth-child(8) .btn OK
+01:45:36
+7.
+assertText on css=tr:nth-child(1) > .wallet-out:nth-child(2) with value Kupovina OK
+01:45:37
+8.
+assertText on css=tr:nth-child(2) > .wallet-out:nth-child(2) with value Kupovina OK
+01:45:38
+'PregledTransakcijaKupovine_uspesno' completed successfully
+01:45:39

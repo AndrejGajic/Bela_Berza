@@ -1,0 +1,16 @@
+Running 'PregledFAQKorisnik_uspesno'
+01:29:44
+1.
+open on http://localhost/bela_berza/public/home OK
+01:29:45
+2.
+setWindowSize on 1936x1056 OK
+01:29:45
+3.
+click on css=li:nth-child(5) span OK
+01:29:45
+4.
+assertText on css=.row:nth-child(5) h4 with value 1. Ko su korisnici ovog sistema? OK
+01:29:46
+'PregledFAQKorisnik_uspesno' completed successfully
+01:29:47

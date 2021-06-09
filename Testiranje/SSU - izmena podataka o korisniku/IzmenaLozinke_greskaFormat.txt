@@ -1,0 +1,30 @@
+Running 'IzmenaLozinke_greskaFormat'
+01:04:17
+1.
+open on http://localhost/bela_berza/public/profile OK
+01:04:18
+2.
+click on css=#profPassword .svg-inline--fa OK
+01:04:18
+3.
+click on name=oldPassword OK
+01:04:19
+4.
+type on name=oldPassword with value pan123 OK
+01:04:20
+5.
+type on name=newPassword with value ppan123 OK
+01:04:21
+6.
+click on name=newPasswordConfirmation OK
+01:04:22
+7.
+type on name=newPasswordConfirmation with value ppan123 OK
+01:04:23
+8.
+click on css=.form-control OK
+01:04:24
+9.
+assertText on css=.alert with value ×\nPromena odbijena - nova lozinka mora sadrzati bar jedno veliko slovo! OK
+01:04:25
+'IzmenaLozinke_greskaFormat' completed successfully

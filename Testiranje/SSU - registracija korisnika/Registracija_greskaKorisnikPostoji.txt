@@ -1,0 +1,39 @@
+Running 'Registracija_greskaKorisnikPostoji'
+00:50:39
+1.
+open on /bela_berza/public/ OK
+00:50:40
+2.
+click on linkText=Register OK
+00:50:40
+3.
+click on css=.login-html > .tab:nth-child(4) OK
+00:50:42
+4.
+click on name=nameReg OK
+00:50:43
+5.
+type on name=nameReg with value Kosta OK
+00:50:44
+6.
+type on name=surnameReg with value Matijevic OK
+00:50:45
+7.
+type on id=usernameInputField with value kostamat OK
+00:50:46
+8.
+type on name=emailReg with value leko.matijevic@gmail.com OK
+00:50:47
+9.
+click on name=passwordReg OK
+00:50:48
+10.
+type on name=passwordReg with value Kosta123 OK
+00:50:49
+11.
+click on css=.btn-outline-danger OK
+00:50:50
+12.
+assertText on css=.alert with value ×\nVec ste registrovani sa emailom leko.matijevic@gmail.com! OK
+00:50:51
+'Registracija_greskaKorisnikPostoji' completed successfully

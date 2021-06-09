@@ -1,0 +1,24 @@
+Running 'Kupovina_neuspesna'
+00:54:32
+1.
+open on /bela_berza/public/Home OK
+00:54:32
+2.
+click on id=btnApple OK
+00:54:32
+3.
+mouseOver on id=btnApple OK
+00:54:33
+4.
+mouseOut on id=btnApple OK
+00:54:34
+5.
+click on css=.fa-plus > path OK
+00:54:35
+6.
+click on css=.btn-outline-success OK
+00:54:36
+7.
+assertText on css=.alert with value ×\nNeuspešna kupovina akcije/a! Nažalost, nije mogu?e kupiti zahtevani broj akcija. Proverite njihovu trenutnu dostupnost i pokušajte ponovo. OK
+00:54:37
+'Kupovina_neuspesna' completed successfully

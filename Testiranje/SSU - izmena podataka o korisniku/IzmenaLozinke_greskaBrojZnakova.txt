@@ -1,0 +1,34 @@
+Running 'IzmenaLozinke_greskaBrojZnakova'
+01:16:31
+1.
+open on http://localhost/bela_berza/public/profile OK
+01:16:32
+2.
+setWindowSize on 1936x1056 OK
+01:16:32
+3.
+click on css=#profPassword .svg-inline--fa OK
+01:16:32
+4.
+mouseOver on css=.form-control OK
+01:16:33
+5.
+click on name=oldPassword OK
+01:16:34
+6.
+type on name=oldPassword with value Petar12 OK
+01:16:35
+7.
+type on name=newPassword with value Peta1 OK
+01:16:36
+8.
+type on name=newPasswordConfirmation with value Peta1 OK
+01:16:37
+9.
+click on css=.form-control OK
+01:16:38
+10.
+assertText on css=.alert with value ×\nPromena odbijena - nova lozinka mora imati izmedju 6 i 10 karaktera! OK
+01:16:39
+'IzmenaLozinke_greskaBrojZnakova' completed successfully
+01:16:40

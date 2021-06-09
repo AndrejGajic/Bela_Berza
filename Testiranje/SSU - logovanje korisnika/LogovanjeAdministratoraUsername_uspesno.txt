@@ -1,0 +1,24 @@
+Running 'LogovanjeAdministratoraUsername_uspesno'
+00:43:27
+1.
+open on /bela_berza/public/ OK
+00:43:27
+2.
+Trying to find linkText=Login... OK
+00:43:27
+3.
+click on id=nameInputField OK
+00:43:29
+4.
+type on id=nameInputField with value admin OK
+00:43:30
+5.
+type on id=surnameInputField with value admin123 OK
+00:43:31
+6.
+click on css=.btn-outline-success OK
+00:43:32
+7.
+assertText on css=li:nth-child(2) span with value Pregled registracija OK
+00:43:33
+'LogovanjeAdministratoraUsername_uspesno' completed successfully

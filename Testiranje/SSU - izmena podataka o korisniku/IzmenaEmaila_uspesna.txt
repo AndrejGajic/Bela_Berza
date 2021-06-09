@@ -1,0 +1,28 @@
+Running 'IzmenaEmaila_uspesna'
+01:21:23
+1.
+open on http://localhost/bela_berza/public/profile OK
+01:21:23
+2.
+setWindowSize on 1936x1056 OK
+01:21:23
+3.
+click on css=#profName .svg-inline--fa OK
+01:21:23
+4.
+click on name=newEmail OK
+01:21:24
+5.
+type on name=newEmail with value petarpan@ppmail.com OK
+01:21:25
+6.
+type on name=passwordConfirmation with value Petar12 OK
+01:21:26
+7.
+click on css=#emailModal .btn-outline-success OK
+01:21:27
+8.
+assertText on css=.alert with value ×\nPromena prihvacena - vasa e-mail adresa je uspesno promenjena! OK
+01:21:28
+'IzmenaEmaila_uspesna' completed successfully
+01:21:29

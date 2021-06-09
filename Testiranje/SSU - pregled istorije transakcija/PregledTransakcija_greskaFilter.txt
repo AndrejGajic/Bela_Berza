@@ -1,0 +1,25 @@
+Running 'PregledTransakcija_greskaFilter'
+01:48:08
+1.
+open on http://localhost/bela_berza/public/WalletController OK
+01:48:09
+2.
+setWindowSize on 1920x1040 OK
+01:48:09
+3.
+click on name=tipAkcije OK
+01:48:09
+4.
+select on name=tipAkcije with value label=Kupovine OK
+01:48:09
+5.
+click on name=tipAkcije OK
+01:48:09
+6.
+click on css=form:nth-child(8) .btn OK
+01:48:10
+7.
+assertText on xpath=(//div[@id='walletTable'])[2] with value Ne postoje akcije sa zadatim filtrom! OK
+01:48:10
+'PregledTransakcija_greskaFilter' completed successfully
+01:48:10

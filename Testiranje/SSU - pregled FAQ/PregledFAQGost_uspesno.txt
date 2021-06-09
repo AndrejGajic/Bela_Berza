@@ -1,0 +1,16 @@
+Running 'PregledFAQGost_uspesno'
+01:32:02
+1.
+open on http://localhost/bela_berza/public/home OK
+01:32:03
+2.
+setWindowSize on 1936x1056 OK
+01:32:03
+3.
+click on linkText=FAQ OK
+01:32:03
+4.
+assertText on css=.row:nth-child(5) h4 with value 1. Ko su korisnici ovog sistema? OK
+01:32:04
+'PregledFAQGost_uspesno' completed successfully
+01:32:05

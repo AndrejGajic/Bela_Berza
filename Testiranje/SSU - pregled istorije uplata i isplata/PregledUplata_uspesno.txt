@@ -1,0 +1,25 @@
+Running 'PregledUplata_uspesno'
+01:54:31
+1.
+open on http://localhost/bela_berza/public/WalletController OK
+01:54:32
+2.
+setWindowSize on 1936x1056 OK
+01:54:32
+3.
+click on name=tip OK
+01:54:32
+4.
+select on name=tip with value label=Uplate OK
+01:54:33
+5.
+click on name=tip OK
+01:54:34
+6.
+click on css=form:nth-child(5) .btn OK
+01:54:35
+7.
+assertText on css=.wallet-in:nth-child(2) with value Uplata OK
+01:54:36
+'PregledUplata_uspesno' completed successfully
+01:54:37

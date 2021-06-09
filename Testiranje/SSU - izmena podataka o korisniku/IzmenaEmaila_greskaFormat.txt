@@ -1,0 +1,28 @@
+Running 'IzmenaEmaila_greskaFormat'
+01:20:04
+1.
+open on http://localhost/bela_berza/public/profile OK
+01:20:05
+2.
+setWindowSize on 1936x1056 OK
+01:20:05
+3.
+click on css=#profName .svg-inline--fa OK
+01:20:05
+4.
+click on name=newEmail OK
+01:20:06
+5.
+type on name=newEmail with value petarpan@pmail OK
+01:20:07
+6.
+type on name=passwordConfirmation with value Petar12 OK
+01:20:08
+7.
+click on css=#emailModal .btn-outline-success OK
+01:20:09
+8.
+assertText on css=.alert with value ×\nPromena odbijena - niste uneli podatke u odgovarajucem formatu! OK
+01:20:10
+'IzmenaEmaila_greskaFormat' completed successfully
+01:20:11

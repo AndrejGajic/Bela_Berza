@@ -1,0 +1,28 @@
+Running 'PregledTransakcijaProdaje_uspesno'
+01:40:45
+1.
+open on http://localhost/bela_berza/public/wallet OK
+01:40:46
+2.
+setWindowSize on 1936x1056 OK
+01:40:46
+3.
+click on name=tipAkcije OK
+01:40:46
+4.
+select on name=tipAkcije with value label=Prodaje OK
+01:40:47
+5.
+click on name=tipAkcije OK
+01:40:48
+6.
+click on css=form:nth-child(8) .btn OK
+01:40:49
+7.
+assertText on css=tr:nth-child(1) > .wallet-in:nth-child(2) with value Prodaja OK
+01:40:50
+8.
+assertText on css=tr:nth-child(2) > .wallet-in:nth-child(2) with value Prodaja OK
+01:40:51
+'PregledTransakcijaProdaje_uspesno' completed successfully
+01:40:52

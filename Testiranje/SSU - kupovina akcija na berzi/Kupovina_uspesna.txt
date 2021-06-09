@@ -1,0 +1,24 @@
+Running 'Kupovina_uspesna'
+00:58:14
+1.
+open on /bela_berza/public/Home OK
+00:58:15
+2.
+click on id=btnUber OK
+00:58:15
+3.
+click on css=.fa-plus > path OK
+00:58:16
+4.
+click on css=.fa-plus > path OK
+00:58:17
+5.
+click on css=.fa-plus > path OK
+00:58:18
+6.
+click on css=.btn-outline-success OK
+00:58:19
+7.
+assertText on css=.alert > strong with value Kupovina je uspešno okon?ana, akcije su dodate u kolekciju i sredstva na vašem ra?unu su ažurirana! OK
+00:58:20
+'Kupovina_uspesna' completed successfully
