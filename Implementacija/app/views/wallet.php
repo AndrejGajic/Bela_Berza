@@ -285,8 +285,8 @@ use App\Models\TransactionModel;
                             <label for="tipAkcije"> Izaberite tip transakcije: &nbsp;&nbsp;</label>
                             <select name="tipAkcije">
                                 <option value="sve">Sve</option>
-                                <option value="uplate">Kupovine</option>
-                                <option value="isplate">Prodaje</option>
+                                <option value="kupovine">Kupovine</option>
+                                <option value="prodaje">Prodaje</option>
                             </select>
                         </div>
                         <div class="col-6 text-left">

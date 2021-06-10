@@ -36,11 +36,14 @@
                     <div id="user-image"><img src="<?php echo $imgPath?>" alt="" /></div>
                     <div id="user-data-info">
                         <h3><?php
-                            echo($name.' '.$surname);
+                            if($menu == 'guest') echo('Gost');
+                            else echo($name.' '.$surname);
                             ?></h3>
                         <p><?php
                             if($menu=='standard') echo('Standard user');
                             else if($menu=='privileged') echo('Privileged user');
+                            else if($menu == 'guest') echo('Guest');
+                            else if($menu == 'admin') echo('Administrator');
                             ?></p>
                     </div>
                     <strong><?php echo(substr($name,0,1).substr($surname,0,1))?></strong>
@@ -53,6 +56,9 @@
                             <span class="label">Berza</span>
                         </a>
                     </li>
+                    <?php if($menu=='standard' || $menu=='privileged') {
+                        $logoutLink = site_url("LogoutController/logout");
+                        echo('
                     <li>
                         <a href="collection" class="menu-item">
                             <i class="fas fa-briefcase"></i>
@@ -60,6 +66,7 @@
                         </a>
 
                     </li>
+                   
                     <li>
                         <a href="wallet" class="menu-item">
                             <i class="fas fa-wallet"></i>
@@ -80,10 +87,52 @@
                                 <a href="privileges">Privilegije</a>
                             </li>
                             <li>
-                                <a href="<?= site_url("LogoutController/logout") ?>">Izloguj se</a>
+                                <a href="'.$logoutLink.'">Izloguj se</a>
                             </li>       
                         </ul>
                     </li>
+                     ');
+                    }?>
+                     <?php if($menu=='guest') echo('
+                     <li>
+                        <a href="login" class="menu-item">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Register</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="login" class="menu-item">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>Login</span>
+                        </a>
+                    </li>
+                    ')?>
+                    <?php if($menu=='admin'){
+                        $logoutLink = site_url("LogoutController/logout");
+                        echo('
+                    
+                    <li>
+                        <a href="regconfirmation" class="menu-item">
+                            <i class="fas fa-address-book"></i>
+                            <span>Pregled registracija</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="stocktransactions" class="menu-item">
+                           <i class="fas fa-dollar-sign"></i>
+                            <span>&nbsp;Pregled transakcija</span>
+                        </a>
+
+                    </li>
+                    <li>
+                             <a href="login" class="menu-item">
+                                 <i class="fas fa-sign-out-alt"></i>
+                                 <span class="label">Izloguj se</span>
+                             </a>
+                    </li>
+                     ');
+                    }?>
                     <li class="active-item">
                         <a href="#" class="menu-item">
                             <i class="fas fa-question"></i>

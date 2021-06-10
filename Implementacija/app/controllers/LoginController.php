@@ -84,6 +84,7 @@ class LoginController extends BaseController
                 }
                 $this->session->set("IdAdministrator", $user->IdAdministrator);
                 $this->session->set("username", $user->username);
+                $this->session->set("imagePath", "../assets/images/admin.jpg");
                 
             }
         }
@@ -126,6 +127,7 @@ class LoginController extends BaseController
                 }
                 $this->session->set("IdAdministrator", $user->IdAdministrator);
                 $this->session->set("username", $user->username);
+                $this->session->set("imagePath", "../assets/images/admin.jpg");
             }
         }
       

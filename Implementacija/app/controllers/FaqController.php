@@ -26,14 +26,14 @@ class FaqController extends BaseController {
      */
     public function index() {
         $userId = $this->session->get("IdUser");
-        $privUserId = (new PrivilegedUserModel())->find($userId);
-
-        //prijavljen je privilegovani korisnik
-        if($privUserId){
-            $menu= "privileged";
+        if(!$userId) {
+            if($this->session->get("IdAdministrator")) $menu = "admin";
+            else $menu = "guest";
         }
-        else{
-            $menu= "standard";
+        else {
+            $privUserId = (new PrivilegedUserModel())->find($userId);
+            if($privUserId) $menu = "privileged";
+            else $menu = "standard";
         }
         $img = $this->session->get("imagePath");
         $name = $this->session->get("name");

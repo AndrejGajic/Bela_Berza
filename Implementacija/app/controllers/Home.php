@@ -94,6 +94,8 @@ class Home extends BaseController
         }
 
         else if($userType=='guest'){
+            $imgPath = "../assets/images/guest.jpg";
+            $this->session->set("imagePath", $imgPath);
             $data=array('showPromo'=>true,'menu'=>'guest','assistantClass'=>'locked-assistant','name'=>$name,'surname'=>$surname,'imgPath'=>$imgPath);
         }
 
