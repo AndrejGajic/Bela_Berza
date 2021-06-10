@@ -72,7 +72,9 @@
                             <span class="label">Berza</span>
                         </a>
                     </li>
-                    <?php if($menu=='standard' || $menu=='privileged') echo('
+                    <?php if($menu=='standard' || $menu=='privileged') {
+                        $logoutLink = site_url("LogoutController/logout");
+                        echo('
                     <li>
                         <a href="collection" class="menu-item">
                             <i class="fas fa-briefcase"></i>
@@ -101,11 +103,12 @@
                                 <a href="privileges">Privilegije</a>
                             </li>
                             <li>
-                                <a href="login">Izloguj se</a>
+                                <a href="'.$logoutLink.'">Izloguj se</a>
                             </li>       
                         </ul>
                     </li>
-                     ')?>
+                     ');
+                    }?>
                      <?php if($menu=='guest') echo('
                      <li>
                         <a href="login" class="menu-item">
@@ -120,7 +123,10 @@
                         </a>
                     </li>
                     ')?>
-                    <?php if($menu=='admin') echo('
+                    <?php if($menu=='admin'){
+                        $logoutLink = site_url("LogoutController/logout");
+                        echo('
+                    
                     <li>
                         <a href="regconfirmation" class="menu-item">
                             <i class="fas fa-address-book"></i>
@@ -141,7 +147,8 @@
                                  <span class="label">Izloguj se</span>
                              </a>
                     </li>
-                     ')?>
+                     ');
+                    }?>
                     <li>
                         <a href="faq" class="menu-item">
                             <i class="fas fa-question"></i>

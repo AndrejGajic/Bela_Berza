@@ -155,7 +155,12 @@
                             ?>
                             <div class="row stocks">
                                 <?php
-                                    foreach($stocks as $stock)
+                                if($stocks == null) {
+                                    echo(
+                                            '<div class="alert alert-danger alert-dismissible"> Ne posedujete ni jednu akciju! </div>'
+                                        );
+                                }
+                                else foreach($stocks as $stock)
                                     {
                                         $modalargs = '\''.$stock->imagePath.' \',\''.$stock->companyName.'\','.$stock->value.','.$stock->availableQty;
                                         echo('<div class="col-12 col-md-6 col-lg-4 col-xl-3 stock">');
