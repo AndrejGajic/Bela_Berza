@@ -142,7 +142,7 @@
 
                     </li>
                     <li>
-                             <a href="login" class="menu-item">
+                             <a href="'.$logoutLink.'" class="menu-item">
                                  <i class="fas fa-sign-out-alt"></i>
                                  <span class="label">Izloguj se</span>
                              </a>

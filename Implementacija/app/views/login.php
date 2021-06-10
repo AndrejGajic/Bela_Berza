@@ -42,10 +42,11 @@
                                     placeholder="lozinka" value="" required>
                             </div>
                         </div>
-                        
+                      
                         <div class="sign-in-btn">
                             <button class="btn btn-outline-success form-control" type="submit">Prijavi se</button>
                         </div>
+                        
                         <br>
                         <br>
                         <?php
