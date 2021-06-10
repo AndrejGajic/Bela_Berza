@@ -1,0 +1,16 @@
+Running 'SSU_PregledCelokupneIstorijeTransakcija_NemaTransakcija'
+12:37:46
+1.
+open on http://localhost/Bela_Berza/Implementacija/public/ OK
+12:37:47
+2.
+setWindowSize on 1536x824 OK
+12:37:47
+3.
+click on css=li:nth-child(2) > .menu-item > span OK
+12:37:47
+4.
+assertText on css=.alert with value Nema nijedne registracije na cekanju OK
+12:37:48
+'SSU_PregledCelokupneIstorijeTransakcija_NemaTransakcija' completed successfully
+12:37:49

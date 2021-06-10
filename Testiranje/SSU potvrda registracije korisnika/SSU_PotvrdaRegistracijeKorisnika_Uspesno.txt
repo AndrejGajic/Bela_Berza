@@ -1,0 +1,34 @@
+Running 'SSU_PotvrdaRegistracijeKorisnika_Uspesno'
+00:50:42
+1.
+open on http://localhost/Bela_Berza/Implementacija/public/Home OK
+00:50:44
+2.
+setWindowSize on 1552x840 OK
+00:50:44
+3.
+click on linkText=Pregled registracija OK
+00:50:44
+4.
+assertElementPresent on css=tr:nth-child(1) .fa-check-circle > path OK
+00:50:45
+5.
+click on css=tr:nth-child(1) .fa-check-circle > path OK
+00:50:46
+6.
+assertText on id=exampleModalLongTitle with value Potvrda registracije OK
+00:50:47
+7.
+click on id=confirmBtn OK
+00:50:48
+8.
+click on css=h1:nth-child(2) OK
+00:50:49
+9.
+click on css=h1:nth-child(2) OK
+00:50:53
+10.
+assertText on css=h1:nth-child(2) with value BELA BERZA OK
+00:50:54
+'SSU_PotvrdaRegistracijeKorisnika_Uspesno' completed successfully
+00:50:55

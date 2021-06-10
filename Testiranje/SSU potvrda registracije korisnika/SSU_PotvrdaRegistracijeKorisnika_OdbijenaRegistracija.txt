@@ -1,0 +1,29 @@
+
+Running 'SSU_PotvrdaRegistracijeKorisnika_OdbijenaRegistracija'
+00:53:51
+1.
+open on http://localhost/Bela_Berza/Implementacija/public/home OK
+00:53:52
+2.
+setWindowSize on 1552x840 OK
+00:53:52
+3.
+click on css=li:nth-child(2) > .menu-item > span OK
+00:53:52
+4.
+assertElementPresent on css=tr:nth-child(1) .fa-times-circle > path OK
+00:53:53
+5.
+click on css=tr:nth-child(1) .fa-times-circle OK
+00:53:54
+6.
+assertText on css=#rejectModal #exampleModalLongTitle with value Odbijanje registracije OK
+00:53:55
+7.
+click on id=rejectBtn OK
+00:53:56
+8.
+assertText on css=h1:nth-child(2) with value BELA BERZA OK
+00:53:57
+'SSU_PotvrdaRegistracijeKorisnika_OdbijenaRegistracija' completed successfully
+00:54:01

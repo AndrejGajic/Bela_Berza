@@ -1,0 +1,16 @@
+Running 'SSU_PregledOdabranihAkcija_Uspesno'
+01:03:56
+1.
+open on http://localhost/Bela_Berza/Implementacija/public/Home OK
+01:03:58
+2.
+setWindowSize on 1552x840 OK
+01:03:58
+3.
+click on css=.col-6:nth-child(1) img OK
+01:03:58
+4.
+assertElementPresent on css=.canvasjs-chart-panel:nth-child(7) .canvasjs-chart-canvas:nth-child(2) OK
+01:03:59
+'SSU_PregledOdabranihAkcija_Uspesno' completed successfully
+01:04:00

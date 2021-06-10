@@ -1,0 +1,16 @@
+Running 'SSU_PregledCelokupneIstorijeTransakcija_Uspesno'
+12:33:25
+1.
+open on http://localhost/Bela_Berza/Implementacija/public/ OK
+12:33:26
+2.
+setWindowSize on 1536x824 OK
+12:33:26
+3.
+click on css=li:nth-child(3) span OK
+12:33:26
+4.
+assertElementPresent on css=tr:nth-child(1) > .wallet-out:nth-child(3) OK
+12:33:27
+'SSU_PregledCelokupneIstorijeTransakcija_Uspesno' completed successfully
+12:33:28

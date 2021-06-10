@@ -1,0 +1,13 @@
+Running 'Trading_Assistant_Successful'
+00:19:48
+1.
+open on http://localhost/Bela_Berza/Implementacija/public/ OK
+00:19:49
+2.
+setWindowSize on 1552x840 OK
+00:19:49
+3.
+assertElementPresent on css=tr:nth-child(2) > .vol-name OK
+00:19:49
+'Trading_Assistant_Successful' completed successfully
+00:19:50

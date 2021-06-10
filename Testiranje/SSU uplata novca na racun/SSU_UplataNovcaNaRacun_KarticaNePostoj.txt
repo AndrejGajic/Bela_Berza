@@ -1,0 +1,55 @@
+Running 'SSU_UplataNovcaNaRacun_KarticaNePostoji'
+12:22:08
+1.
+open on http://localhost/Bela_Berza/Implementacija/public/home OK
+12:22:08
+2.
+setWindowSize on 1536x824 OK
+12:22:08
+3.
+click on linkText=Moj novcanik OK
+12:22:08
+4.
+click on css=.btn-success OK
+12:22:10
+5.
+click on name=amountInputFieldPayment OK
+12:22:10
+6.
+type on name=amountInputFieldPayment with value 1000 OK
+12:22:11
+7.
+sendKeys on name=amountInputFieldPayment with value ${KEY_ENTER} OK
+12:22:11
+8.
+type on id=nameInputFieldPayment with value Andrej OK
+12:22:12
+9.
+sendKeys on id=nameInputFieldPayment with value ${KEY_ENTER} OK
+12:22:12
+10.
+type on id=surnameInputFieldPayment with value Gajic OK
+12:22:13
+11.
+sendKeys on id=surnameInputFieldPayment with value ${KEY_ENTER} OK
+12:22:13
+12.
+type on id=creditCardNumberInput with value 1234-5678-1234-1111 OK
+12:22:14
+13.
+sendKeys on id=creditCardNumberInput with value ${KEY_ENTER} OK
+12:22:14
+14.
+type on id=CVC with value 123 OK
+12:22:15
+15.
+sendKeys on id=CVC with value ${KEY_ENTER} OK
+12:22:15
+16.
+assertElementPresent on css=.alert OK
+12:22:16
+17.
+assertText on css=.alert with value ×\nNeuspešna transakcija! Kartica ne postoji! OK
+12:22:16
+'SSU_UplataNovcaNaRacun_KarticaNePostoji' completed successfully
+12:22:16

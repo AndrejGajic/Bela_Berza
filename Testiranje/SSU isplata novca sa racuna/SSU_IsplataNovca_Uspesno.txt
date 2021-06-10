@@ -1,0 +1,37 @@
+Running 'SSU_IsplataNovca_Successful'
+00:34:57
+1.
+open on http://localhost/Bela_Berza/Implementacija/public/Home OK
+00:34:59
+2.
+setWindowSize on 1552x840 OK
+00:34:59
+3.
+click on css=li:nth-child(3) span OK
+00:34:59
+4.
+click on css=.btn-danger OK
+00:35:00
+5.
+click on id=nameInputFieldWithdraw OK
+00:35:01
+6.
+click on name=amountInputFieldWithdraw OK
+00:35:02
+7.
+type on name=amountInputFieldWithdraw with value 1000 OK
+00:35:03
+8.
+click on id=bankAccountNumberInput OK
+00:35:04
+9.
+type on id=bankAccountNumberInput with value 123-1234567812345-12 OK
+00:35:05
+10.
+click on css=.modal-footer:nth-child(5) > .btn-outline-success OK
+00:35:06
+11.
+assertText on css=.alert > strong with value Isplata je uspešno izvršena! OK
+00:35:07
+'SSU_IsplataNovca_Successful' completed successfully
+00:35:08

@@ -1,0 +1,37 @@
+Running 'SSU_PrelazakUPrivilegovanogKorisnika_NemaDovoljnoNovca'
+12:07:16
+1.
+open on http://localhost/Bela_Berza/Implementacija/public/ OK
+12:07:17
+2.
+setWindowSize on 1536x824 OK
+12:07:17
+3.
+click on linkText=Moj profil OK
+12:07:17
+4.
+click on linkText=Privilegije OK
+12:07:18
+5.
+assertText on css=.no-priv-status with value TRENUTNO NEMATE PRIVILEGIJE OK
+12:07:19
+6.
+assertElementPresent on css=.no-priv-button OK
+12:07:19
+7.
+click on css=.no-priv-button OK
+12:07:19
+8.
+mouseOver on css=.no-priv-button OK
+12:07:19
+9.
+mouseOut on css=.no-priv-button OK
+12:07:20
+10.
+assertText on css=#error p with value Na vasem racunu je manje od 30 €. Ne mozete ostvariti status privilegovanog korisnika. OK
+12:07:20
+11.
+click on css=#error .btn OK
+12:07:20
+'SSU_PrelazakUPrivilegovanogKorisnika_NemaDovoljnoNovca' completed successfully
+12:07:20

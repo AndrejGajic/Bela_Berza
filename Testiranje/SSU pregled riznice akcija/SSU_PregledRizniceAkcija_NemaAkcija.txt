@@ -1,0 +1,16 @@
+Running 'SSU_PregledRizniceAkcija_NemaAkcija'
+11:53:32
+1.
+open on http://localhost/Bela_Berza/Implementacija/public/ OK
+11:53:33
+2.
+setWindowSize on 1552x840 OK
+11:53:33
+3.
+click on css=li:nth-child(2) > .menu-item > span OK
+11:53:33
+4.
+assertText on css=.alert with value Ne posedujete ni jednu akciju! OK
+11:53:35
+'SSU_PregledRizniceAkcija_NemaAkcija' completed successfully
+11:53:36

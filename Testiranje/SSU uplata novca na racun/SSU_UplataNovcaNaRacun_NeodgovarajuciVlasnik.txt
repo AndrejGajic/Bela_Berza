@@ -1,0 +1,54 @@
+12:24:44
+1.
+open on http://localhost/Bela_Berza/Implementacija/public/ OK
+12:24:44
+2.
+setWindowSize on 1536x824 OK
+12:24:45
+3.
+click on css=li:nth-child(3) span OK
+12:24:45
+4.
+click on css=.btn-success OK
+12:24:46
+5.
+click on name=amountInputFieldPayment OK
+12:24:46
+6.
+type on name=amountInputFieldPayment with value 1000 OK
+12:24:47
+7.
+sendKeys on name=amountInputFieldPayment with value ${KEY_ENTER} OK
+12:24:47
+8.
+type on id=nameInputFieldPayment with value Petar OK
+12:24:48
+9.
+sendKeys on id=nameInputFieldPayment with value ${KEY_ENTER} OK
+12:24:48
+10.
+type on id=surnameInputFieldPayment with value Pan OK
+12:24:49
+11.
+sendKeys on id=surnameInputFieldPayment with value ${KEY_ENTER} OK
+12:24:49
+12.
+type on id=creditCardNumberInput with value 1234-5678-1234-5679 OK
+12:24:50
+13.
+sendKeys on id=creditCardNumberInput with value ${KEY_ENTER} OK
+12:24:50
+14.
+type on id=CVC with value 123 OK
+12:24:51
+15.
+sendKeys on id=CVC with value ${KEY_ENTER} OK
+12:24:51
+16.
+assertElementPresent on css=.alert OK
+12:24:52
+17.
+assertText on css=.alert with value ×\nNeuspešna transakcija! Uneta osoba nije vlasnik kartice-netačno ime! OK
+12:24:52
+'SSU_UplataNovcaNaRacun_NeodgovarajuciVlasnik' completed successfully
+12:24:52

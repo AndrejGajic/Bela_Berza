@@ -1,0 +1,13 @@
+Running 'Trading_Assistant_Unsuccessful'
+00:24:56
+1.
+open on http://localhost/Bela_Berza/Implementacija/public/ OK
+00:24:57
+2.
+setWindowSize on 1552x840 OK
+00:24:57
+3.
+assertElementPresent on css=.btn-block:nth-child(1) OK
+00:24:57
+'Trading_Assistant_Unsuccessful' completed successfully
+00:24:58

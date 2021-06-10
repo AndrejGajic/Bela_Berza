@@ -1,0 +1,1992 @@
+{
+  "id": "fe19a888-53ae-469d-b25f-f0249e776e82",
+  "version": "2.0",
+  "name": "Bela_Berza",
+  "url": "http://localhost/Bela_Berza/Implementacija/public/",
+  "tests": [{
+    "id": "c6725dda-f808-4061-b786-eb89196b4d33",
+    "name": "Trading_Assistant_Successful",
+    "commands": [{
+      "id": "501bd1da-ebf6-4619-9f87-dba3a49d1fbc",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Bela_Berza/Implementacija/public/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "75bf25d2-fb59-46ea-938f-1beea9bfbe9f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7fb97991-a66a-4bcf-bc54-d9821f0a2782",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=tr:nth-child(2) > .vol-name",
+      "targets": [
+        ["css=tr:nth-child(2) > .vol-name", "css:finder"],
+        ["xpath=//div[@id='asistent']/div/table/tbody/tr[2]/td[2]", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]", "xpath:position"],
+        ["xpath=//td[contains(.,'XIACF')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "8e0ac512-87f7-4e68-ac07-1858f5c742f2",
+    "name": "Trading_Assistant_Unsuccessful",
+    "commands": [{
+      "id": "c08cf55b-f3ec-48fd-96f4-5270df6019a6",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Bela_Berza/Implementacija/public/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e3788465-a39d-46d9-be3c-35903f3eb81e",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ffbba3be-5be1-44a1-8eb5-d57d3b158fcc",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.btn-block:nth-child(1)",
+      "targets": [
+        ["css=.btn-block:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='asistentPromo']/a/button", "xpath:idRelative"],
+        ["xpath=//a/button", "xpath:position"],
+        ["xpath=//button[contains(.,'OSTVARI PRIVILEGIJE')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "3df91fad-2e1f-4c77-80d2-b6dba36b88e5",
+    "name": "SSU_IsplataNovca_Uspesno",
+    "commands": [{
+      "id": "b509c40e-e727-4413-9b4f-31b4616a44a3",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Bela_Berza/Implementacija/public/Home",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ffed71f9-db24-4b86-a1bd-1d01424ae8a1",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bc9d3a6a-80e6-4172-85e3-b91f1b836fb4",
+      "comment": "",
+      "command": "click",
+      "target": "css=li:nth-child(3) span",
+      "targets": [
+        ["css=li:nth-child(3) span", "css:finder"],
+        ["xpath=//nav[@id='sidebar']/ul/li[3]/a/span", "xpath:idRelative"],
+        ["xpath=//li[3]/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Moj novcanik')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1faac8c6-eb60-4735-b738-e7a031b2799c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-danger",
+      "targets": [
+        ["css=.btn-danger", "css:finder"],
+        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='walletOutBtn']/button", "xpath:idRelative"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'ISPLATA')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "248c1971-6384-428f-9972-1dcddc41aa0f",
+      "comment": "",
+      "command": "click",
+      "target": "id=nameInputFieldWithdraw",
+      "targets": [
+        ["id=nameInputFieldWithdraw", "id"],
+        ["name=nameInputFieldWithdraw", "name"],
+        ["css=#nameInputFieldWithdraw", "css:finder"],
+        ["xpath=//input[@id='nameInputFieldWithdraw']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter2']/div/div/div[2]/form/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div[2]/form/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "60aeec5b-36c3-42a3-b8ac-ec2ebf14a778",
+      "comment": "",
+      "command": "click",
+      "target": "name=amountInputFieldWithdraw",
+      "targets": [
+        ["name=amountInputFieldWithdraw", "name"],
+        ["css=#amountInputFieldGroupWithdraw > .form-control", "css:finder"],
+        ["xpath=//input[@name='amountInputFieldWithdraw']", "xpath:attributes"],
+        ["xpath=//div[@id='amountInputFieldGroupWithdraw']/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "68fc65dd-a58e-44a8-adab-1483a0b25f6d",
+      "comment": "",
+      "command": "type",
+      "target": "name=amountInputFieldWithdraw",
+      "targets": [
+        ["name=amountInputFieldWithdraw", "name"],
+        ["css=#amountInputFieldGroupWithdraw > .form-control", "css:finder"],
+        ["xpath=//input[@name='amountInputFieldWithdraw']", "xpath:attributes"],
+        ["xpath=//div[@id='amountInputFieldGroupWithdraw']/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/input", "xpath:position"]
+      ],
+      "value": "1000"
+    }, {
+      "id": "5fddf8a7-f5bf-4f7d-b0e2-46e738377716",
+      "comment": "",
+      "command": "click",
+      "target": "id=bankAccountNumberInput",
+      "targets": [
+        ["id=bankAccountNumberInput", "id"],
+        ["name=bankAccountNumberInput", "name"],
+        ["css=#bankAccountNumberInput", "css:finder"],
+        ["xpath=//input[@id='bankAccountNumberInput']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter2']/div/div/div[2]/form/div[4]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div[2]/form/div[4]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d4a73b08-4c24-464b-9ff3-7268fcd66f0f",
+      "comment": "",
+      "command": "type",
+      "target": "id=bankAccountNumberInput",
+      "targets": [
+        ["id=bankAccountNumberInput", "id"],
+        ["name=bankAccountNumberInput", "name"],
+        ["css=#bankAccountNumberInput", "css:finder"],
+        ["xpath=//input[@id='bankAccountNumberInput']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter2']/div/div/div[2]/form/div[4]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div[2]/form/div[4]/div/input", "xpath:position"]
+      ],
+      "value": "123-1234567812345-12"
+    }, {
+      "id": "ef8c0b11-8879-40da-8ff8-1a6f6e68b920",
+      "comment": "",
+      "command": "click",
+      "target": "css=.modal-footer:nth-child(5) > .btn-outline-success",
+      "targets": [
+        ["css=.modal-footer:nth-child(5) > .btn-outline-success", "css:finder"],
+        ["xpath=(//button[@type='submit'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter2']/div/div/div[2]/form/div[5]/button[2]", "xpath:idRelative"],
+        ["xpath=//div[5]/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8cae3a41-a642-4391-8ee2-dff35375f3a4",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.alert > strong",
+      "targets": [
+        ["css=.alert > strong", "css:finder"],
+        ["xpath=//div[@id='transactionSuccess']/div/strong", "xpath:idRelative"],
+        ["xpath=//div/div/strong", "xpath:position"],
+        ["xpath=//strong[contains(.,'Isplata je uspešno izvršena!')]", "xpath:innerText"]
+      ],
+      "value": "Isplata je uspešno izvršena!"
+    }]
+  }, {
+    "id": "8dc9cec1-750e-4fc2-a893-8e4e3c1f846e",
+    "name": "SSU_IsplataNovca_Greska_NepostojeciRacun",
+    "commands": [{
+      "id": "6927300e-1c49-4078-8d28-7449ac02b7b2",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Bela_Berza/Implementacija/public/home",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "baa60471-57ee-49fa-b448-6099913a5ac7",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c6c746d6-fd7c-42fb-bc16-831e7803c359",
+      "comment": "",
+      "command": "click",
+      "target": "css=li:nth-child(3) span",
+      "targets": [
+        ["css=li:nth-child(3) span", "css:finder"],
+        ["xpath=//nav[@id='sidebar']/ul/li[3]/a/span", "xpath:idRelative"],
+        ["xpath=//li[3]/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Moj novcanik')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "23baf712-f76f-45a2-be6b-8157eb1ef2b3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-danger",
+      "targets": [
+        ["css=.btn-danger", "css:finder"],
+        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='walletOutBtn']/button", "xpath:idRelative"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'ISPLATA')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3075ab8d-0ee7-4bcc-9993-71d0a74e596d",
+      "comment": "",
+      "command": "click",
+      "target": "name=amountInputFieldWithdraw",
+      "targets": [
+        ["name=amountInputFieldWithdraw", "name"],
+        ["css=#amountInputFieldGroupWithdraw > .form-control", "css:finder"],
+        ["xpath=//input[@name='amountInputFieldWithdraw']", "xpath:attributes"],
+        ["xpath=//div[@id='amountInputFieldGroupWithdraw']/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "85fcc17c-3aab-461a-8458-d5d7b9a497ee",
+      "comment": "",
+      "command": "type",
+      "target": "name=amountInputFieldWithdraw",
+      "targets": [
+        ["name=amountInputFieldWithdraw", "name"],
+        ["css=#amountInputFieldGroupWithdraw > .form-control", "css:finder"],
+        ["xpath=//input[@name='amountInputFieldWithdraw']", "xpath:attributes"],
+        ["xpath=//div[@id='amountInputFieldGroupWithdraw']/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/input", "xpath:position"]
+      ],
+      "value": "1000"
+    }, {
+      "id": "8e992f0d-cb1c-4cab-afff-6a03de25c8da",
+      "comment": "",
+      "command": "click",
+      "target": "id=bankAccountNumberInput",
+      "targets": [
+        ["id=bankAccountNumberInput", "id"],
+        ["name=bankAccountNumberInput", "name"],
+        ["css=#bankAccountNumberInput", "css:finder"],
+        ["xpath=//input[@id='bankAccountNumberInput']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter2']/div/div/div[2]/form/div[4]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div[2]/form/div[4]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "13edf56d-be78-405a-833c-e42c5d2aac42",
+      "comment": "",
+      "command": "type",
+      "target": "id=bankAccountNumberInput",
+      "targets": [
+        ["id=bankAccountNumberInput", "id"],
+        ["name=bankAccountNumberInput", "name"],
+        ["css=#bankAccountNumberInput", "css:finder"],
+        ["xpath=//input[@id='bankAccountNumberInput']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter2']/div/div/div[2]/form/div[4]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div[2]/form/div[4]/div/input", "xpath:position"]
+      ],
+      "value": "123-1234567812345-44"
+    }, {
+      "id": "03749cca-628e-4204-b419-6dc54422feb0",
+      "comment": "",
+      "command": "click",
+      "target": "css=.modal-footer:nth-child(5) > .btn-outline-success",
+      "targets": [
+        ["css=.modal-footer:nth-child(5) > .btn-outline-success", "css:finder"],
+        ["xpath=(//button[@type='submit'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter2']/div/div/div[2]/form/div[5]/button[2]", "xpath:idRelative"],
+        ["xpath=//div[5]/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2705c508-a0bd-4c52-a755-525293a79256",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.alert",
+      "targets": [
+        ["css=.alert", "css:finder"],
+        ["xpath=//div[@id='transactionError']/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div", "xpath:position"]
+      ],
+      "value": "×\\nNeuspešna transakcija! Broj računa ne postoji u banci, molimo Vas proverite broj računa!"
+    }]
+  }, {
+    "id": "4fc62ac0-999f-42c6-9538-a895d19c0a3b",
+    "name": "SSU_PotvrdaRegistracijeKorisnika_Uspesno",
+    "commands": [{
+      "id": "030e16e7-d3d6-4ec9-bc04-4e43f0624a37",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Bela_Berza/Implementacija/public/Home",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "77241507-4729-410f-8356-51925b75facf",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "70bb50bd-c648-4577-9921-b28f4209e547",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Pregled registracija",
+      "targets": [
+        ["linkText=Pregled registracija", "linkText"],
+        ["css=li:nth-child(2) > .menu-item", "css:finder"],
+        ["xpath=//nav[@id='sidebar']/ul/li[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'regconfirmation')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,' Pregled registracija')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "166fc311-0cc7-4d45-ad2b-206ad591669e",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=tr:nth-child(1) .fa-check-circle > path",
+      "targets": [
+        ["css=tr:nth-child(1) .fa-check-circle > path", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "07bc7541-8268-4a16-b5dd-0e16d6f2f2d4",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(1) .fa-check-circle > path",
+      "targets": [
+        ["css=tr:nth-child(1) .fa-check-circle > path", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "550c0f75-edd7-4910-b515-2040005115a0",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=exampleModalLongTitle",
+      "targets": [
+        ["id=exampleModalLongTitle", "id"],
+        ["css=#confirmModal #exampleModalLongTitle", "css:finder"],
+        ["xpath=//h5[@id='exampleModalLongTitle']", "xpath:attributes"],
+        ["xpath=//div[@id='confirmModal']/div/div/div/h5", "xpath:idRelative"],
+        ["xpath=//h5", "xpath:position"],
+        ["xpath=//h5[contains(.,'Potvrda registracije')]", "xpath:innerText"]
+      ],
+      "value": "Potvrda registracije"
+    }, {
+      "id": "b801abff-d2d1-449f-9d25-bc6720e57b12",
+      "comment": "",
+      "command": "click",
+      "target": "id=confirmBtn",
+      "targets": [
+        ["id=confirmBtn", "id"],
+        ["css=#confirmBtn", "css:finder"],
+        ["xpath=//button[@id='confirmBtn']", "xpath:attributes"],
+        ["xpath=//div[@id='confirmModal']/div/div/div[3]/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Potvrdi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "11cf7ef7-09fe-4a20-9171-22914ee32384",
+      "comment": "",
+      "command": "click",
+      "target": "css=h1:nth-child(2)",
+      "targets": [
+        ["css=h1:nth-child(2)", "css:finder"],
+        ["xpath=//header[@id='siteTitle']/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'BELA BERZA')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ef1f83b6-52f2-4953-874c-ccea3c22d6a1",
+      "comment": "",
+      "command": "click",
+      "target": "css=h1:nth-child(2)",
+      "targets": [
+        ["css=h1:nth-child(2)", "css:finder"],
+        ["xpath=//header[@id='siteTitle']/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'BELA BERZA')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "151b1380-0dbe-4901-bc21-1cec2e7edd5f",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=h1:nth-child(2)",
+      "targets": [
+        ["css=h1:nth-child(2)", "css:finder"],
+        ["xpath=//header[@id='siteTitle']/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'BELA BERZA')]", "xpath:innerText"]
+      ],
+      "value": "BELA BERZA"
+    }]
+  }, {
+    "id": "cb8eea80-ab39-46d4-a476-4c7b9fcfc6f1",
+    "name": "SSU_PotvrdaRegistracijeKorisnika_OdbijenaRegistracija",
+    "commands": [{
+      "id": "f2943b58-17cb-4600-aad9-3a147729b28d",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Bela_Berza/Implementacija/public/home",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5862cfb4-90c0-4234-8b8d-5c8d1267afaa",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c12c95fa-dbfc-4ed3-a73c-e663dd94c2f2",
+      "comment": "",
+      "command": "click",
+      "target": "css=li:nth-child(2) > .menu-item > span",
+      "targets": [
+        ["css=li:nth-child(2) > .menu-item > span", "css:finder"],
+        ["xpath=//nav[@id='sidebar']/ul/li[2]/a/span", "xpath:idRelative"],
+        ["xpath=//li[2]/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Pregled registracija')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d5b2854d-b5d2-43bd-bb83-8b6a21ba58a7",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=tr:nth-child(1) .fa-times-circle > path",
+      "targets": [
+        ["css=tr:nth-child(1) .fa-times-circle > path", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "145c822a-dfb2-4339-869e-db010c938017",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(1) .fa-times-circle",
+      "targets": [
+        ["css=tr:nth-child(1) .fa-times-circle", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "a412cfd0-055e-40a4-b4b6-eb2b3dba9f5d",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#rejectModal #exampleModalLongTitle",
+      "targets": [
+        ["css=#rejectModal #exampleModalLongTitle", "css:finder"],
+        ["xpath=(//h5[@id='exampleModalLongTitle'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='rejectModal']/div/div/div/h5", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div/h5", "xpath:position"],
+        ["xpath=//h5[contains(.,'Odbijanje registracije')]", "xpath:innerText"]
+      ],
+      "value": "Odbijanje registracije"
+    }, {
+      "id": "92700ead-746b-42b0-83de-4e7f764e8bc0",
+      "comment": "",
+      "command": "click",
+      "target": "id=rejectBtn",
+      "targets": [
+        ["id=rejectBtn", "id"],
+        ["css=#rejectBtn", "css:finder"],
+        ["xpath=//button[@id='rejectBtn']", "xpath:attributes"],
+        ["xpath=//div[@id='rejectModal']/div/div/div[3]/button[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div[3]/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5b48688f-f299-415c-be57-dded9b3b6b66",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=h1:nth-child(2)",
+      "targets": [
+        ["css=h1:nth-child(2)", "css:finder"],
+        ["xpath=//header[@id='siteTitle']/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'BELA BERZA')]", "xpath:innerText"]
+      ],
+      "value": "BELA BERZA"
+    }]
+  }, {
+    "id": "7bf2c118-5366-4c97-81fa-339b078be575",
+    "name": "SSU_PotvrdaRegistracijeKorisnika_NemaRegistracija",
+    "commands": [{
+      "id": "6228a926-445b-47f7-b28b-84908992eed8",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Bela_Berza/Implementacija/public/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "34f5e5b6-ac20-442a-acb2-bfe471d711e4",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "91b85994-ff7a-4944-879e-4013e7a954a1",
+      "comment": "",
+      "command": "click",
+      "target": "css=li:nth-child(2) > .menu-item > span",
+      "targets": [
+        ["css=li:nth-child(2) > .menu-item > span", "css:finder"],
+        ["xpath=//nav[@id='sidebar']/ul/li[2]/a/span", "xpath:idRelative"],
+        ["xpath=//li[2]/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Pregled registracija')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c5d39ad0-2954-42c2-b2bb-078a801bca52",
+      "comment": "",
+      "command": "click",
+      "target": "css=.alert",
+      "targets": [
+        ["css=.alert", "css:finder"],
+        ["xpath=//div[@id='confirmContainer']/div[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f3a17c5b-772e-488a-a515-7e20b223bb91",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.alert",
+      "targets": [
+        ["css=.alert", "css:finder"],
+        ["xpath=//div[@id='confirmContainer']/div[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/div[2]", "xpath:position"]
+      ],
+      "value": "Nema nijedne registracije na cekanju"
+    }]
+  }, {
+    "id": "1be46775-c9ca-4ad7-81c2-48b04c91ffdb",
+    "name": "SSU_PregledOdabranihAkcija_Uspesno",
+    "commands": [{
+      "id": "3a433704-ee92-4108-b82c-6df55a854c4b",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Bela_Berza/Implementacija/public/Home",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "01645d38-7680-43d7-a4f2-0f36e18a2619",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9bc5768d-6fdb-496f-aa70-021ca4b14c45",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-6:nth-child(1) img",
+      "targets": [
+        ["css=.col-6:nth-child(1) img", "css:finder"],
+        ["xpath=//div[@id='contentAndTitle']/div[3]/div/a/img", "xpath:idRelative"],
+        ["xpath=//a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e26984af-bb24-4a5a-9448-b33d4d888c06",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.canvasjs-chart-panel:nth-child(7) .canvasjs-chart-canvas:nth-child(2)",
+      "targets": [
+        ["css=.canvasjs-chart-panel:nth-child(7) .canvasjs-chart-canvas:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='chartContainer']/div/div[3]/div/canvas[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/div/canvas[2]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "2d09a82e-aafb-4ee4-a23b-c486bdc5539a",
+    "name": "SSU_PregledRizniceAkcija_Uspesno",
+    "commands": [{
+      "id": "dde20781-682d-48d1-b62b-2c824d900009",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Bela_Berza/Implementacija/public/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "924a8523-137e-49a5-8b10-553d80a4dd81",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "72d778c7-2db0-49bb-86b2-28d604918c30",
+      "comment": "",
+      "command": "click",
+      "target": "css=li:nth-child(2) > .menu-item > span",
+      "targets": [
+        ["css=li:nth-child(2) > .menu-item > span", "css:finder"],
+        ["xpath=//nav[@id='sidebar']/ul/li[2]/a/span", "xpath:idRelative"],
+        ["xpath=//li[2]/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Moja riznica')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9a3a6078-26e6-4dd9-9d73-50bc3d11c0a9",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.col-md-6 > img",
+      "targets": [
+        ["css=.col-md-6 > img", "css:finder"],
+        ["xpath=//div[@id='contentAndTitle']/div[3]/div/div/div[2]/div/img", "xpath:idRelative"],
+        ["xpath=//div[2]/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "243ae329-757e-4028-a435-466afc72fa4f",
+    "name": "SSU_PregledRizniceAkcija_NemaAkcija",
+    "commands": [{
+      "id": "81c4ec79-5140-4003-b7fd-4178044a1039",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Bela_Berza/Implementacija/public/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5b539ab1-8428-47e1-b684-c66f76a84aff",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5063b017-e3b9-42c5-bc46-cc3a61c0e578",
+      "comment": "",
+      "command": "click",
+      "target": "css=li:nth-child(2) > .menu-item > span",
+      "targets": [
+        ["css=li:nth-child(2) > .menu-item > span", "css:finder"],
+        ["xpath=//nav[@id='sidebar']/ul/li[2]/a/span", "xpath:idRelative"],
+        ["xpath=//li[2]/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Moja riznica')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "25941f81-7f00-419b-b7fd-caa858351521",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.alert",
+      "targets": [
+        ["css=.alert", "css:finder"],
+        ["xpath=//div[@id='contentAndTitle']/div[3]/div/div/div[2]/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div", "xpath:position"]
+      ],
+      "value": "Ne posedujete ni jednu akciju!"
+    }]
+  }, {
+    "id": "51d765f0-81b8-4a93-8c42-62d6ea121ed4",
+    "name": "SSU_PrelazakUPrivilegovanogKorisnika_NemaDovoljnoNovca",
+    "commands": [{
+      "id": "a1bc23ae-7d8e-418c-8318-1fce13135c95",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Bela_Berza/Implementacija/public/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7ee1103e-a35c-44b8-9c4b-29ef7609ac58",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1536x824",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c182e501-71a3-46de-9b0e-98f13afc8198",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Moj profil",
+      "targets": [
+        ["linkText=Moj profil", "linkText"],
+        ["css=.dropdown-toggle", "css:finder"],
+        ["xpath=//nav[@id='sidebar']/ul/li[4]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#userMenu')]", "xpath:href"],
+        ["xpath=//li[4]/a", "xpath:position"],
+        ["xpath=//a[contains(.,' Moj profil')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "dfe747bc-0b74-4dfc-8adb-9b0317a34c92",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Privilegije",
+      "targets": [
+        ["linkText=Privilegije", "linkText"],
+        ["css=#userMenu > li:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Privilegije')]", "xpath:link"],
+        ["xpath=//ul[@id='userMenu']/li[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'privileges')]", "xpath:href"],
+        ["xpath=//li[4]/ul/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Privilegije')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c1dec567-fe89-425b-9689-0c36b5d87cbc",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.no-priv-status",
+      "targets": [
+        ["css=.no-priv-status", "css:finder"],
+        ["xpath=//div[@id='privStatus']/h1", "xpath:idRelative"],
+        ["xpath=//div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'TRENUTNO NEMATE PRIVILEGIJE')]", "xpath:innerText"]
+      ],
+      "value": "TRENUTNO NEMATE PRIVILEGIJE"
+    }, {
+      "id": "01dd57fb-2ff5-42ac-850d-0f11e84ab200",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.no-priv-button",
+      "targets": [
+        ["css=.no-priv-button", "css:finder"],
+        ["xpath=//div[@id='privButton']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "839ab43d-2d31-48a5-b34b-d1cae10c424e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.no-priv-button",
+      "targets": [
+        ["css=.no-priv-button", "css:finder"],
+        ["xpath=//div[@id='privButton']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "aae26047-16cb-46c9-b766-49b7ea55467a",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.no-priv-button",
+      "targets": [
+        ["css=.no-priv-button", "css:finder"],
+        ["xpath=//div[@id='privButton']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "803dab37-72c0-44e6-9e66-7fa09bb48abc",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.no-priv-button",
+      "targets": [
+        ["css=.no-priv-button", "css:finder"],
+        ["xpath=//div[@id='privButton']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "19ca6ab6-938d-4ca4-9b6e-157d91a819ee",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#error p",
+      "targets": [
+        ["css=#error p", "css:finder"],
+        ["xpath=//div[@id='error']/div/div/div[2]/p", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div[2]/p", "xpath:position"],
+        ["xpath=//p[contains(.,'Na vasem racunu je manje od 30 €. Ne mozete ostvariti status privilegovanog korisnika.')]", "xpath:innerText"]
+      ],
+      "value": "Na vasem racunu je manje od 30 €. Ne mozete ostvariti status privilegovanog korisnika."
+    }, {
+      "id": "da2522dd-1482-433a-9f62-17e472f58072",
+      "comment": "",
+      "command": "click",
+      "target": "css=#error .btn",
+      "targets": [
+        ["css=#error .btn", "css:finder"],
+        ["xpath=(//button[@type='button'])[5]", "xpath:attributes"],
+        ["xpath=//div[@id='error']/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "56419760-6c46-4955-af78-c6da05ecec97",
+    "name": "SSU_PrelazakUPrivilegovanogKorisnika_VecPrivilegovan",
+    "commands": [{
+      "id": "8bf5d855-05e6-42be-bf6b-43836b0dde5d",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Bela_Berza/Implementacija/public/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "64a851e0-84b1-4f00-afc7-6a5a28d6f97c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2c27870f-8ac0-4729-bf98-b0a5fa2a0cc5",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Moj profil",
+      "targets": [
+        ["linkText=Moj profil", "linkText"],
+        ["css=.dropdown-toggle", "css:finder"],
+        ["xpath=//nav[@id='sidebar']/ul/li[4]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#userMenu')]", "xpath:href"],
+        ["xpath=//li[4]/a", "xpath:position"],
+        ["xpath=//a[contains(.,' Moj profil')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "92687895-a3a1-44b6-ac33-4ce71f45f97a",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Privilegije",
+      "targets": [
+        ["linkText=Privilegije", "linkText"],
+        ["css=#userMenu > li:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Privilegije')]", "xpath:link"],
+        ["xpath=//ul[@id='userMenu']/li[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'privileges')]", "xpath:href"],
+        ["xpath=//li[4]/ul/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Privilegije')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b21fb0dc-4dee-4706-b178-9d123b7db82c",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.yes-priv-status",
+      "targets": [
+        ["css=.yes-priv-status", "css:finder"],
+        ["xpath=//div[@id='privStatus']/h1", "xpath:idRelative"],
+        ["xpath=//div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'VEC STE PRIVILEGOVANI KORISNIK')]", "xpath:innerText"]
+      ],
+      "value": "VEC STE PRIVILEGOVANI KORISNIK"
+    }]
+  }, {
+    "id": "728aee90-50ff-4307-bb33-c75a3cf24d19",
+    "name": "SSU_PrelazakUPrivilegovanogKorisnika_Uspesno",
+    "commands": [{
+      "id": "255dc53b-4bf1-4212-9242-15abeba0e257",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Bela_Berza/Implementacija/public/home",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1acf9c0a-fc63-4df5-83da-17497f26433c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1536x824",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "11e35476-dd50-487d-9bf1-2d1289283fca",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Moj profil",
+      "targets": [
+        ["linkText=Moj profil", "linkText"],
+        ["css=.dropdown-toggle", "css:finder"],
+        ["xpath=//nav[@id='sidebar']/ul/li[4]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#userMenu')]", "xpath:href"],
+        ["xpath=//li[4]/a", "xpath:position"],
+        ["xpath=//a[contains(.,' Moj profil')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ac5bc18b-b4e0-46e4-ad9c-6f779dd5a85e",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Privilegije",
+      "targets": [
+        ["linkText=Privilegije", "linkText"],
+        ["css=#userMenu > li:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Privilegije')]", "xpath:link"],
+        ["xpath=//ul[@id='userMenu']/li[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'privileges')]", "xpath:href"],
+        ["xpath=//li[4]/ul/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Privilegije')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ecebb3f8-e9d9-4533-bdaf-a2c0ba11d761",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.no-priv-status",
+      "targets": [
+        ["css=.no-priv-status", "css:finder"],
+        ["xpath=//div[@id='privStatus']/h1", "xpath:idRelative"],
+        ["xpath=//div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'TRENUTNO NEMATE PRIVILEGIJE')]", "xpath:innerText"]
+      ],
+      "value": "TRENUTNO NEMATE PRIVILEGIJE"
+    }, {
+      "id": "e99441f3-bd84-4327-ab69-8390e7f9d947",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.no-priv-button",
+      "targets": [
+        ["css=.no-priv-button", "css:finder"],
+        ["xpath=//div[@id='privButton']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b0e58422-9339-4841-81dc-7d58e6792287",
+      "comment": "",
+      "command": "click",
+      "target": "css=.no-priv-button",
+      "targets": [
+        ["css=.no-priv-button", "css:finder"],
+        ["xpath=//div[@id='privButton']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dc53ba0e-12db-49e0-96cd-605136f3b53a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-outline-success",
+      "targets": [
+        ["css=.btn-outline-success", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='paymentModal']/div/div/div[3]/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Potvrdi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "cc8edae4-a96e-4fe5-9b3d-93d3e9222a0b",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.yes-priv-status",
+      "targets": [
+        ["css=.yes-priv-status", "css:finder"],
+        ["xpath=//div[@id='privStatus']/h1", "xpath:idRelative"],
+        ["xpath=//div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'CESTITAMO, POSTALI STE PRIVILEGOVANI KORISNIK')]", "xpath:innerText"]
+      ],
+      "value": "CESTITAMO, POSTALI STE PRIVILEGOVANI KORISNIK"
+    }]
+  }, {
+    "id": "a559855e-282b-43e0-ae8d-a592c8ef989c",
+    "name": "SSU_UplataNovcaNaRacun_Uspesno",
+    "commands": [{
+      "id": "3b279bd5-5686-4d45-9489-2efb6f194fc4",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Bela_Berza/Implementacija/public/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e343bd41-d747-4f4d-9b7b-34e9803e6832",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "43655656-b557-4786-a49c-1323139f26d9",
+      "comment": "",
+      "command": "click",
+      "target": "css=li:nth-child(3) span",
+      "targets": [
+        ["css=li:nth-child(3) span", "css:finder"],
+        ["xpath=//nav[@id='sidebar']/ul/li[3]/a/span", "xpath:idRelative"],
+        ["xpath=//li[3]/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Moj novcanik')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c3274d8e-7099-4ff2-819e-1cc06178888e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-success",
+      "targets": [
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//div[@id='walletInBtn']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'UPLATA')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0dc72a4f-32e2-42e8-8a12-0a78e123934a",
+      "comment": "",
+      "command": "click",
+      "target": "name=amountInputFieldPayment",
+      "targets": [
+        ["name=amountInputFieldPayment", "name"],
+        ["css=#amountInputFieldGroupPayment > .form-control", "css:finder"],
+        ["xpath=//input[@name='amountInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='amountInputFieldGroupPayment']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "00a106f5-d6f0-4fa2-9121-8c5fd213f58a",
+      "comment": "",
+      "command": "type",
+      "target": "name=amountInputFieldPayment",
+      "targets": [
+        ["name=amountInputFieldPayment", "name"],
+        ["css=#amountInputFieldGroupPayment > .form-control", "css:finder"],
+        ["xpath=//input[@name='amountInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='amountInputFieldGroupPayment']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "300"
+    }, {
+      "id": "20103c43-f423-435d-9a00-ced61f52e80c",
+      "comment": "",
+      "command": "click",
+      "target": "id=nameInputFieldPayment",
+      "targets": [
+        ["id=nameInputFieldPayment", "id"],
+        ["name=nameInputFieldPayment", "name"],
+        ["css=#nameInputFieldPayment", "css:finder"],
+        ["xpath=//input[@id='nameInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ada9bafd-fa48-4793-b97e-818811af470c",
+      "comment": "",
+      "command": "click",
+      "target": "id=nameInputFieldPayment",
+      "targets": [
+        ["id=nameInputFieldPayment", "id"],
+        ["name=nameInputFieldPayment", "name"],
+        ["css=#nameInputFieldPayment", "css:finder"],
+        ["xpath=//input[@id='nameInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "07f875c3-c325-4300-8648-9c8b2f7c5c6f",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "id=nameInputFieldPayment",
+      "targets": [
+        ["id=nameInputFieldPayment", "id"],
+        ["name=nameInputFieldPayment", "name"],
+        ["css=#nameInputFieldPayment", "css:finder"],
+        ["xpath=//input[@id='nameInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "21da2e39-c394-48f6-842e-093ada3084ff",
+      "comment": "",
+      "command": "type",
+      "target": "id=nameInputFieldPayment",
+      "targets": [
+        ["id=nameInputFieldPayment", "id"],
+        ["name=nameInputFieldPayment", "name"],
+        ["css=#nameInputFieldPayment", "css:finder"],
+        ["xpath=//input[@id='nameInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "Andrej"
+    }, {
+      "id": "cadee446-9ac4-495a-b126-265d33152cff",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=nameInputFieldPayment",
+      "targets": [
+        ["id=nameInputFieldPayment", "id"],
+        ["name=nameInputFieldPayment", "name"],
+        ["css=#nameInputFieldPayment", "css:finder"],
+        ["xpath=//input[@id='nameInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "99de60dc-d149-4ce9-a2c8-90dab8d72c58",
+      "comment": "",
+      "command": "type",
+      "target": "id=surnameInputFieldPayment",
+      "targets": [
+        ["id=surnameInputFieldPayment", "id"],
+        ["name=surnameInputFieldPayment", "name"],
+        ["css=#surnameInputFieldPayment", "css:finder"],
+        ["xpath=//input[@id='surnameInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": "Gajic"
+    }, {
+      "id": "9835dfd2-1373-4194-bad0-6baea14639f5",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=surnameInputFieldPayment",
+      "targets": [
+        ["id=surnameInputFieldPayment", "id"],
+        ["name=surnameInputFieldPayment", "name"],
+        ["css=#surnameInputFieldPayment", "css:finder"],
+        ["xpath=//input[@id='surnameInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "09b58b49-7d7b-4081-8e5a-d88c023e5fbd",
+      "comment": "",
+      "command": "type",
+      "target": "id=creditCardNumberInput",
+      "targets": [
+        ["id=creditCardNumberInput", "id"],
+        ["name=creditCardNumberInput", "name"],
+        ["css=#creditCardNumberInput", "css:finder"],
+        ["xpath=//input[@id='creditCardNumberInput']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[4]/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/input", "xpath:position"]
+      ],
+      "value": "1234-5678-1234-5679"
+    }, {
+      "id": "9935a35b-b38b-4025-a3c5-44aa6deac423",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=creditCardNumberInput",
+      "targets": [
+        ["id=creditCardNumberInput", "id"],
+        ["name=creditCardNumberInput", "name"],
+        ["css=#creditCardNumberInput", "css:finder"],
+        ["xpath=//input[@id='creditCardNumberInput']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[4]/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "ca1e09e0-1781-44d4-aab7-62782aa4e0c8",
+      "comment": "",
+      "command": "type",
+      "target": "id=CVC",
+      "targets": [
+        ["id=CVC", "id"],
+        ["name=CVC", "name"],
+        ["css=#CVC", "css:finder"],
+        ["xpath=//input[@id='CVC']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[6]/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div/input", "xpath:position"]
+      ],
+      "value": "123"
+    }, {
+      "id": "fb4cbdf9-d56b-47a1-ad8c-c10173b87c1f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.modal-footer:nth-child(7) > .btn-outline-success",
+      "targets": [
+        ["css=.modal-footer:nth-child(7) > .btn-outline-success", "css:finder"],
+        ["xpath=(//button[@type='submit'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[7]/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Potvrdi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ed013223-e806-4f5a-addd-a47e9a1de239",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.alert > strong",
+      "targets": [
+        ["css=.alert > strong", "css:finder"],
+        ["xpath=//div[@id='transactionSuccess']/div/strong", "xpath:idRelative"],
+        ["xpath=//div/div/strong", "xpath:position"],
+        ["xpath=//strong[contains(.,'Uplata je uspešno izvršena!')]", "xpath:innerText"]
+      ],
+      "value": "Uplata je uspešno izvršena!"
+    }]
+  }, {
+    "id": "dfd3f0d2-2ced-49f1-9024-3220cd971824",
+    "name": "SSU_UplataNovcaNaRacun_KarticaNePostoji",
+    "commands": [{
+      "id": "5c447a9e-6c1e-4c2e-8ee1-d7186e463ffe",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Bela_Berza/Implementacija/public/home",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7da49c75-3187-4c3e-a7e6-6099b2e736ab",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1536x824",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7156bcd6-ad64-4d1f-8715-ac63685729aa",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Moj novcanik",
+      "targets": [
+        ["linkText=Moj novcanik", "linkText"],
+        ["css=li:nth-child(3) > .menu-item", "css:finder"],
+        ["xpath=//nav[@id='sidebar']/ul/li[3]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'wallet')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,' Moj novcanik')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "889ba171-dc1c-49aa-8c45-51bd9158ba61",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-success",
+      "targets": [
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//div[@id='walletInBtn']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'UPLATA')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "87f2ebbb-babe-42c9-9a00-73f4b300d518",
+      "comment": "",
+      "command": "click",
+      "target": "name=amountInputFieldPayment",
+      "targets": [
+        ["name=amountInputFieldPayment", "name"],
+        ["css=#amountInputFieldGroupPayment > .form-control", "css:finder"],
+        ["xpath=//input[@name='amountInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='amountInputFieldGroupPayment']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e78c62d5-69e3-426c-9299-50a41e7bfb1d",
+      "comment": "",
+      "command": "type",
+      "target": "name=amountInputFieldPayment",
+      "targets": [
+        ["name=amountInputFieldPayment", "name"],
+        ["css=#amountInputFieldGroupPayment > .form-control", "css:finder"],
+        ["xpath=//input[@name='amountInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='amountInputFieldGroupPayment']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "1000"
+    }, {
+      "id": "e78bba3b-db4a-4162-bcc1-ffac524fd2e9",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "name=amountInputFieldPayment",
+      "targets": [
+        ["name=amountInputFieldPayment", "name"],
+        ["css=#amountInputFieldGroupPayment > .form-control", "css:finder"],
+        ["xpath=//input[@name='amountInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='amountInputFieldGroupPayment']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "868ab840-0715-410e-ab12-a642d22c1980",
+      "comment": "",
+      "command": "type",
+      "target": "id=nameInputFieldPayment",
+      "targets": [
+        ["id=nameInputFieldPayment", "id"],
+        ["name=nameInputFieldPayment", "name"],
+        ["css=#nameInputFieldPayment", "css:finder"],
+        ["xpath=//input[@id='nameInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "Andrej"
+    }, {
+      "id": "5cc1b031-0d96-416a-84e4-b78d132ef9f2",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=nameInputFieldPayment",
+      "targets": [
+        ["id=nameInputFieldPayment", "id"],
+        ["name=nameInputFieldPayment", "name"],
+        ["css=#nameInputFieldPayment", "css:finder"],
+        ["xpath=//input[@id='nameInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "73000b0b-9f43-4c06-a524-9f2d177d74a0",
+      "comment": "",
+      "command": "type",
+      "target": "id=surnameInputFieldPayment",
+      "targets": [
+        ["id=surnameInputFieldPayment", "id"],
+        ["name=surnameInputFieldPayment", "name"],
+        ["css=#surnameInputFieldPayment", "css:finder"],
+        ["xpath=//input[@id='surnameInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": "Gajic"
+    }, {
+      "id": "27163ac2-2d65-4e73-8991-32fbf339a6bf",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=surnameInputFieldPayment",
+      "targets": [
+        ["id=surnameInputFieldPayment", "id"],
+        ["name=surnameInputFieldPayment", "name"],
+        ["css=#surnameInputFieldPayment", "css:finder"],
+        ["xpath=//input[@id='surnameInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "7aaa678d-912f-4a3b-95ba-1fd0c7b9d941",
+      "comment": "",
+      "command": "type",
+      "target": "id=creditCardNumberInput",
+      "targets": [
+        ["id=creditCardNumberInput", "id"],
+        ["name=creditCardNumberInput", "name"],
+        ["css=#creditCardNumberInput", "css:finder"],
+        ["xpath=//input[@id='creditCardNumberInput']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[4]/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/input", "xpath:position"]
+      ],
+      "value": "1234-5678-1234-1111"
+    }, {
+      "id": "cb8f7fbb-61f6-41c8-9a42-60b30b20e53b",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=creditCardNumberInput",
+      "targets": [
+        ["id=creditCardNumberInput", "id"],
+        ["name=creditCardNumberInput", "name"],
+        ["css=#creditCardNumberInput", "css:finder"],
+        ["xpath=//input[@id='creditCardNumberInput']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[4]/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "ae4fc548-ff07-435b-be72-8829a9751c6b",
+      "comment": "",
+      "command": "type",
+      "target": "id=CVC",
+      "targets": [
+        ["id=CVC", "id"],
+        ["name=CVC", "name"],
+        ["css=#CVC", "css:finder"],
+        ["xpath=//input[@id='CVC']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[6]/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div/input", "xpath:position"]
+      ],
+      "value": "123"
+    }, {
+      "id": "e496d194-aafc-41e7-a5e6-8fb460fbc341",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=CVC",
+      "targets": [
+        ["id=CVC", "id"],
+        ["name=CVC", "name"],
+        ["css=#CVC", "css:finder"],
+        ["xpath=//input[@id='CVC']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[6]/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "62c57778-2594-4482-a2ee-21c150d4bff4",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.alert",
+      "targets": [
+        ["css=.alert", "css:finder"],
+        ["xpath=//div[@id='transactionError']/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "263eefbe-93e2-4ec5-929f-f68687c0a212",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.alert",
+      "targets": [
+        ["css=.alert", "css:finder"],
+        ["xpath=//div[@id='transactionError']/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div", "xpath:position"]
+      ],
+      "value": "×\\nNeuspešna transakcija! Kartica ne postoji!"
+    }]
+  }, {
+    "id": "9531be62-6d57-4c04-9f69-3a5105ac82f6",
+    "name": "SSU_UplataNovcaNaRacun_NeodgovarajuciVlasnik",
+    "commands": [{
+      "id": "5609dadf-8dfc-4c0f-8475-0b0dc016e419",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Bela_Berza/Implementacija/public/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ee6e31a4-197e-440b-9d47-455200e5e359",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1536x824",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "891d9f6a-e674-43a8-b2a4-290551180f56",
+      "comment": "",
+      "command": "click",
+      "target": "css=li:nth-child(3) span",
+      "targets": [
+        ["css=li:nth-child(3) span", "css:finder"],
+        ["xpath=//nav[@id='sidebar']/ul/li[3]/a/span", "xpath:idRelative"],
+        ["xpath=//li[3]/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Moj novcanik')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7730ff84-c25a-4688-aac9-7e4d83effb78",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-success",
+      "targets": [
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//div[@id='walletInBtn']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'UPLATA')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "528961b9-ca63-448d-8a95-ba3782bcd638",
+      "comment": "",
+      "command": "click",
+      "target": "name=amountInputFieldPayment",
+      "targets": [
+        ["name=amountInputFieldPayment", "name"],
+        ["css=#amountInputFieldGroupPayment > .form-control", "css:finder"],
+        ["xpath=//input[@name='amountInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='amountInputFieldGroupPayment']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "41e1a920-24e3-43cf-8e14-ab7b909da28c",
+      "comment": "",
+      "command": "type",
+      "target": "name=amountInputFieldPayment",
+      "targets": [
+        ["name=amountInputFieldPayment", "name"],
+        ["css=#amountInputFieldGroupPayment > .form-control", "css:finder"],
+        ["xpath=//input[@name='amountInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='amountInputFieldGroupPayment']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "1000"
+    }, {
+      "id": "8eaff5c9-c138-44b6-a62f-b5d7b8f77563",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "name=amountInputFieldPayment",
+      "targets": [
+        ["name=amountInputFieldPayment", "name"],
+        ["css=#amountInputFieldGroupPayment > .form-control", "css:finder"],
+        ["xpath=//input[@name='amountInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='amountInputFieldGroupPayment']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "7f23209d-fe00-456b-a70d-f62a35596ff1",
+      "comment": "",
+      "command": "type",
+      "target": "id=nameInputFieldPayment",
+      "targets": [
+        ["id=nameInputFieldPayment", "id"],
+        ["name=nameInputFieldPayment", "name"],
+        ["css=#nameInputFieldPayment", "css:finder"],
+        ["xpath=//input[@id='nameInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "Petar"
+    }, {
+      "id": "53eae635-0af7-4f13-a951-d01dd5fc88a1",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=nameInputFieldPayment",
+      "targets": [
+        ["id=nameInputFieldPayment", "id"],
+        ["name=nameInputFieldPayment", "name"],
+        ["css=#nameInputFieldPayment", "css:finder"],
+        ["xpath=//input[@id='nameInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "d02b5647-3011-4265-9afc-455af2596d71",
+      "comment": "",
+      "command": "type",
+      "target": "id=surnameInputFieldPayment",
+      "targets": [
+        ["id=surnameInputFieldPayment", "id"],
+        ["name=surnameInputFieldPayment", "name"],
+        ["css=#surnameInputFieldPayment", "css:finder"],
+        ["xpath=//input[@id='surnameInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": "Pan"
+    }, {
+      "id": "fb8f9eb8-4a27-4391-a945-117c6f5256b1",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=surnameInputFieldPayment",
+      "targets": [
+        ["id=surnameInputFieldPayment", "id"],
+        ["name=surnameInputFieldPayment", "name"],
+        ["css=#surnameInputFieldPayment", "css:finder"],
+        ["xpath=//input[@id='surnameInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "ff372328-9766-4058-b50a-1d44e1b6a8c6",
+      "comment": "",
+      "command": "type",
+      "target": "id=creditCardNumberInput",
+      "targets": [
+        ["id=creditCardNumberInput", "id"],
+        ["name=creditCardNumberInput", "name"],
+        ["css=#creditCardNumberInput", "css:finder"],
+        ["xpath=//input[@id='creditCardNumberInput']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[4]/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/input", "xpath:position"]
+      ],
+      "value": "1234-5678-1234-5679"
+    }, {
+      "id": "a1b4b576-916d-4ab1-9e4d-5a85519c7f4d",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=creditCardNumberInput",
+      "targets": [
+        ["id=creditCardNumberInput", "id"],
+        ["name=creditCardNumberInput", "name"],
+        ["css=#creditCardNumberInput", "css:finder"],
+        ["xpath=//input[@id='creditCardNumberInput']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[4]/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "7238ac80-8a46-4447-b547-ae568e6d57ba",
+      "comment": "",
+      "command": "type",
+      "target": "id=CVC",
+      "targets": [
+        ["id=CVC", "id"],
+        ["name=CVC", "name"],
+        ["css=#CVC", "css:finder"],
+        ["xpath=//input[@id='CVC']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[6]/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div/input", "xpath:position"]
+      ],
+      "value": "123"
+    }, {
+      "id": "058f1892-1bc0-4e2a-b84f-fc4fb1983128",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=CVC",
+      "targets": [
+        ["id=CVC", "id"],
+        ["name=CVC", "name"],
+        ["css=#CVC", "css:finder"],
+        ["xpath=//input[@id='CVC']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[6]/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "fe5ab70b-a205-436d-8d70-9b2d4b8d3275",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.alert",
+      "targets": [
+        ["css=.alert", "css:finder"],
+        ["xpath=//div[@id='transactionError']/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e8b46a12-01bc-4bf3-b868-8f94e02ea4be",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.alert",
+      "targets": [
+        ["css=.alert", "css:finder"],
+        ["xpath=//div[@id='transactionError']/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div", "xpath:position"]
+      ],
+      "value": "×\\nNeuspešna transakcija! Uneta osoba nije vlasnik kartice-netačno ime!"
+    }]
+  }, {
+    "id": "7ac743e7-b5ee-4b74-9b9d-d47e0414f5f1",
+    "name": "SSU_UplataNovcaNaRacun_NedovoljnoNovca",
+    "commands": [{
+      "id": "5ac47324-1afa-404f-89d8-d91b7853adb7",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Bela_Berza/Implementacija/public/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e845caf6-4efe-4b07-81f2-c73dfcfd38dc",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1536x824",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b5d034b2-5c48-4d4a-ba87-17cf2b18589a",
+      "comment": "",
+      "command": "click",
+      "target": "css=li:nth-child(3) span",
+      "targets": [
+        ["css=li:nth-child(3) span", "css:finder"],
+        ["xpath=//nav[@id='sidebar']/ul/li[3]/a/span", "xpath:idRelative"],
+        ["xpath=//li[3]/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Moj novcanik')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1061db94-01dc-4db0-a9dd-b39d2d3c3de6",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-success",
+      "targets": [
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//div[@id='walletInBtn']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'UPLATA')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "11ec668d-d2d6-475b-bdc9-97c004f89e6c",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.btn-success",
+      "targets": [
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//div[@id='walletInBtn']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'UPLATA')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "be5c78ed-3009-44be-8c8a-c1e021012b1e",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.btn-success",
+      "targets": [
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//div[@id='walletInBtn']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'UPLATA')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7164b425-8eba-4631-a948-dcf8caea5754",
+      "comment": "",
+      "command": "click",
+      "target": "name=amountInputFieldPayment",
+      "targets": [
+        ["name=amountInputFieldPayment", "name"],
+        ["css=#amountInputFieldGroupPayment > .form-control", "css:finder"],
+        ["xpath=//input[@name='amountInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='amountInputFieldGroupPayment']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "35c50fa9-b370-4bd8-90f9-b50db3042ee9",
+      "comment": "",
+      "command": "type",
+      "target": "name=amountInputFieldPayment",
+      "targets": [
+        ["name=amountInputFieldPayment", "name"],
+        ["css=#amountInputFieldGroupPayment > .form-control", "css:finder"],
+        ["xpath=//input[@name='amountInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='amountInputFieldGroupPayment']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "1000"
+    }, {
+      "id": "b067c8cf-8c92-4012-a1b9-340372bb2977",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "name=amountInputFieldPayment",
+      "targets": [
+        ["name=amountInputFieldPayment", "name"],
+        ["css=#amountInputFieldGroupPayment > .form-control", "css:finder"],
+        ["xpath=//input[@name='amountInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='amountInputFieldGroupPayment']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "0923d908-1a37-4e26-a336-7d6bd1d01e55",
+      "comment": "",
+      "command": "type",
+      "target": "id=nameInputFieldPayment",
+      "targets": [
+        ["id=nameInputFieldPayment", "id"],
+        ["name=nameInputFieldPayment", "name"],
+        ["css=#nameInputFieldPayment", "css:finder"],
+        ["xpath=//input[@id='nameInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "Andrej"
+    }, {
+      "id": "2f684a5c-1037-43e5-8817-8ed7c484e061",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=nameInputFieldPayment",
+      "targets": [
+        ["id=nameInputFieldPayment", "id"],
+        ["name=nameInputFieldPayment", "name"],
+        ["css=#nameInputFieldPayment", "css:finder"],
+        ["xpath=//input[@id='nameInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "9555fadb-d2bf-42f7-9f36-c7f5de88c8c2",
+      "comment": "",
+      "command": "type",
+      "target": "id=surnameInputFieldPayment",
+      "targets": [
+        ["id=surnameInputFieldPayment", "id"],
+        ["name=surnameInputFieldPayment", "name"],
+        ["css=#surnameInputFieldPayment", "css:finder"],
+        ["xpath=//input[@id='surnameInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": "Gajic"
+    }, {
+      "id": "2ba56747-c526-4a61-9942-401a68ae211c",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=surnameInputFieldPayment",
+      "targets": [
+        ["id=surnameInputFieldPayment", "id"],
+        ["name=surnameInputFieldPayment", "name"],
+        ["css=#surnameInputFieldPayment", "css:finder"],
+        ["xpath=//input[@id='surnameInputFieldPayment']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "bb485e81-3fef-4ebd-946f-163cd221c9ec",
+      "comment": "",
+      "command": "type",
+      "target": "id=creditCardNumberInput",
+      "targets": [
+        ["id=creditCardNumberInput", "id"],
+        ["name=creditCardNumberInput", "name"],
+        ["css=#creditCardNumberInput", "css:finder"],
+        ["xpath=//input[@id='creditCardNumberInput']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[4]/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/input", "xpath:position"]
+      ],
+      "value": "1234-5678-1234-5679"
+    }, {
+      "id": "f080847b-113d-41a1-9374-677c665d54d3",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=creditCardNumberInput",
+      "targets": [
+        ["id=creditCardNumberInput", "id"],
+        ["name=creditCardNumberInput", "name"],
+        ["css=#creditCardNumberInput", "css:finder"],
+        ["xpath=//input[@id='creditCardNumberInput']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[4]/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "f9df9bd4-dece-4341-aaca-4443eaa73ecd",
+      "comment": "",
+      "command": "type",
+      "target": "id=CVC",
+      "targets": [
+        ["id=CVC", "id"],
+        ["name=CVC", "name"],
+        ["css=#CVC", "css:finder"],
+        ["xpath=//input[@id='CVC']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[6]/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div/input", "xpath:position"]
+      ],
+      "value": "123"
+    }, {
+      "id": "e34dbbb7-f944-420f-93e5-79d3b51a6764",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=CVC",
+      "targets": [
+        ["id=CVC", "id"],
+        ["name=CVC", "name"],
+        ["css=#CVC", "css:finder"],
+        ["xpath=//input[@id='CVC']", "xpath:attributes"],
+        ["xpath=//div[@id='exampleModalCenter1']/div/div/div[2]/form/div[6]/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "3756f77b-e586-41d6-8a3b-fa3ddccb7b1c",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.alert",
+      "targets": [
+        ["css=.alert", "css:finder"],
+        ["xpath=//div[@id='transactionError']/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "21663e07-37f7-449b-9234-5db63a536df1",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.alert",
+      "targets": [
+        ["css=.alert", "css:finder"],
+        ["xpath=//div[@id='transactionError']/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div", "xpath:position"]
+      ],
+      "value": "×\\nNeuspešna transakcija! Nemate dovoljno sredstava!"
+    }]
+  }, {
+    "id": "a5a706a9-ec87-4aa4-882b-f0dc4608b5cd",
+    "name": "SSU_PregledCelokupneIstorijeTransakcija_Uspesno",
+    "commands": [{
+      "id": "e4573a27-b0d3-40b8-a89d-b79ea6bb79fe",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Bela_Berza/Implementacija/public/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ddfac636-a574-412b-ba15-fc75b9ca2883",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1536x824",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e2eefb4f-56d5-448c-a487-0b1fd8866e91",
+      "comment": "",
+      "command": "click",
+      "target": "css=li:nth-child(3) span",
+      "targets": [
+        ["css=li:nth-child(3) span", "css:finder"],
+        ["xpath=//nav[@id='sidebar']/ul/li[3]/a/span", "xpath:idRelative"],
+        ["xpath=//li[3]/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,' Pregled transakcija')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0e1541fb-2857-4a17-874b-77d15f099b18",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=tr:nth-child(1) > .wallet-out:nth-child(3)",
+      "targets": [
+        ["css=tr:nth-child(1) > .wallet-out:nth-child(3)", "css:finder"],
+        ["xpath=//div[@id='confirmTable']/table/tbody/tr/td[3]", "xpath:idRelative"],
+        ["xpath=//td[3]", "xpath:position"],
+        ["xpath=//td[contains(.,'Kupovina')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "3b0a523e-7832-48b0-bb40-0949eb6275b5",
+    "name": "SSU_PregledCelokupneIstorijeTransakcija_NemaTransakcija",
+    "commands": [{
+      "id": "c8473087-d37a-4e5a-acea-b81ad93966d2",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Bela_Berza/Implementacija/public/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9be5d29c-9c18-4962-89db-edbed8bb399e",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1536x824",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a282bdc9-f4f2-4105-afda-7bb7ec704fa1",
+      "comment": "",
+      "command": "click",
+      "target": "css=li:nth-child(2) > .menu-item > span",
+      "targets": [
+        ["css=li:nth-child(2) > .menu-item > span", "css:finder"],
+        ["xpath=//nav[@id='sidebar']/ul/li[2]/a/span", "xpath:idRelative"],
+        ["xpath=//li[2]/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Pregled registracija')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2d3ee4a8-4e3c-4d18-b8e7-3e2ade841ebd",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.alert",
+      "targets": [
+        ["css=.alert", "css:finder"],
+        ["xpath=//div[@id='confirmContainer']/div[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/div[2]", "xpath:position"]
+      ],
+      "value": "Nema nijedne registracije na cekanju"
+    }]
+  }],
+  "suites": [{
+    "id": "45a2f2d6-4419-4403-87e3-651e3c69c698",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost/Bela_Berza/Implementacija/public/"],
+  "plugins": []
+}

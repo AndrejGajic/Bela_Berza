@@ -1,0 +1,19 @@
+Running 'SSU_PotvrdaRegistracijeKorisnika_NemaRegistracija'
+00:55:44
+1.
+open on http://localhost/Bela_Berza/Implementacija/public/ OK
+00:55:44
+2.
+setWindowSize on 1552x840 OK
+00:55:44
+3.
+click on css=li:nth-child(2) > .menu-item > span OK
+00:55:44
+4.
+click on css=.alert OK
+00:55:45
+5.
+assertText on css=.alert with value Nema nijedne registracije na cekanju OK
+00:55:46
+'SSU_PotvrdaRegistracijeKorisnika_NemaRegistracija' completed successfully
+00:55:46

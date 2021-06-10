@@ -1,0 +1,31 @@
+Running 'SSU_PrelazakUPrivilegovanogKorisnika_Uspesno'
+12:16:06
+1.
+open on http://localhost/Bela_Berza/Implementacija/public/home OK
+12:16:06
+2.
+setWindowSize on 1536x824 OK
+12:16:06
+3.
+click on linkText=Moj profil OK
+12:16:06
+4.
+click on linkText=Privilegije OK
+12:16:08
+5.
+assertText on css=.no-priv-status with value TRENUTNO NEMATE PRIVILEGIJE OK
+12:16:08
+6.
+assertElementPresent on css=.no-priv-button OK
+12:16:08
+7.
+click on css=.no-priv-button OK
+12:16:09
+8.
+Trying to find css=.btn-outline-success... OK
+12:16:09
+9.
+assertText on css=.yes-priv-status with value CESTITAMO, POSTALI STE PRIVILEGOVANI KORISNIK OK
+12:16:09
+'SSU_PrelazakUPrivilegovanogKorisnika_Uspesno' completed successfully
+12:16:10

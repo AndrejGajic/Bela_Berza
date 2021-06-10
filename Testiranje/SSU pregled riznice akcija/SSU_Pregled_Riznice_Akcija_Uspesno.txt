@@ -1,0 +1,16 @@
+Running 'SSU_PregledRizniceAkcija_Uspesno'
+01:21:23
+1.
+open on http://localhost/Bela_Berza/Implementacija/public/ OK
+01:21:24
+2.
+setWindowSize on 1552x840 OK
+01:21:24
+3.
+click on css=li:nth-child(2) > .menu-item > span OK
+01:21:24
+4.
+assertElementPresent on css=.col-md-6 > img OK
+01:21:25
+'SSU_PregledRizniceAkcija_Uspesno' completed successfully
+01:21:26

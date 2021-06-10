@@ -1,0 +1,19 @@
+Running 'SSU_PrelazakUPrivilegovanogKorisnika_VecPrivilegovan'
+11:58:51
+1.
+open on http://localhost/Bela_Berza/Implementacija/public/ OK
+11:58:52
+2.
+setWindowSize on 1552x840 OK
+11:58:52
+3.
+click on linkText=Moj profil OK
+11:58:52
+4.
+click on linkText=Privilegije OK
+11:58:54
+5.
+assertText on css=.yes-priv-status with value VEC STE PRIVILEGOVANI KORISNIK OK
+11:58:55
+'SSU_PrelazakUPrivilegovanogKorisnika_VecPrivilegovan' completed successfully
+11:58:56

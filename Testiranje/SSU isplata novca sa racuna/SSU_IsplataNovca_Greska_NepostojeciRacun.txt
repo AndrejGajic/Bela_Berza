@@ -1,0 +1,34 @@
+Running 'SSU_IsplataNovca_Greska_NepostojeciRacun'
+00:40:33
+1.
+open on http://localhost/Bela_Berza/Implementacija/public/home OK
+00:40:35
+2.
+setWindowSize on 1552x840 OK
+00:40:35
+3.
+click on css=li:nth-child(3) span OK
+00:40:35
+4.
+click on css=.btn-danger OK
+00:40:36
+5.
+click on name=amountInputFieldWithdraw OK
+00:40:37
+6.
+type on name=amountInputFieldWithdraw with value 1000 OK
+00:40:38
+7.
+click on id=bankAccountNumberInput OK
+00:40:39
+8.
+type on id=bankAccountNumberInput with value 123-1234567812345-44 OK
+00:40:40
+9.
+click on css=.modal-footer:nth-child(5) > .btn-outline-success OK
+00:40:41
+10.
+assertText on css=.alert with value ×\nNeuspešna transakcija! Broj računa ne postoji u banci, molimo Vas proverite broj računa! OK
+00:40:42
+'SSU_IsplataNovca_Greska_NepostojeciRacun' completed successfully
+00:40:43
